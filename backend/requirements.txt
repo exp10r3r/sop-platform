@@ -1,0 +1,21 @@
+# Web框架
+fastapi>=0.100.0
+uvicorn[standard]>=0.23.0
+
+# HTTP客户端
+httpx>=0.24.0
+
+# 数据验证
+pydantic>=2.0.0
+pydantic-settings>=2.0.0
+
+# 数据库
+sqlalchemy>=2.0.0
+psycopg2-binary>=2.9.0
+
+# 配置管理
+python-dotenv>=1.0.0
+
+# CORS支持（已包含在fastapi中）
+# 日志
+loguru>=0.7.0

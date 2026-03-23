@@ -1,0 +1,43 @@
+<template>
+  <div class="risk-ports">
+    <el-card shadow="never">
+      <el-table :data="tableData" v-loading="loading" stripe>
+        <el-table-column prop="id" label="ID" width="80" />
+        <el-table-column prop="ip" label="IP地址" min-width="140" />
+        <el-table-column prop="port" label="端口" width="80" />
+        <el-table-column prop="service" label="服务" min-width="100" />
+        <el-table-column prop="risk_desc" label="风险描述" min-width="200" />
+      </el-table>
+      <el-pagination v-model:current-page="currentPage" :total="total" layout="total, prev, pager, next" @current-change="loadData" class="pagination" />
+    </el-card>
+  </div>
+</template>
+
+<script setup>
+import { ref, onMounted } from 'vue'
+import { risksApi } from '@/api'
+
+const loading = ref(false)
+const tableData = ref([])
+const total = ref(0)
+const currentPage = ref(1)
+
+const loadData = async () => {
+  loading.value = true
+  try {
+    const res = await risksApi.getRiskPorts({ limit: 10, offset: (currentPage.value - 1) * 10 })
+    if (res.status) {
+      tableData.value = res.info || []
+      total.value = res.count || 0
+    }
+  } finally {
+    loading.value = false
+  }
+}
+
+onMounted(() => loadData())
+</script>
+
+<style scoped>
+.pagination { margin-top: 15px; justify-content: flex-end; }
+</style>
