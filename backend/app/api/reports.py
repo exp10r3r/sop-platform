@@ -68,7 +68,7 @@ async def sync_data(
     从CSM平台同步数据到本地数据库
     """
     sync_service = SyncService(db, csm)
-    stats = await sync_service.sync_dashboard_stats()
+    stats = await sync_service.sync_dashboard_stats(source="manual")
 
     return {
         "status": True,
@@ -76,6 +76,26 @@ async def sync_data(
         "data": {
             "updated_at": stats.updated_at.isoformat() if stats.updated_at else None,
         },
+    }
+
+
+@router.get("/trend", summary="获取历史趋势数据")
+async def get_trend(
+    days: int = 7,
+    db: Session = Depends(get_db),
+) -> Dict[str, Any]:
+    """
+    获取历史趋势数据
+
+    Args:
+        days: 查询最近N天的数据，默认7天
+    """
+    sync_service = SyncService(db, None)
+    trend_data = sync_service.get_trend_data(days=days)
+
+    return {
+        "status": True,
+        "data": trend_data,
     }
 
 

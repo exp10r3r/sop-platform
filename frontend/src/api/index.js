@@ -52,6 +52,7 @@ export const reportsApi = {
   getAssetsReport: () => api.get('/reports/assets'),
   getRisksReport: () => api.get('/reports/risks'),
   getIntelligenceReport: () => api.get('/reports/intelligence'),
+  getTrend: (days = 7) => api.get('/reports/trend', { params: { days } }),
   syncData: () => api.post('/reports/sync')
 }
 

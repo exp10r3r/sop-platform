@@ -145,6 +145,15 @@ npm run dev
 | fixed_count | INTEGER | 已修复数量 |
 | updated_at | TIMESTAMP | 更新时间 |
 
+### dashboard_stats_history 表（历史趋势）
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| id | SERIAL | 主键 |
+| ... | ... | 与 dashboard_stats 相同字段 |
+| snapshot_at | TIMESTAMP | 快照时间 |
+| source | VARCHAR(20) | 数据来源：auto/manual |
+
 ## 配置说明
 
 ### 环境变量
@@ -164,6 +173,7 @@ npm run dev
 | 方法 | 路径 | 说明 |
 |------|------|------|
 | GET | /api/reports/summary | 获取综合统计概览（从本地数据库读取） |
+| GET | /api/reports/trend?days=7 | 获取历史趋势数据（最近N天） |
 | POST | /api/reports/sync | 手动触发数据同步 |
 | GET | /api/reports/assets | 获取资产报表 |
 | GET | /api/reports/risks | 获取风险报表 |

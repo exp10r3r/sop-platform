@@ -85,11 +85,11 @@ class CSMClient:
 
     async def get_risk_ports(self, params: Optional[Dict] = None) -> Dict:
         """获取高危端口列表"""
-        return await self._request("/api/v1/riskport", params)
+        return await self._request("/api/v1/port/risk", params)
 
     async def get_abnormal_ports(self, params: Optional[Dict] = None) -> Dict:
         """获取非常规端口列表"""
-        return await self._request("/api/v1/abnormal_port", params)
+        return await self._request("/api/v1/port/unusual", params)
 
     # ==================== 安全情报API ====================
 

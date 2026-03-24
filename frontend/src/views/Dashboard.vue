@@ -77,6 +77,34 @@
         </el-card>
       </el-col>
     </el-row>
+
+    <!-- 趋势图表 -->
+    <el-row :gutter="20" style="margin-top: 20px;">
+      <el-col :span="8">
+        <el-card shadow="hover">
+          <template #header>
+            <span>资产趋势</span>
+          </template>
+          <div ref="assetTrendRef" style="height: 300px;"></div>
+        </el-card>
+      </el-col>
+      <el-col :span="8">
+        <el-card shadow="hover">
+          <template #header>
+            <span>漏洞趋势</span>
+          </template>
+          <div ref="vulnTrendRef" style="height: 300px;"></div>
+        </el-card>
+      </el-col>
+      <el-col :span="8">
+        <el-card shadow="hover">
+          <template #header>
+            <span>风险等级趋势</span>
+          </template>
+          <div ref="riskLevelTrendRef" style="height: 300px;"></div>
+        </el-card>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -87,8 +115,12 @@ import { reportsApi } from '@/api'
 import { ElMessage } from 'element-plus'
 
 const summary = ref({})
+const trendData = ref([])
 const riskChartRef = ref(null)
 const statusChartRef = ref(null)
+const assetTrendRef = ref(null)
+const vulnTrendRef = ref(null)
+const riskLevelTrendRef = ref(null)
 const syncing = ref(false)
 
 const loadSummary = async () => {
@@ -103,6 +135,18 @@ const loadSummary = async () => {
   }
 }
 
+const loadTrendData = async () => {
+  try {
+    const res = await reportsApi.getTrend(7)
+    if (res.status) {
+      trendData.value = res.data
+      renderTrendCharts()
+    }
+  } catch (error) {
+    console.error('加载趋势数据失败:', error)
+  }
+}
+
 const handleSync = async () => {
   syncing.value = true
   try {
@@ -110,6 +154,7 @@ const handleSync = async () => {
     if (res.status) {
       ElMessage.success('数据同步成功')
       await loadSummary()
+      await loadTrendData()
     }
   } catch (error) {
     ElMessage.error('数据同步失败')
@@ -162,8 +207,65 @@ const renderCharts = () => {
   })
 }
 
+const renderTrendCharts = () => {
+  const dates = trendData.value.map(item => item.date)
+  const ipCounts = trendData.value.map(item => item.ip_count)
+  const domainCounts = trendData.value.map(item => item.domain_count)
+  const pocCounts = trendData.value.map(item => item.poc_count)
+  const versionCounts = trendData.value.map(item => item.version_count)
+  const criticalCounts = trendData.value.map(item => item.critical_count)
+  const highCounts = trendData.value.map(item => item.high_count)
+  const mediumCounts = trendData.value.map(item => item.medium_count)
+  const lowCounts = trendData.value.map(item => item.low_count)
+
+  // 资产趋势折线图
+  const assetTrendChart = echarts.init(assetTrendRef.value)
+  assetTrendChart.setOption({
+    tooltip: { trigger: 'axis' },
+    legend: { bottom: 0 },
+    grid: { left: '3%', right: '4%', bottom: '15%', top: '3%', containLabel: true },
+    xAxis: { type: 'category', data: dates, axisLabel: { rotate: 45, fontSize: 10 } },
+    yAxis: { type: 'value' },
+    series: [
+      { name: 'IP资产', type: 'line', data: ipCounts, smooth: true, itemStyle: { color: '#409EFF' } },
+      { name: '域名资产', type: 'line', data: domainCounts, smooth: true, itemStyle: { color: '#67C23A' } }
+    ]
+  })
+
+  // 漏洞趋势折线图
+  const vulnTrendChart = echarts.init(vulnTrendRef.value)
+  vulnTrendChart.setOption({
+    tooltip: { trigger: 'axis' },
+    legend: { bottom: 0 },
+    grid: { left: '3%', right: '4%', bottom: '15%', top: '3%', containLabel: true },
+    xAxis: { type: 'category', data: dates, axisLabel: { rotate: 45, fontSize: 10 } },
+    yAxis: { type: 'value' },
+    series: [
+      { name: 'PoC漏洞', type: 'line', data: pocCounts, smooth: true, itemStyle: { color: '#E6A23C' } },
+      { name: '版本漏洞', type: 'line', data: versionCounts, smooth: true, itemStyle: { color: '#F56C6C' } }
+    ]
+  })
+
+  // 风险等级堆叠面积图
+  const riskLevelTrendChart = echarts.init(riskLevelTrendRef.value)
+  riskLevelTrendChart.setOption({
+    tooltip: { trigger: 'axis' },
+    legend: { bottom: 0 },
+    grid: { left: '3%', right: '4%', bottom: '15%', top: '3%', containLabel: true },
+    xAxis: { type: 'category', boundaryGap: false, data: dates, axisLabel: { rotate: 45, fontSize: 10 } },
+    yAxis: { type: 'value' },
+    series: [
+      { name: '严重', type: 'line', stack: 'Total', areaStyle: {}, data: criticalCounts, itemStyle: { color: '#F56C6C' } },
+      { name: '高危', type: 'line', stack: 'Total', areaStyle: {}, data: highCounts, itemStyle: { color: '#E6A23C' } },
+      { name: '中危', type: 'line', stack: 'Total', areaStyle: {}, data: mediumCounts, itemStyle: { color: '#409EFF' } },
+      { name: '低危', type: 'line', stack: 'Total', areaStyle: {}, data: lowCounts, itemStyle: { color: '#67C23A' } }
+    ]
+  })
+}
+
 onMounted(() => {
   loadSummary()
+  loadTrendData()
 })
 </script>
 
