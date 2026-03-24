@@ -23,19 +23,24 @@
     <!-- 数据表格 -->
     <el-card shadow="never">
       <el-table :data="tableData" v-loading="loading" stripe>
-        <el-table-column prop="id" label="ID" width="80" />
         <el-table-column prop="ip" label="IP地址" min-width="140" />
-        <el-table-column prop="location" label="地理位置" min-width="120" />
-        <el-table-column prop="os" label="操作系统" min-width="180" show-overflow-tooltip />
-        <el-table-column prop="ports_row" label="开放端口" min-width="150">
+        <el-table-column prop="port" label="端口" min-width="120">
           <template #default="{ row }">
-            <el-tag v-for="port in (row.ports_row || []).slice(0, 5)" :key="port" size="small" class="port-tag">
-              {{ port }}
+            <el-tag v-for="p in (row.port || []).slice(0, 5)" :key="p" size="small" class="port-tag">
+              {{ p }}
             </el-tag>
-            <span v-if="(row.ports_row || []).length > 5">...</span>
+            <span v-if="(row.port || []).length > 5">...</span>
           </template>
         </el-table-column>
-        <el-table-column prop="strdevtype" label="资产类别" min-width="120" />
+        <el-table-column prop="service" label="服务" min-width="180">
+          <template #default="{ row }">
+            <span v-for="s in (row.service || []).slice(0, 2)" :key="s.port">
+              {{ s.service }}:{{ s.port }}
+              <span v-if="s.product">({{ s.product }})</span>
+            </span>
+          </template>
+        </el-table-column>
+        <el-table-column prop="os" label="操作系统" min-width="180" show-overflow-tooltip />
         <el-table-column prop="secstate" label="安全状态" width="100">
           <template #default="{ row }">
             <el-tag :type="row.secstate === 1 ? 'success' : 'danger'" size="small">
@@ -44,6 +49,9 @@
           </template>
         </el-table-column>
         <el-table-column prop="createtime" label="创建时间" width="170" />
+        <el-table-column prop="uptime" label="更新时间" width="170" />
+        <el-table-column prop="location" label="地理位置" min-width="120" />
+        <el-table-column prop="isp" label="运营商" min-width="100" />
       </el-table>
 
       <!-- 分页 -->

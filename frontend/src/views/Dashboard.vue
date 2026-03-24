@@ -1,5 +1,15 @@
 <template>
   <div class="dashboard">
+    <!-- 操作栏 -->
+    <div class="action-bar">
+      <el-button type="primary" @click="handleSync" :loading="syncing">
+        <el-icon><Refresh /></el-icon>数据同步
+      </el-button>
+      <span class="update-time" v-if="summary.updated_at">
+        上次更新: {{ summary.updated_at }}
+      </span>
+    </div>
+
     <!-- 统计卡片 -->
     <el-row :gutter="20" class="stat-cards">
       <el-col :span="6">
@@ -74,10 +84,12 @@
 import { ref, onMounted } from 'vue'
 import * as echarts from 'echarts'
 import { reportsApi } from '@/api'
+import { ElMessage } from 'element-plus'
 
 const summary = ref({})
 const riskChartRef = ref(null)
 const statusChartRef = ref(null)
+const syncing = ref(false)
 
 const loadSummary = async () => {
   try {
@@ -88,6 +100,21 @@ const loadSummary = async () => {
     }
   } catch (error) {
     console.error('加载数据失败:', error)
+  }
+}
+
+const handleSync = async () => {
+  syncing.value = true
+  try {
+    const res = await reportsApi.syncData()
+    if (res.status) {
+      ElMessage.success('数据同步成功')
+      await loadSummary()
+    }
+  } catch (error) {
+    ElMessage.error('数据同步失败')
+  } finally {
+    syncing.value = false
   }
 }
 
@@ -143,6 +170,18 @@ onMounted(() => {
 <style scoped>
 .dashboard {
   padding: 0;
+}
+
+.action-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.update-time {
+  margin-left: 15px;
+  color: #909399;
+  font-size: 13px;
 }
 
 .stat-cards {

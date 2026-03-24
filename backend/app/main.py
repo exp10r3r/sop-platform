@@ -1,18 +1,64 @@
 """FastAPI应用入口"""
 
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from loguru import logger
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
 import sys
 
 from app.config import get_settings
+from app.database import engine, Base, SessionLocal
+from app.models import DashboardStats
 from app.api import assets, risks, intelligence, reports
+from app.services.csm_client import get_csm_client
 
 # 配置日志
 logger.remove()
 logger.add(sys.stderr, level="DEBUG")
 
 settings = get_settings()
+
+# 定时任务调度器
+scheduler = AsyncIOScheduler()
+
+
+async def sync_dashboard_data():
+    """定时同步总览数据"""
+    from app.services.sync_service import SyncService
+    logger.info("开始同步总览数据...")
+    try:
+        db = SessionLocal()
+        csm = get_csm_client()
+        sync_service = SyncService(db, csm)
+        await sync_service.sync_dashboard_stats()
+        db.close()
+        logger.info("总览数据同步完成")
+    except Exception as e:
+        logger.error(f"总览数据同步失败: {e}")
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """应用生命周期管理"""
+    # 启动时创建表
+    Base.metadata.create_all(bind=engine)
+    logger.info("数据库表创建完成")
+
+    # 启动时执行一次同步
+    await sync_dashboard_data()
+
+    # 启动定时任务（每小时同步一次）
+    scheduler.add_job(sync_dashboard_data, 'interval', hours=1)
+    scheduler.start()
+    logger.info("定时同步任务已启动（每小时）")
+
+    yield
+
+    # 关闭时停止定时任务
+    scheduler.shutdown()
+    logger.info("应用已关闭")
+
 
 # 创建FastAPI应用
 app = FastAPI(
@@ -21,6 +67,7 @@ app = FastAPI(
     version="1.0.0",
     docs_url="/docs",
     redoc_url="/redoc",
+    lifespan=lifespan,
 )
 
 # 配置CORS
@@ -61,6 +108,6 @@ if __name__ == "__main__":
     uvicorn.run(
         "app.main:app",
         host="0.0.0.0",
-        port=8000,
+        port=8888,
         reload=settings.DEBUG,
     )

@@ -51,7 +51,8 @@ export const reportsApi = {
   getSummary: () => api.get('/reports/summary'),
   getAssetsReport: () => api.get('/reports/assets'),
   getRisksReport: () => api.get('/reports/risks'),
-  getIntelligenceReport: () => api.get('/reports/intelligence')
+  getIntelligenceReport: () => api.get('/reports/intelligence'),
+  syncData: () => api.post('/reports/sync')
 }
 
 export default api
