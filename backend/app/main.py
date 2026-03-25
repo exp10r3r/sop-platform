@@ -10,7 +10,8 @@ import sys
 from app.config import get_settings
 from app.database import engine, Base, SessionLocal
 from app.models import DashboardStats
-from app.api import assets, risks, intelligence, reports
+from app.models.user import User, AuditLog  # 导入用户模型
+from app.api import assets, risks, intelligence, reports, auth  # 导入认证路由
 from app.services.csm_client import get_csm_client
 
 # 配置日志
@@ -80,6 +81,7 @@ app.add_middleware(
 )
 
 # 注册路由
+app.include_router(auth.router, prefix="/api")  # 认证路由
 app.include_router(assets.router, prefix="/api")
 app.include_router(risks.router, prefix="/api")
 app.include_router(intelligence.router, prefix="/api")

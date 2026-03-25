@@ -88,3 +88,64 @@ COMMENT ON COLUMN dashboard_stats.updated_at IS '数据更新时间';
 COMMENT ON TABLE dashboard_stats_history IS '总览统计数据历史表 - 用于趋势分析';
 COMMENT ON COLUMN dashboard_stats_history.snapshot_at IS '快照时间';
 COMMENT ON COLUMN dashboard_stats_history.source IS '数据来源：auto(定时同步) / manual(手动同步)';
+
+-- ==================== 用户和认证相关表 ====================
+
+-- 用户表
+CREATE TABLE IF NOT EXISTS users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    role VARCHAR(20) DEFAULT 'user',  -- admin, user
+    is_active BOOLEAN DEFAULT TRUE,
+    last_login TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 用户表索引
+CREATE INDEX IF NOT EXISTS idx_users_username ON users(username);
+CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
+
+-- 审计日志表
+CREATE TABLE IF NOT EXISTS audit_logs (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(id),
+    action VARCHAR(50) NOT NULL,      -- login, logout, create, update, delete, api_call
+    resource VARCHAR(100),            -- 操作的资源类型
+    resource_id INTEGER,              -- 资源ID
+    details TEXT,                     -- JSON格式的操作详情
+    ip_address VARCHAR(45),
+    user_agent TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 审计日志表索引
+CREATE INDEX IF NOT EXISTS idx_audit_logs_user ON audit_logs(user_id);
+CREATE INDEX IF NOT EXISTS idx_audit_logs_action ON audit_logs(action);
+CREATE INDEX IF NOT EXISTS idx_audit_logs_created ON audit_logs(created_at);
+
+-- 用户表注释
+COMMENT ON TABLE users IS '用户表';
+COMMENT ON COLUMN users.username IS '用户名';
+COMMENT ON COLUMN users.email IS '邮箱';
+COMMENT ON COLUMN users.password_hash IS '密码哈希';
+COMMENT ON COLUMN users.role IS '角色：admin(管理员), user(普通用户)';
+COMMENT ON COLUMN users.is_active IS '是否激活';
+COMMENT ON COLUMN users.last_login IS '最后登录时间';
+
+-- 审计日志表注释
+COMMENT ON TABLE audit_logs IS '审计日志表';
+COMMENT ON COLUMN audit_logs.action IS '操作类型：login, logout, create, update, delete, api_call';
+COMMENT ON COLUMN audit_logs.resource IS '资源类型';
+COMMENT ON COLUMN audit_logs.resource_id IS '资源ID';
+COMMENT ON COLUMN audit_logs.details IS '操作详情(JSON)';
+COMMENT ON COLUMN audit_logs.ip_address IS 'IP地址';
+COMMENT ON COLUMN audit_logs.user_agent IS '用户代理';
+
+-- 创建默认管理员账户（密码: admin123，请在生产环境中修改）
+-- 密码哈希使用bcrypt生成
+INSERT INTO users (username, email, password_hash, role)
+VALUES ('admin', 'admin@example.com', '$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/X4.vOqFMqDJUaFUsG', 'admin')
+ON CONFLICT (username) DO NOTHING;

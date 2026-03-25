@@ -19,6 +19,9 @@ class Settings(BaseSettings):
     APP_NAME: str = "SOP Platform"
     DEBUG: bool = True
 
+    # JWT配置
+    SECRET_KEY: str = "sop-platform-secret-key-change-in-production"
+
     class Config:
         env_file = ".env"
         env_file_encoding = "utf-8"
