@@ -17,7 +17,7 @@
         <div class="characters-wrapper">
           <AnimatedCharacters
             :isTyping="isTyping"
-            :showPassword="showPassword"
+            :showPassword="isPasswordVisible"
             :passwordLength="form.password.length"
           />
         </div>
@@ -49,16 +49,15 @@
 
           <el-form-item prop="password">
             <el-input
+              ref="passwordInputRef"
               v-model="form.password"
               type="password"
               placeholder="密码"
               size="large"
               :prefix-icon="Lock"
               show-password
-              @focus="isTyping = true"
-              @blur="isTyping = false"
-              @input="handlePasswordInput"
-              @change="showPassword = false"
+              @focus="handlePasswordFocus"
+              @blur="handlePasswordBlur"
               @keyup.enter="handleLogin"
             />
           </el-form-item>
@@ -91,7 +90,7 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, onMounted, onUnmounted, watch, nextTick } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { User, Lock, Aim } from '@element-plus/icons-vue'
@@ -103,9 +102,10 @@ const route = useRoute()
 const userStore = useUserStore()
 
 const formRef = ref(null)
+const passwordInputRef = ref(null)
 const loading = ref(false)
 const isTyping = ref(false)
-const showPassword = ref(false)
+const isPasswordVisible = ref(false)
 
 const form = reactive({
   username: '',
@@ -123,14 +123,49 @@ const rules = {
   ]
 }
 
-// 监听密码输入，检测是否显示密码
-const handlePasswordInput = () => {
-  // 检查密码输入框是否处于显示密码状态
-  const passwordInput = document.querySelector('input[type="text"]')
-  if (passwordInput && passwordInput.placeholder === '密码') {
-    showPassword.value = true
-  } else {
-    showPassword.value = false
+// 检查密码是否可见
+const checkPasswordVisibility = () => {
+  nextTick(() => {
+    const passwordWrapper = passwordInputRef.value?.$el
+    if (passwordWrapper) {
+      const input = passwordWrapper.querySelector('input')
+      if (input) {
+        isPasswordVisible.value = input.type === 'text'
+      }
+    }
+  })
+}
+
+// 密码输入框聚焦
+const handlePasswordFocus = () => {
+  isTyping.value = true
+}
+
+// 密码输入框失焦
+const handlePasswordBlur = () => {
+  isTyping.value = false
+}
+
+// 监听密码变化
+watch(() => form.password, () => {
+  checkPasswordVisibility()
+})
+
+onMounted(() => {
+  // 点击事件监听（Element Plus 的眼睛图标点击）
+  document.addEventListener('click', handleClick)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('click', handleClick)
+})
+
+const handleClick = (e) => {
+  // 检查是否点击了密码输入框区域
+  const passwordWrapper = passwordInputRef.value?.$el
+  if (passwordWrapper && passwordWrapper.contains(e.target)) {
+    // 延迟检查，等待 Element Plus 更新 DOM
+    setTimeout(checkPasswordVisibility, 50)
   }
 }
 
@@ -146,7 +181,6 @@ const handleLogin = async () => {
 
       ElMessage.success('登录成功')
 
-      // 跳转到之前的页面或首页
       const redirect = route.query.redirect || '/'
       router.push(redirect)
     } catch (error) {
