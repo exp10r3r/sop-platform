@@ -6,16 +6,51 @@ const api = axios.create({
   timeout: 30000
 })
 
+// 请求拦截器 - 自动携带Token
+api.interceptors.request.use(
+  config => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`
+    }
+    return config
+  },
+  error => {
+    return Promise.reject(error)
+  }
+)
+
 // 响应拦截器
 api.interceptors.response.use(
   response => {
     return response.data
   },
   error => {
-    ElMessage.error(error.message || '请求失败')
+    // 401 未登录或Token过期
+    if (error.response?.status === 401) {
+      localStorage.removeItem('token')
+      localStorage.removeItem('userInfo')
+      // 跳转到登录页
+      if (window.location.pathname !== '/login') {
+        window.location.href = '/login'
+      }
+    }
+    ElMessage.error(error.response?.data?.detail || error.message || '请求失败')
     return Promise.reject(error)
   }
 )
+
+// 认证相关API
+export const authApi = {
+  login: (data) => api.post('/auth/login', data),
+  logout: () => api.post('/auth/logout'),
+  getMe: () => api.get('/auth/me'),
+  changePassword: (data) => api.put('/auth/password', data),
+  getUsers: () => api.get('/auth/users'),
+  register: (data) => api.post('/auth/register', data),
+  deleteUser: (id) => api.delete(`/auth/users/${id}`),
+  getAuditLogs: (params) => api.get('/auth/audit-logs', { params })
+}
 
 // 资产相关API
 export const assetsApi = {
