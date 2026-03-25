@@ -4,7 +4,7 @@
     <div class="login-left">
       <div class="brand-header">
         <div class="logo">
-          <el-icon size="32"><Shield /></el-icon>
+          <el-icon size="32"><Aim /></el-icon>
         </div>
         <span class="brand-name">SOP Platform</span>
       </div>
@@ -95,7 +95,7 @@
 import { ref, reactive } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus'
-import { User, Lock, Shield, Monitor, Warning, DataAnalysis } from '@element-plus/icons-vue'
+import { User, Lock, Aim, Monitor, Warning, DataAnalysis } from '@element-plus/icons-vue'
 import { useUserStore } from '@/stores/user'
 
 const router = useRouter()
