@@ -19,12 +19,17 @@ sop-platform/
 │   │   │   ├── assets.py      # 资产管理API
 │   │   │   ├── risks.py       # 安全风险API
 │   │   │   ├── intelligence.py # 安全情报API
-│   │   │   └── reports.py     # 数据报表API
+│   │   │   ├── reports.py     # 数据报表API
+│   │   │   └── auth.py        # 用户认证API
 │   │   ├── services/          # 业务服务
 │   │   │   ├── csm_client.py  # CSM API客户端
-│   │   │   └── sync_service.py # 数据同步服务
+│   │   │   ├── sync_service.py # 数据同步服务
+│   │   │   └── auth_service.py # 认证服务（JWT、密码验证）
 │   │   ├── models/            # 数据模型
-│   │   │   └── dashboard.py   # 总览统计模型
+│   │   │   ├── dashboard.py   # 总览统计模型
+│   │   │   └── user.py        # 用户和审计日志模型
+│   │   ├── utils/             # 工具函数
+│   │   │   └── auth.py        # 认证依赖注入
 │   │   ├── config.py          # 配置管理
 │   │   ├── database.py        # 数据库连接
 │   │   └── main.py            # 应用入口
@@ -37,7 +42,10 @@ sop-platform/
 │   │   │   ├── risks/         # 安全风险页面
 │   │   │   ├── intelligence/  # 安全情报页面
 │   │   │   ├── Dashboard.vue  # 总览页面
-│   │   │   └── Reports.vue    # 报表页面
+│   │   │   ├── Reports.vue    # 报表页面
+│   │   │   └── Login.vue      # 登录页面
+│   │   ├── stores/            # 状态管理
+│   │   │   └── user.js        # 用户状态管理
 │   │   ├── api/               # API调用
 │   │   └── router/            # 路由配置
 │   └── package.json
@@ -92,8 +100,16 @@ npm run dev
 
 - 前端: http://localhost:3001
 - 后端API文档: http://localhost:8888/docs
+- **默认管理员账户**: `admin` / `admin123`（请在生产环境中修改密码）
 
 ## 功能模块
+
+### 用户认证
+- **JWT认证**: 基于JWT Token的无状态认证
+- **用户管理**: 仅管理员可创建/删除用户
+- **角色权限**: admin（管理员）、user（普通用户）
+- **审计日志**: 记录登录/登出、数据操作、API调用
+- **路由守卫**: 未登录自动跳转登录页
 
 ### 总览页面
 - **本地数据存储**: 统计数据存储在本地PostgreSQL数据库
@@ -154,6 +170,34 @@ npm run dev
 | snapshot_at | TIMESTAMP | 快照时间 |
 | source | VARCHAR(20) | 数据来源：auto/manual |
 
+### users 表（用户）
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| id | SERIAL | 主键 |
+| username | VARCHAR(50) | 用户名（唯一） |
+| email | VARCHAR(100) | 邮箱（唯一） |
+| password_hash | VARCHAR(255) | 密码哈希（bcrypt） |
+| role | VARCHAR(20) | 角色：admin/user |
+| is_active | BOOLEAN | 是否激活 |
+| last_login | TIMESTAMP | 最后登录时间 |
+| created_at | TIMESTAMP | 创建时间 |
+| updated_at | TIMESTAMP | 更新时间 |
+
+### audit_logs 表（审计日志）
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| id | SERIAL | 主键 |
+| user_id | INTEGER | 用户ID（外键） |
+| action | VARCHAR(50) | 操作类型：login/logout/create/update/delete |
+| resource | VARCHAR(100) | 资源类型 |
+| resource_id | INTEGER | 资源ID |
+| details | TEXT | 操作详情（JSON） |
+| ip_address | VARCHAR(45) | IP地址 |
+| user_agent | TEXT | 用户代理 |
+| created_at | TIMESTAMP | 创建时间 |
+
 ## 配置说明
 
 ### 环境变量
@@ -164,9 +208,23 @@ npm run dev
 | CSM_ACCESS_KEY | CSM平台AccessKey | - |
 | CSM_SECRET_KEY | CSM平台SecretKey | - |
 | DATABASE_URL | 数据库连接地址 | postgresql://postgres:postgres@localhost:5432/sop_platform |
+| SECRET_KEY | JWT密钥（生产环境请修改） | your-secret-key-change-in-production |
 | DEBUG | 调试模式 | true |
 
 ## API接口
+
+### 用户认证
+
+| 方法 | 路径 | 说明 |
+|------|------|------|
+| POST | /api/auth/login | 用户登录 |
+| POST | /api/auth/logout | 用户登出 |
+| GET | /api/auth/me | 获取当前用户信息 |
+| PUT | /api/auth/password | 修改密码 |
+| POST | /api/auth/register | 创建用户（仅管理员） |
+| GET | /api/auth/users | 用户列表（仅管理员） |
+| DELETE | /api/auth/users/{id} | 删除用户（仅管理员） |
+| GET | /api/auth/audit-logs | 审计日志列表（仅管理员） |
 
 ### 数据报表
 
