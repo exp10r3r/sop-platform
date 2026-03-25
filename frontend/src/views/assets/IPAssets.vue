@@ -40,7 +40,6 @@
             </span>
           </template>
         </el-table-column>
-        <el-table-column prop="os" label="操作系统" min-width="180" show-overflow-tooltip />
         <el-table-column prop="secstate" label="安全状态" width="100">
           <template #default="{ row }">
             <el-tag :type="row.secstate === 1 ? 'success' : 'danger'" size="small">
@@ -48,10 +47,22 @@
             </el-tag>
           </template>
         </el-table-column>
-        <el-table-column prop="createtime" label="创建时间" width="170" />
-        <el-table-column prop="uptime" label="更新时间" width="170" />
+        <el-table-column prop="change_state" label="变更状态" width="100">
+          <template #default="{ row }">
+            <el-tag :type="getChangeStateType(row.change_state)" size="small">
+              {{ getChangeStateText(row.change_state) }}
+            </el-tag>
+          </template>
+        </el-table-column>
         <el-table-column prop="location" label="地理位置" min-width="120" />
         <el-table-column prop="isp" label="运营商" min-width="100" />
+        <el-table-column label="时间" width="170">
+          <template #default="{ row }">
+            <el-tooltip :content="'创建: ' + row.createtime" placement="top">
+              <span>{{ row.uptime || row.createtime }}</span>
+            </el-tooltip>
+          </template>
+        </el-table-column>
       </el-table>
 
       <!-- 分页 -->
@@ -82,6 +93,17 @@ const searchForm = ref({
   ip: '',
   location: ''
 })
+
+// 变更状态映射
+const getChangeStateType = (state) => {
+  const types = { 0: 'info', 1: 'success', 2: 'warning', 3: 'danger' }
+  return types[state] || 'info'
+}
+
+const getChangeStateText = (state) => {
+  const texts = { 0: '无变化', 1: '新增', 2: '变更', 3: '删除' }
+  return texts[state] || '未知'
+}
 
 const loadData = async () => {
   loading.value = true
