@@ -145,7 +145,7 @@ COMMENT ON COLUMN audit_logs.ip_address IS 'IP地址';
 COMMENT ON COLUMN audit_logs.user_agent IS '用户代理';
 
 -- 创建默认管理员账户（密码: admin123，请在生产环境中修改）
--- 密码哈希使用bcrypt生成
+-- 密码哈希使用bcrypt生成，对应密码: admin123
 INSERT INTO users (username, email, password_hash, role)
-VALUES ('admin', 'admin@example.com', '$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/X4.vOqFMqDJUaFUsG', 'admin')
+VALUES ('admin', 'admin@example.com', '$2b$12$bVCgAn9fBCmjNJ9LENJgL.if/S1pFC.4FeDPFspgEK/dcqG4Cg1G2', 'admin')
 ON CONFLICT (username) DO NOTHING;

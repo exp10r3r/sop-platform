@@ -13,19 +13,13 @@
         <h1>安全运营平台</h1>
         <p>资产数据管理 · 安全风险监测 · 安全情报分析</p>
 
-        <div class="features">
-          <div class="feature-item">
-            <el-icon><Monitor /></el-icon>
-            <span>资产全景可视</span>
-          </div>
-          <div class="feature-item">
-            <el-icon><Warning /></el-icon>
-            <span>风险实时预警</span>
-          </div>
-          <div class="feature-item">
-            <el-icon><DataAnalysis /></el-icon>
-            <span>数据报表分析</span>
-          </div>
+        <!-- 动画角色 -->
+        <div class="characters-wrapper">
+          <AnimatedCharacters
+            :isTyping="isTyping"
+            :showPassword="showPassword"
+            :passwordLength="form.password.length"
+          />
         </div>
       </div>
 
@@ -49,6 +43,7 @@
               placeholder="用户名 / 邮箱"
               size="large"
               :prefix-icon="User"
+              @focus="isTyping = false"
             />
           </el-form-item>
 
@@ -60,6 +55,10 @@
               size="large"
               :prefix-icon="Lock"
               show-password
+              @focus="isTyping = true"
+              @blur="isTyping = false"
+              @input="handlePasswordInput"
+              @change="showPassword = false"
               @keyup.enter="handleLogin"
             />
           </el-form-item>
@@ -95,8 +94,9 @@
 import { ref, reactive } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus'
-import { User, Lock, Aim, Monitor, Warning, DataAnalysis } from '@element-plus/icons-vue'
+import { User, Lock, Aim } from '@element-plus/icons-vue'
 import { useUserStore } from '@/stores/user'
+import AnimatedCharacters from '@/components/AnimatedCharacters.vue'
 
 const router = useRouter()
 const route = useRoute()
@@ -104,6 +104,8 @@ const userStore = useUserStore()
 
 const formRef = ref(null)
 const loading = ref(false)
+const isTyping = ref(false)
+const showPassword = ref(false)
 
 const form = reactive({
   username: '',
@@ -119,6 +121,17 @@ const rules = {
     { required: true, message: '请输入密码', trigger: 'blur' },
     { min: 6, message: '密码长度至少6位', trigger: 'blur' }
   ]
+}
+
+// 监听密码输入，检测是否显示密码
+const handlePasswordInput = () => {
+  // 检查密码输入框是否处于显示密码状态
+  const passwordInput = document.querySelector('input[type="text"]')
+  if (passwordInput && passwordInput.placeholder === '密码') {
+    showPassword.value = true
+  } else {
+    showPassword.value = false
+  }
 }
 
 const handleLogin = async () => {
@@ -204,6 +217,7 @@ const handleLogin = async () => {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   position: relative;
   z-index: 1;
 }
@@ -212,31 +226,21 @@ const handleLogin = async () => {
   font-size: 42px;
   margin-bottom: 16px;
   font-weight: 700;
+  text-align: center;
 }
 
 .brand-content p {
   font-size: 18px;
   color: rgba(255, 255, 255, 0.7);
   margin-bottom: 40px;
+  text-align: center;
 }
 
-.features {
+.characters-wrapper {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.feature-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 16px;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.feature-item .el-icon {
-  font-size: 24px;
-  color: #409eff;
+  justify-content: center;
+  align-items: flex-end;
+  margin-top: 20px;
 }
 
 .brand-footer {
@@ -244,6 +248,7 @@ const handleLogin = async () => {
   color: rgba(255, 255, 255, 0.5);
   position: relative;
   z-index: 1;
+  text-align: center;
 }
 
 /* 右侧登录表单区域 */
