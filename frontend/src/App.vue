@@ -1,103 +1,177 @@
 <template>
-  <el-config-provider :locale="zhCn">
-    <!-- 登录页面不显示侧边栏 -->
-    <template v-if="route.path === '/login'">
-      <router-view />
-    </template>
+  <!-- 登录页面不显示侧边栏 -->
+  <template v-if="route.path === '/login'">
+    <router-view />
+  </template>
 
-    <!-- 主界面布局 -->
-    <el-container v-else class="app-container">
-      <el-aside width="220px" class="sidebar">
-        <div class="logo">
-          <h1>SOP Platform</h1>
+  <!-- 主界面布局 -->
+  <div v-else class="app-layout">
+    <!-- 侧边栏 -->
+    <aside
+      class="sidebar"
+      :class="{ 'sidebar-expanded': sidebarOpen }"
+      @mouseenter="sidebarOpen = true"
+      @mouseleave="sidebarOpen = false"
+    >
+      <!-- Logo -->
+      <div class="sidebar-logo">
+        <div class="logo-icon">
+          <el-icon size="20"><Aim /></el-icon>
         </div>
-        <el-menu
-          :default-active="activeMenu"
-          router
-          background-color="#304156"
-          text-color="#bfcbd9"
-          active-text-color="#409EFF"
-        >
-          <el-menu-item index="/">
-            <el-icon><DataAnalysis /></el-icon>
-            <span>总览</span>
-          </el-menu-item>
+        <transition name="fade">
+          <span v-if="sidebarOpen" class="logo-text">SOP Platform</span>
+        </transition>
+      </div>
 
-          <el-sub-menu index="assets">
-            <template #title>
-              <el-icon><Monitor /></el-icon>
-              <span>资产管理</span>
-            </template>
-            <el-menu-item index="/assets/ip">IP资产</el-menu-item>
-            <el-menu-item index="/assets/domain">域名资产</el-menu-item>
-            <el-menu-item index="/assets/portserver">端口服务</el-menu-item>
-            <el-menu-item index="/assets/webapp">站点列表</el-menu-item>
-            <el-menu-item index="/assets/ssl">SSL证书</el-menu-item>
-          </el-sub-menu>
+      <!-- 导航菜单 -->
+      <nav class="sidebar-nav">
+        <div class="nav-item" :class="{ active: route.path === '/' }" @click="navigateTo('/')">
+          <el-icon><DataAnalysis /></el-icon>
+          <transition name="fade">
+            <span v-if="sidebarOpen">总览</span>
+          </transition>
+        </div>
 
-          <el-sub-menu index="risks">
-            <template #title>
-              <el-icon><Warning /></el-icon>
-              <span>安全风险</span>
-            </template>
-            <el-menu-item index="/risks/poc">PoC漏洞</el-menu-item>
-            <el-menu-item index="/risks/version">版本漏洞</el-menu-item>
-            <el-menu-item index="/risks/thirdvuln">第三方漏洞</el-menu-item>
-            <el-menu-item index="/risks/riskport">高危端口</el-menu-item>
-          </el-sub-menu>
-
-          <el-sub-menu index="intel">
-            <template #title>
-              <el-icon><Document /></el-icon>
-              <span>安全情报</span>
-            </template>
-            <el-menu-item index="/intel/vulinfo">漏洞情报</el-menu-item>
-            <el-menu-item index="/intel/darkweb">暗网监控</el-menu-item>
-            <el-menu-item index="/intel/git">开源社区</el-menu-item>
-            <el-menu-item index="/intel/shadow">影子资产</el-menu-item>
-          </el-sub-menu>
-
-          <el-menu-item index="/reports">
-            <el-icon><DataLine /></el-icon>
-            <span>数据报表</span>
-          </el-menu-item>
-        </el-menu>
-      </el-aside>
-
-      <el-container>
-        <el-header class="header">
-          <div class="header-title">{{ pageTitle }}</div>
-          <div class="header-right">
-            <el-dropdown @command="handleCommand">
-              <span class="user-dropdown">
-                <el-icon><User /></el-icon>
-                <span class="username">{{ userStore.username }}</span>
-                <el-icon class="el-icon--right"><ArrowDown /></el-icon>
-              </span>
-              <template #dropdown>
-                <el-dropdown-menu>
-                  <el-dropdown-item command="profile">
-                    <el-icon><User /></el-icon>
-                    个人信息
-                  </el-dropdown-item>
-                  <el-dropdown-item command="password">
-                    <el-icon><Lock /></el-icon>
-                    修改密码
-                  </el-dropdown-item>
-                  <el-dropdown-item divided command="logout">
-                    <el-icon><SwitchButton /></el-icon>
-                    退出登录
-                  </el-dropdown-item>
-                </el-dropdown-menu>
-              </template>
-            </el-dropdown>
+        <div class="nav-group">
+          <div class="nav-group-title" v-if="sidebarOpen">资产管理</div>
+          <div class="nav-item" :class="{ active: route.path.startsWith('/assets/ip') }" @click="navigateTo('/assets/ip')">
+            <el-icon><Monitor /></el-icon>
+            <transition name="fade">
+              <span v-if="sidebarOpen">IP资产</span>
+            </transition>
           </div>
-        </el-header>
-        <el-main class="main">
-          <router-view />
-        </el-main>
-      </el-container>
-    </el-container>
+          <div class="nav-item" :class="{ active: route.path.startsWith('/assets/domain') }" @click="navigateTo('/assets/domain')">
+            <el-icon><Link /></el-icon>
+            <transition name="fade">
+              <span v-if="sidebarOpen">域名资产</span>
+            </transition>
+          </div>
+          <div class="nav-item" :class="{ active: route.path.startsWith('/assets/portserver') }" @click="navigateTo('/assets/portserver')">
+            <el-icon><Connection /></el-icon>
+            <transition name="fade">
+              <span v-if="sidebarOpen">端口服务</span>
+            </transition>
+          </div>
+          <div class="nav-item" :class="{ active: route.path.startsWith('/assets/webapp') }" @click="navigateTo('/assets/webapp')">
+            <el-icon><Platform /></el-icon>
+            <transition name="fade">
+              <span v-if="sidebarOpen">站点列表</span>
+            </transition>
+          </div>
+          <div class="nav-item" :class="{ active: route.path.startsWith('/assets/ssl') }" @click="navigateTo('/assets/ssl')">
+            <el-icon><Lock /></el-icon>
+            <transition name="fade">
+              <span v-if="sidebarOpen">SSL证书</span>
+            </transition>
+          </div>
+        </div>
+
+        <div class="nav-group">
+          <div class="nav-group-title" v-if="sidebarOpen">安全风险</div>
+          <div class="nav-item" :class="{ active: route.path.startsWith('/risks/poc') }" @click="navigateTo('/risks/poc')">
+            <el-icon><Warning /></el-icon>
+            <transition name="fade">
+              <span v-if="sidebarOpen">PoC漏洞</span>
+            </transition>
+          </div>
+          <div class="nav-item" :class="{ active: route.path.startsWith('/risks/version') }" @click="navigateTo('/risks/version')">
+            <el-icon><Document /></el-icon>
+            <transition name="fade">
+              <span v-if="sidebarOpen">版本漏洞</span>
+            </transition>
+          </div>
+          <div class="nav-item" :class="{ active: route.path.startsWith('/risks/thirdvuln') }" @click="navigateTo('/risks/thirdvuln')">
+            <el-icon><Files /></el-icon>
+            <transition name="fade">
+              <span v-if="sidebarOpen">第三方漏洞</span>
+            </transition>
+          </div>
+          <div class="nav-item" :class="{ active: route.path.startsWith('/risks/riskport') }" @click="navigateTo('/risks/riskport')">
+            <el-icon><Open /></el-icon>
+            <transition name="fade">
+              <span v-if="sidebarOpen">高危端口</span>
+            </transition>
+          </div>
+        </div>
+
+        <div class="nav-group">
+          <div class="nav-group-title" v-if="sidebarOpen">安全情报</div>
+          <div class="nav-item" :class="{ active: route.path.startsWith('/intel/vulinfo') }" @click="navigateTo('/intel/vulinfo')">
+            <el-icon><InfoFilled /></el-icon>
+            <transition name="fade">
+              <span v-if="sidebarOpen">漏洞情报</span>
+            </transition>
+          </div>
+          <div class="nav-item" :class="{ active: route.path.startsWith('/intel/darkweb') }" @click="navigateTo('/intel/darkweb')">
+            <el-icon><Hide /></el-icon>
+            <transition name="fade">
+              <span v-if="sidebarOpen">暗网监控</span>
+            </transition>
+          </div>
+          <div class="nav-item" :class="{ active: route.path.startsWith('/intel/git') }" @click="navigateTo('/intel/git')">
+            <el-icon><Promotion /></el-icon>
+            <transition name="fade">
+              <span v-if="sidebarOpen">开源社区</span>
+            </transition>
+          </div>
+          <div class="nav-item" :class="{ active: route.path.startsWith('/intel/shadow') }" @click="navigateTo('/intel/shadow')">
+            <el-icon><Search /></el-icon>
+            <transition name="fade">
+              <span v-if="sidebarOpen">影子资产</span>
+            </transition>
+          </div>
+        </div>
+
+        <div class="nav-item" :class="{ active: route.path.startsWith('/reports') }" @click="navigateTo('/reports')">
+          <el-icon><DataLine /></el-icon>
+          <transition name="fade">
+            <span v-if="sidebarOpen">数据报表</span>
+          </transition>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- 主内容区域 -->
+    <div class="main-container">
+      <!-- 顶部栏 -->
+      <header class="header">
+        <div class="header-left">
+          <h1 class="page-title">{{ pageTitle }}</h1>
+        </div>
+        <div class="header-right">
+          <el-dropdown @command="handleCommand" trigger="click">
+            <div class="user-menu">
+              <el-avatar :size="32" class="user-avatar">
+                {{ userStore.username?.charAt(0)?.toUpperCase() || 'U' }}
+              </el-avatar>
+              <span class="username">{{ userStore.username }}</span>
+              <el-icon><ArrowDown /></el-icon>
+            </div>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item command="profile">
+                  <el-icon><User /></el-icon>
+                  个人信息
+                </el-dropdown-item>
+                <el-dropdown-item command="password">
+                  <el-icon><Lock /></el-icon>
+                  修改密码
+                </el-dropdown-item>
+                <el-dropdown-item divided command="logout">
+                  <el-icon><SwitchButton /></el-icon>
+                  退出登录
+                </el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
+        </div>
+      </header>
+
+      <!-- 内容区域 -->
+      <main class="content">
+        <router-view />
+      </main>
+    </div>
 
     <!-- 修改密码对话框 -->
     <el-dialog v-model="passwordDialogVisible" title="修改密码" width="400px">
@@ -117,22 +191,29 @@
         <el-button type="primary" :loading="passwordLoading" @click="handleChangePassword">确定</el-button>
       </template>
     </el-dialog>
-  </el-config-provider>
+  </div>
 </template>
 
 <script setup>
 import { ref, reactive, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { User, Lock, ArrowDown, SwitchButton } from '@element-plus/icons-vue'
-import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
+import {
+  User, Lock, ArrowDown, SwitchButton, Aim, DataAnalysis, Monitor, Warning,
+  Document, DataLine, Link, Connection, Platform, Files, Open, InfoFilled,
+  Hide, Promotion, Search
+} from '@element-plus/icons-vue'
 import { useUserStore } from '@/stores/user'
 
 const route = useRoute()
 const router = useRouter()
 const userStore = useUserStore()
 
-const activeMenu = computed(() => route.path)
+const sidebarOpen = ref(false)
+
+const navigateTo = (path) => {
+  router.push(path)
+}
 
 const pageTitle = computed(() => {
   const titles = {
@@ -222,11 +303,9 @@ const handleChangePassword = async () => {
       await userStore.changePassword(passwordForm.oldPassword, passwordForm.newPassword)
       ElMessage.success('密码修改成功，请重新登录')
       passwordDialogVisible.value = false
-      // 重置表单
       passwordForm.oldPassword = ''
       passwordForm.newPassword = ''
       passwordForm.confirmPassword = ''
-      // 退出登录
       await userStore.logout()
       router.push('/login')
     } catch (error) {
@@ -239,6 +318,7 @@ const handleChangePassword = async () => {
 </script>
 
 <style>
+/* 全局样式 */
 * {
   margin: 0;
   padding: 0;
@@ -247,81 +327,200 @@ const handleChangePassword = async () => {
 
 html, body, #app {
   height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+</style>
+
+<style scoped>
+.app-layout {
+  display: flex;
+  height: 100vh;
+  background: #f0f2f5;
 }
 
-.app-container {
-  height: 100%;
-}
-
+/* 侧边栏 */
 .sidebar {
-  background-color: #304156;
+  width: 70px;
+  height: 100%;
+  background: #1e1e2d;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 12px;
+  transition: width 0.3s ease;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
-.logo {
-  height: 60px;
+.sidebar:hover,
+.sidebar.sidebar-expanded {
+  width: 250px;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 4px;
+  margin-bottom: 24px;
+}
+
+.logo-icon {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.logo-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  white-space: nowrap;
+}
+
+/* 导航 */
+.sidebar-nav {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 8px;
+  color: #9ca3af;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  margin-bottom: 4px;
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.05);
   color: #fff;
-  font-size: 18px;
-  font-weight: bold;
-  border-bottom: 1px solid #3a4758;
 }
 
-.logo h1 {
-  font-size: 18px;
+.nav-item.active {
+  background: rgba(99, 102, 241, 0.2);
+  color: #818cf8;
 }
 
+.nav-item .el-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.nav-item span {
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+.nav-group {
+  margin-top: 16px;
+}
+
+.nav-group-title {
+  font-size: 11px;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 8px;
+  margin-bottom: 4px;
+}
+
+/* 主内容区域 */
+.main-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 24px 0 0 24px;
+  margin: 12px 0 12px 0;
+}
+
+/* 顶部栏 */
 .header {
-  background-color: #fff;
-  border-bottom: 1px solid #e6e6e6;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
+  padding: 16px 24px;
+  border-bottom: 1px solid #f0f0f0;
+  background: #fff;
 }
 
-.header-title {
-  font-size: 18px;
-  font-weight: 500;
-  color: #303133;
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.page-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f2937;
 }
 
 .header-right {
   display: flex;
   align-items: center;
+  gap: 16px;
 }
 
-.user-dropdown {
+.user-menu {
   display: flex;
   align-items: center;
+  gap: 8px;
   cursor: pointer;
-  color: #606266;
-  padding: 8px 12px;
-  border-radius: 4px;
-  transition: background-color 0.3s;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: background 0.2s;
 }
 
-.user-dropdown:hover {
-  background-color: #f5f7fa;
+.user-menu:hover {
+  background: #f3f4f6;
 }
 
-.user-dropdown .username {
-  margin: 0 8px;
+.user-avatar {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  font-weight: 600;
+}
+
+.username {
   font-size: 14px;
+  color: #374151;
+  font-weight: 500;
 }
 
-.main {
-  background-color: #f5f7fa;
-  padding: 20px;
+.user-menu .el-icon {
+  color: #9ca3af;
+  font-size: 12px;
 }
 
-.el-menu {
-  border-right: none;
+/* 内容区域 */
+.content {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+  background: #f9fafb;
 }
 
-.el-sub-menu .el-menu-item {
-  min-width: auto;
-  padding-left: 50px !important;
+/* 过渡动画 */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
