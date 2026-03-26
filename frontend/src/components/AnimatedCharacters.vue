@@ -174,10 +174,11 @@ watch(() => props.isTyping, (newVal) => {
   }
 })
 
-// Purple sneaky peeking
+// Purple sneaky peeking - 只在密码隐藏时触发偷看动作
 let purplePeekTimeout = null
 watch([() => props.passwordLength, () => props.showPassword], () => {
-  if (props.passwordLength > 0 && props.showPassword) {
+  // 当密码隐藏时，紫色角色会偶尔偷看
+  if (props.passwordLength > 0 && !props.showPassword) {
     const schedulePeek = () => {
       const peekInterval = setTimeout(() => {
         isPurplePeeking.value = true
@@ -212,7 +213,10 @@ const calculatePosition = (refValue) => {
 }
 
 const isHidingPassword = computed(() => props.passwordLength > 0 && !props.showPassword)
-const isPeekingPassword = computed(() => props.passwordLength > 0 && props.showPassword)
+// 角色偷看：密码隐藏时偷看，密码显示时背过去不看
+const isPeekingPassword = computed(() => props.passwordLength > 0 && !props.showPassword)
+// 角色背过去：密码显示时眼睛看向反方向
+const isLookingAway = computed(() => props.passwordLength > 0 && props.showPassword)
 
 // Purple character styles
 const purplePos = computed(() => calculatePosition(purpleRef.value))
@@ -220,22 +224,28 @@ const purpleStyle = computed(() => ({
   left: '70px',
   width: '180px',
   height: (props.isTyping || isHidingPassword.value) ? '440px' : '400px',
-  transform: isPeekingPassword.value
-    ? 'skewX(0deg)'
+  transform: isLookingAway.value
+    ? `skewX(${purplePos.value.bodySkew}deg)` // 密码显示时身体正常
     : (props.isTyping || isHidingPassword.value)
-      ? `skewX(${purplePos.value.bodySkew - 12}deg) translateX(40px)`
+      ? `skewX(${purplePos.value.bodySkew - 12}deg) translateX(40px)` // 密码隐藏时身体倾斜遮挡
       : `skewX(${purplePos.value.bodySkew}deg)`
 }))
 const purpleEyesStyle = computed(() => ({
-  left: isPeekingPassword.value ? '20px' : isLookingAtEachOther.value ? '55px' : `${45 + purplePos.value.faceX}px`,
-  top: isPeekingPassword.value ? '35px' : isLookingAtEachOther.value ? '65px' : `${40 + purplePos.value.faceY}px`
+  left: isLookingAway.value ? '20px' : isLookingAtEachOther.value ? '55px' : `${45 + purplePos.value.faceX}px`,
+  top: isLookingAway.value ? '35px' : isLookingAtEachOther.value ? '65px' : `${40 + purplePos.value.faceY}px`
 }))
 const purpleForceLookX = computed(() => {
+  // 密码显示时背过去不看
+  if (isLookingAway.value) return -5
+  // 密码隐藏时偷看
   if (isPeekingPassword.value) return isPurplePeeking.value ? 4 : -4
   if (isLookingAtEachOther.value) return 3
   return undefined
 })
 const purpleForceLookY = computed(() => {
+  // 密码显示时背过去不看
+  if (isLookingAway.value) return 0
+  // 密码隐藏时偷看
   if (isPeekingPassword.value) return isPurplePeeking.value ? 5 : -4
   if (isLookingAtEachOther.value) return 4
   return undefined
@@ -247,8 +257,8 @@ const blackStyle = computed(() => ({
   left: '240px',
   width: '120px',
   height: '310px',
-  transform: isPeekingPassword.value
-    ? 'skewX(0deg)'
+  transform: isLookingAway.value
+    ? `skewX(${blackPos.value.bodySkew}deg)` // 密码显示时身体正常
     : isLookingAtEachOther.value
       ? `skewX(${blackPos.value.bodySkew * 1.5 + 10}deg) translateX(20px)`
       : (props.isTyping || isHidingPassword.value)
@@ -256,11 +266,25 @@ const blackStyle = computed(() => ({
         : `skewX(${blackPos.value.bodySkew}deg)`
 }))
 const blackEyesStyle = computed(() => ({
-  left: isPeekingPassword.value ? '10px' : isLookingAtEachOther.value ? '32px' : `${26 + blackPos.value.faceX}px`,
-  top: isPeekingPassword.value ? '28px' : isLookingAtEachOther.value ? '12px' : `${32 + blackPos.value.faceY}px`
+  left: isLookingAway.value ? '10px' : isLookingAtEachOther.value ? '32px' : `${26 + blackPos.value.faceX}px`,
+  top: isLookingAway.value ? '28px' : isLookingAtEachOther.value ? '12px' : `${32 + blackPos.value.faceY}px`
 }))
-const blackForceLookX = computed(() => isPeekingPassword.value ? -4 : isLookingAtEachOther.value ? 0 : undefined)
-const blackForceLookY = computed(() => isPeekingPassword.value ? -4 : isLookingAtEachOther.value ? -4 : undefined)
+const blackForceLookX = computed(() => {
+  // 密码显示时背过去不看
+  if (isLookingAway.value) return -5
+  // 密码隐藏时偷看
+  if (isPeekingPassword.value) return -4
+  if (isLookingAtEachOther.value) return 0
+  return undefined
+})
+const blackForceLookY = computed(() => {
+  // 密码显示时背过去不看
+  if (isLookingAway.value) return -4
+  // 密码隐藏时偷看
+  if (isPeekingPassword.value) return -4
+  if (isLookingAtEachOther.value) return -4
+  return undefined
+})
 
 // Orange character styles
 const orangePos = computed(() => calculatePosition(orangeRef.value))
@@ -268,14 +292,28 @@ const orangeStyle = computed(() => ({
   left: '0px',
   width: '240px',
   height: '200px',
-  transform: isPeekingPassword.value ? 'skewX(0deg)' : `skewX(${orangePos.value.bodySkew}deg)`
+  transform: isLookingAway.value
+    ? `skewX(${orangePos.value.bodySkew}deg)` // 密码显示时身体正常
+    : `skewX(${orangePos.value.bodySkew}deg)`
 }))
 const orangeEyesStyle = computed(() => ({
-  left: isPeekingPassword.value ? '50px' : `${82 + orangePos.value.faceX}px`,
-  top: isPeekingPassword.value ? '85px' : `${90 + orangePos.value.faceY}px`
+  left: isLookingAway.value ? '50px' : `${82 + orangePos.value.faceX}px`,
+  top: isLookingAway.value ? '85px' : `${90 + orangePos.value.faceY}px`
 }))
-const orangeForceLookX = computed(() => isPeekingPassword.value ? -5 : undefined)
-const orangeForceLookY = computed(() => isPeekingPassword.value ? -4 : undefined)
+const orangeForceLookX = computed(() => {
+  // 密码显示时背过去不看
+  if (isLookingAway.value) return -5
+  // 密码隐藏时偷看
+  if (isPeekingPassword.value) return -5
+  return undefined
+})
+const orangeForceLookY = computed(() => {
+  // 密码显示时背过去不看
+  if (isLookingAway.value) return -4
+  // 密码隐藏时偷看
+  if (isPeekingPassword.value) return -4
+  return undefined
+})
 
 // Yellow character styles
 const yellowPos = computed(() => calculatePosition(yellowRef.value))
@@ -283,18 +321,32 @@ const yellowStyle = computed(() => ({
   left: '310px',
   width: '140px',
   height: '230px',
-  transform: isPeekingPassword.value ? 'skewX(0deg)' : `skewX(${yellowPos.value.bodySkew}deg)`
+  transform: isLookingAway.value
+    ? `skewX(${yellowPos.value.bodySkew}deg)` // 密码显示时身体正常
+    : `skewX(${yellowPos.value.bodySkew}deg)`
 }))
 const yellowEyesStyle = computed(() => ({
-  left: isPeekingPassword.value ? '20px' : `${52 + yellowPos.value.faceX}px`,
-  top: isPeekingPassword.value ? '35px' : `${40 + yellowPos.value.faceY}px`
+  left: isLookingAway.value ? '20px' : `${52 + yellowPos.value.faceX}px`,
+  top: isLookingAway.value ? '35px' : `${40 + yellowPos.value.faceY}px`
 }))
 const yellowMouthStyle = computed(() => ({
-  left: isPeekingPassword.value ? '10px' : `${40 + yellowPos.value.faceX}px`,
-  top: isPeekingPassword.value ? '88px' : `${88 + yellowPos.value.faceY}px`
+  left: isLookingAway.value ? '10px' : `${40 + yellowPos.value.faceX}px`,
+  top: isLookingAway.value ? '88px' : `${88 + yellowPos.value.faceY}px`
 }))
-const yellowForceLookX = computed(() => isPeekingPassword.value ? -5 : undefined)
-const yellowForceLookY = computed(() => isPeekingPassword.value ? -4 : undefined)
+const yellowForceLookX = computed(() => {
+  // 密码显示时背过去不看
+  if (isLookingAway.value) return -5
+  // 密码隐藏时偷看
+  if (isPeekingPassword.value) return -5
+  return undefined
+})
+const yellowForceLookY = computed(() => {
+  // 密码显示时背过去不看
+  if (isLookingAway.value) return -4
+  // 密码隐藏时偷看
+  if (isPeekingPassword.value) return -4
+  return undefined
+})
 </script>
 
 <style scoped>
