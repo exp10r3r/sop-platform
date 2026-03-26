@@ -123,14 +123,28 @@ const rules = {
   ]
 }
 
-// 检查密码是否可见
-const checkPasswordVisibility = () => {
+let observer = null
+
+// 使用 MutationObserver 监听密码输入框 type 变化
+const setupPasswordObserver = () => {
   nextTick(() => {
     const passwordWrapper = passwordInputRef.value?.$el
     if (passwordWrapper) {
       const input = passwordWrapper.querySelector('input')
       if (input) {
+        // 初始状态
         isPasswordVisible.value = input.type === 'text'
+
+        // 使用 MutationObserver 监听 type 属性变化
+        observer = new MutationObserver((mutations) => {
+          mutations.forEach((mutation) => {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'type') {
+              isPasswordVisible.value = input.type === 'text'
+            }
+          })
+        })
+
+        observer.observe(input, { attributes: true })
       }
     }
   })
@@ -146,28 +160,15 @@ const handlePasswordBlur = () => {
   isTyping.value = false
 }
 
-// 监听密码变化
-watch(() => form.password, () => {
-  checkPasswordVisibility()
-})
-
 onMounted(() => {
-  // 点击事件监听（Element Plus 的眼睛图标点击）
-  document.addEventListener('click', handleClick)
+  setupPasswordObserver()
 })
 
 onUnmounted(() => {
-  document.removeEventListener('click', handleClick)
-})
-
-const handleClick = (e) => {
-  // 检查是否点击了密码输入框区域
-  const passwordWrapper = passwordInputRef.value?.$el
-  if (passwordWrapper && passwordWrapper.contains(e.target)) {
-    // 延迟检查，等待 Element Plus 更新 DOM
-    setTimeout(checkPasswordVisibility, 50)
+  if (observer) {
+    observer.disconnect()
   }
-}
+})
 
 const handleLogin = async () => {
   if (!formRef.value) return
