@@ -1,0 +1,81 @@
+高危端口复扫
+==============================
+
+用于进行高危端口的复扫操作
+
+Request
+~~~~~~~~
+
+请求地址
++++++++++
+
+.. code-block:: bash
+
+  PUT /api/v1/riskport/verify/{id}
+
+请求参数
++++++++++++++++++++++
+
++-----------+------------+----------+------------------------------+-----------------------+
+| 字段      | 字段名称   | 是否必填 | 说明                         | 示例                  |
++===========+============+==========+==============================+=======================+
+| zone_name | 区域标识   | 是       | 扫描区域                     | 例如：default         |
++-----------+------------+----------+------------------------------+-----------------------+
+
+请求示例
++++++++++
+
+.. code-block:: python
+
+    import requests
+    import json
+
+
+    url = 'http://127.0.0.1:8000/api/v1/riskport/verify/9089'
+
+    payload = json.dumps({
+        "zone_name": "default"
+    })
+
+    headers = {
+        'Accept': 'application/json',
+        'Content-type': 'application/json',
+        'ACCESSKEY': 'ijE80piSATBYT8qVQcInSygUomWl6FiQFZ9LwhdZBv0eJ6QQFHQcHw',
+        'SECRETKEY': 'P4KNH51u6KyewjCfX1JZ3uZ7bCV4tTME6JcbBvmrUQTZ7YxOltUjCIiNUrp24ijq8'
+    }
+
+    response = requests.request('PUT', url, headers=headers, data=payload)
+
+    print(response.text)
+
+Response
+~~~~~~~~
+
+=============   ===============   ===============
+参数             类型             描述
+=============   ===============   ===============
+status          boolean           是否成功
+info            list/dict         返回信息
+=============   ===============   ===============
+
+示例值
++++++++++
+
+.. code-block:: javascript
+
+    {
+        "info": {
+        "message": "验证任务将发送到默认区区执行，当前任务队列待完成任务数量为：692, 端口验证任务将会排队等待执行，可能会花费比较长的时间！"
+        },
+        "status": true
+    }
+
+失败示例
++++++++++
+
+.. code-block:: javascript
+
+    {
+        "info":["区域连接失败, 请检查配置是否正确"]
+        "status": false
+    }

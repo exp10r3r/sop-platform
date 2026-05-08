@@ -1,0 +1,77 @@
+删除记录
+================
+
+用于删除导出记录
+
+Request
+~~~~~~~~
+
+请求地址
++++++++++
+
+.. code-block:: bash
+
+   DELETE /api/v1/report/data/{id}
+
+
+
+请求参数
++++++++++++++++++++++
+
+无
+
+
+请求示例
++++++++++
+   
+.. code-block:: python
+
+    import requests
+
+    url = "http://127.0.0.1:38202/api/v1/report/data/770"
+
+    payload={}
+    headers = {}
+
+    response = requests.request("DELETE", url, headers=headers, data=payload)
+
+    print(response.text)
+
+
+
+Response
+~~~~~~~~
+
+响应参数
+++++++++++++
+
+=============   ===============   ===============
+参数             类型             描述
+=============   ===============   ===============
+status          boolean           是否成功
+info            string/dict       返回结果信息
+=============   ===============   ===============
+
+
+示例值
++++++++++
+
+.. code-block:: javascript
+
+    {
+        "info": "删除成功",
+        "status": true
+    }
+
+
+失败示例
++++++++++
+
+.. code-block:: javascript
+
+    {
+        "info": {
+            "detail": "Not found."
+        },
+        "status": false
+    }

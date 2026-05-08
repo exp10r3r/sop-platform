@@ -1,0 +1,16 @@
+附件
+===============
+
+提供postman文件作为调用实例
+
+
+右键选择「链接存储为」 `postman <_static/API.postman_collection.json>`_
+
+
+* 使用方法
+  
+通过import功能导入postman中
+
+.. image:: _static/img/postman1.png
+    :alt: postman导入
+    :width: 600px

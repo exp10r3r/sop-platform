@@ -1,0 +1,77 @@
+导入HIDS API资产数据
+=======================
+
+| 用于接收HIDS提供的API资产数据录入系统中
+| 所录入资产数据将在 ``资产中心``-``URL/API资产``-``URL/API列表`` 中呈现
+
+Request
+~~~~~~~~
+
+请求地址
++++++++++
+
+.. code-block:: bash
+
+   POST /api/v1/url/hids_import
+
+
+
+请求参数
+++++++++++++++++++++++
+
++-------+-------------+--------+------------------------------------------------------+
+| 参数  | 参数名称    | 可选值 | 说明                                                 |
++=======+=============+========+======================================================+
+|| file || 上传的文件 ||       || csv文件需要至少包含 file_path、api、display_ip 三列 |
++-------+-------------+--------+------------------------------------------------------+
+
+文件表头示例：
+
+.. image:: ../../_static/img/hids_import_csv.jpg
+    :alt: csv文件表头实例
+    :width: 600px
+
+请求示例
++++++++++
+
+.. code-block:: python
+
+   import requests
+
+   url = "http://127.0.0.1:9001/api/v1/url/hids_import"
+
+   payload = {}
+   files=[
+      ('file',('test.csv',open('test.csv','rb'),'text/csv'))
+   ]
+   headers = {
+      'ACCESSKEY': 'xxxxxxxxxxxxx',
+      'SECRETKEY': 'xxxxxxxxxxxxx',
+   }
+
+   response = requests.request("POST", url, headers=headers, data=payload, files=files)
+
+   print(response.text)
+
+Response
+~~~~~~~~
+
+响应参数
+++++++++++++
+
+=============   ===============   ===============
+参数             类型             描述
+=============   ===============   ===============
+status          boolean           是否成功
+info            array             返回信息
+=============   ===============   ===============
+
+请求成功响应
+++++++++++++++++++
+
+.. code-block:: javascript
+
+   {
+      "status": true,
+      "info": "文件上传成功，等待后台处理中"
+   }

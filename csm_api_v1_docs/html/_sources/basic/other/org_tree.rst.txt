@@ -1,0 +1,117 @@
+组织架构树形结构
+===========================
+
+用于获取组织架构树形结构
+
+Request
+~~~~~~~~
+
+请求地址
++++++++++
+
+.. code-block:: bash
+
+   GET /api/v1/org_tree
+
+
+请求示例
++++++++++
+
+.. code-block:: bash
+
+   https://localhost:38201/api/v1/org_tree
+   
+   
+Response
+~~~~~~~~
+
+响应参数
+++++++++++++
+
+=============   ===============   ===============
+参数             类型             描述
+=============   ===============   ===============
+status          boolean           是否成功
+info            array             返回数据
+=============   ===============   ===============
+
+数据字段详解:
+每个节点的数据结构一致
+
+- **id**: 在数据库中的id（部门id或用户id）
+- **text**: 部门名称或用户名
+- **type**: 类型 ``department: 部门`` ``user:用户``
+- **children**:子节点
+
+.. note:: 没有子节点时，children字段不存在
+
+示例值
++++++++++
+
+.. code-block:: javascript
+
+    {
+        "info": [
+            {
+                "id": 0,
+                "text": "超级管理员",
+                "type": "department",
+                "children": [
+                    {
+                        "id": 6759,
+                        "text": "adjgcWbjSf",
+                        "type": "user"
+                    },
+                    {
+                        "id": 1,
+                        "text": "admin",
+                        "type": "user"
+                    }
+                ]
+            },
+            {
+                "id": 4054,
+                "text": "下属单位",
+                "type": "department",
+                "children": [
+                    {
+                        "id": 4055,
+                        "text": "11xx网",
+                        "type": "department",
+                        "children": [
+                            {
+                                "id": 16727,
+                                "text": "user1",
+                                "type": "user"
+                            }
+                        ]
+                    },
+                    {
+                        "id": 4056,
+                        "text": "20xx时报",
+                        "type": "department",
+                        "children": [
+                            {
+                                "id": 16728,
+                                "text": "user2",
+                                "type": "user"
+                            }
+                        ]
+                    },
+                    {
+                        "id": 4057,
+                        "text": "12xx公司",
+                        "type": "department",
+                        "children": [
+                            {
+                                "id": 16729,
+                                "text": "user3",
+                                "type": "user"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "status": true
+    }

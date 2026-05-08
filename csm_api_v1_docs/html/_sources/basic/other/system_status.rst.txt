@@ -1,0 +1,130 @@
+系统运行信息
+===========================
+
+用于获取系统运行信息数据
+
+Request
+~~~~~~~~
+
+请求地址
++++++++++
+
+.. code-block:: bash
+
+   GET /api/v1/system_status
+
+请求示例
++++++++++
+
+.. code-block:: bash
+
+   https://localhost:38201/api/v1/system_status
+
+Response
+~~~~~~~~
+
+响应参数
+++++++++++++
+
+=============   ===============   ===============
+参数             类型             描述
+=============   ===============   ===============
+status          boolean           是否成功
+info            array             返回数据
+=============   ===============   ===============
+
+数据字段详解:
+
+- **hostname**：设备名称
+- **version**：版本
+- **run_time**：运行时长
+- **start_time**：最近一次启动时间
+
+- **memory**：物理内存信息
+
+  - **total**：总内存
+  - **percent**：内存利用率
+  - **used**：已用内存
+  - **free**：剩余内存
+
+- **swap**：交换内存信息
+
+  - **total**：总内存
+  - **percent**：内存利用率
+  - **used**：已用内存
+  - **free**：剩余内存
+
+- **disk_partitions**：磁盘信息
+
+  - **device**：文件系统
+  - **mountpoint**：挂载名称
+  - **total**：总空间
+  - **used**：已用空间
+  - **free**：剩余空间
+  - **percent**：磁盘利用率
+
+- **cpu_loadavg**：CPU信息
+
+  - **core**：核心数
+  - **logical_core**：线程数
+  - **loadavg**：过去1分钟、5分钟和15分钟内的系统负载平均值
+  - **percent**：CPU负载百分比
+  - **loadavg_level**：CPU负载等级，``1：正常``，``2：迟缓``，``3：严重超负荷``
+  - **cpu_usage**：CPU利用率
+
+示例值
++++++++++
+
+.. code-block:: javascript
+
+    {
+        "info": {
+            "hostname": "UniCSM-e905636e1d6a",
+            "version": "3.4.4.release20220415",
+            "run_time": "0天0时40分26秒",
+            "start_time": "2024-04-12 08:42:49",
+            "memory": {
+                "total": "3.70G",
+                "percent": 44.8,
+                "used": "1.43G",
+                "free": "2.04G"
+            },
+            "swap": {
+                "total": "3.87G",
+                "percent": 0.0,
+                "used": "0.00G",
+                "free": "3.87G"
+            },
+            "disk_partitions": [
+                {
+                    "device": "/dev/mapper/centos-root",
+                    "mountpoint": "/",
+                    "total": "45.10G",
+                    "used": "21.00G",
+                    "free": "24.10G",
+                    "percent": 46.6
+                },
+                {
+                    "device": "/dev/sda1",
+                    "mountpoint": "/boot",
+                    "total": "0.99G",
+                    "used": "0.15G",
+                    "free": "0.84G",
+                    "percent": 15.0
+                }
+            ],
+            "cpu_loadavg": {
+                "core": 4,
+                "logical_core": 4,
+                "loadavg": [
+                    1.29,
+                    0.39,
+                    0.21
+                ],
+                "percent": 16.12,
+                "loadavg_level": 1,
+                "cpu_usage": 34.7
+            }
+        },
+        "status": true
+    }

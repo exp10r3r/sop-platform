@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>结果列表 &mdash; CSM API v1 说明文档 3.4.4 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=4c927a77"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="关键字-列表" href="keywords_list.html" />
+    <link rel="prev" title="APP资产监控" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            CSM API v1 说明文档
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95.html">请求方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../%E6%90%9C%E7%B4%A2%E4%B8%8E%E6%8E%92%E5%BA%8F.html">搜索与排序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A5%E5%8F%A3%E8%BE%93%E5%87%BA%E5%AD%97%E6%AE%B5.html">自定义接口输出字段</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../%E5%88%86%E9%A1%B5.html">分页</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">基础API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../asset/index.html">资产数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../risk/index.html">安全风险</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">安全情报</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../vulinfo.html">漏洞情报</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../app/index.html">公众号小程序监控</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../darkweb/index.html">暗网监控</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">APP资产监控</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">结果列表</a></li>
+<li class="toctree-l4"><a class="reference internal" href="keywords_list.html">关键字-列表</a></li>
+<li class="toctree-l4"><a class="reference internal" href="keywords_add.html">关键字-新增</a></li>
+<li class="toctree-l4"><a class="reference internal" href="keywords_delete.html">关键字-删除</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../doc/index.html">文档监控</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pan/index.html">网盘监控</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../git/index.html">开源社区监控</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../shadow/index.html">影子资产监控</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../im/index.html">IM监控</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mails/index.html">企业邮箱监控</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../templates/index.html">模板</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fake/index.html">仿冒监测</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../other/index.html">其他数据</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">高级API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../%E9%99%84%E4%BB%B6.html">附件</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">CSM API v1 说明文档</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">基础API</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">安全情报</a></li>
+          <li class="breadcrumb-item"><a href="index.html">APP资产监控</a></li>
+      <li class="breadcrumb-item active">结果列表</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/basic/risk_info/application/list.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>结果列表<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<p>用于获取APP资产监控数据</p>
+<section id="request">
+<h2>Request<a class="headerlink" href="#request" title="Link to this heading"></a></h2>
+<section id="id2">
+<h3>请求地址<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>GET<span class="w"> </span>/api/v1/application
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3>搜索参数<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>字段</p></th>
+<th class="head"><p>字段名称</p></th>
+<th class="head"><p>查询方式</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id</p></td>
+<td><p>ID</p></td>
+<td><p>精确</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>title</p></td>
+<td><p>标题</p></td>
+<td><p>精确</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>link</p></td>
+<td><p>链接</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>source</p></td>
+<td><p>来源</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>uptime</p></td>
+<td><p>云端更新时间</p></td>
+<td><p>范围</p></td>
+<td><p>例如:2020-04-19/2020-09-19</p></td>
+</tr>
+<tr class="row-odd"><td><p>createtime</p></td>
+<td><p>云端收录时间</p></td>
+<td><p>范围</p></td>
+<td><p>例如:2020-04-19/2020-09-19</p></td>
+</tr>
+<tr class="row-even"><td><p>local_create_time</p></td>
+<td><p>本地创建时间</p></td>
+<td><p>范围</p></td>
+<td><p>例如：2020-04-19/2020-09-19</p></td>
+</tr>
+<tr class="row-odd"><td><p>local_uptime</p></td>
+<td><p>本地更新时间</p></td>
+<td><p>范围</p></td>
+<td><p>例如：2020-04-19/2020-09-19</p></td>
+</tr>
+<tr class="row-even"><td><p>version</p></td>
+<td><p>版本号</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>developer</p></td>
+<td><p>开发者</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>developer_link</p></td>
+<td><p>开发者链接</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>remarks</p></td>
+<td><p>备注</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>seller_link</p></td>
+<td><p>开发者网站</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>description</p></td>
+<td><p>简介</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>tags</p></td>
+<td><p>标签</p></td>
+<td><p>精确多选</p></td>
+<td><p>例如:仿冒,钓鱼</p></td>
+</tr>
+<tr class="row-odd"><td><p>status</p></td>
+<td><p>处理状态</p></td>
+<td><p>精确多选</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>keywords</p></td>
+<td><p>关键字</p></td>
+<td><p>精确多选</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>keyword_remarks</p></td>
+<td><p>关键字备注</p></td>
+<td><p>精确多选</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>assets_group_id</p></td>
+<td><p>资产组id</p></td>
+<td><p>精确多选</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id4">
+<h3>其他参数<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>参数</p></th>
+<th class="head"><p>参数名称</p></th>
+<th class="head"><p>可选值</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">attach</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">附加项</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">count</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">可选，传count时，进行统计数量, 并在接口中返回</div>
+<div class="line">例如:</div>
+<div class="line">?attach=count</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id5">
+<h3>请求示例<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>https://localhost:38201/api/v1/application?attach<span class="o">=</span>count<span class="p">&amp;</span><span class="nv">id</span><span class="o">=</span><span class="m">1</span><span class="p">&amp;</span><span class="nv">nickname</span><span class="o">=</span>test<span class="p">&amp;</span><span class="nv">ordering</span><span class="o">=</span>-id
+</pre></div>
+</div>
+</section>
+</section>
+<section id="response">
+<h2>Response<a class="headerlink" href="#response" title="Link to this heading"></a></h2>
+<section id="id6">
+<h3>响应参数<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>参数</p></th>
+<th class="head"><p>类型</p></th>
+<th class="head"><p>描述</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>status</p></td>
+<td><p>boolean</p></td>
+<td><p>是否成功</p></td>
+</tr>
+<tr class="row-odd"><td><p>info</p></td>
+<td><p>array</p></td>
+<td><p>返回数据</p></td>
+</tr>
+<tr class="row-even"><td><p>count</p></td>
+<td><p>integer</p></td>
+<td><p>总数（当请求参数attach=count存在时）</p></td>
+</tr>
+</tbody>
+</table>
+<p>数据字段详解:</p>
+<ul class="simple">
+<li><p><strong>id</strong> ✅:在数据库中的id</p></li>
+<li><p><strong>title</strong> ✅:标题</p></li>
+<li><p><strong>keywords</strong>:关键字</p></li>
+<li><p><strong>link</strong> ✅:链接</p></li>
+<li><p><strong>source</strong> ✅:来源</p></li>
+<li><p><strong>version</strong> ✅:版本号</p></li>
+<li><p><strong>developer</strong> ✅:开发者</p></li>
+<li><p><strong>developer_link</strong> ✅:开发者链接</p></li>
+<li><p><strong>rating</strong>:评分</p></li>
+<li><p><strong>down_count</strong>:下载量 （字符串，非整数，可能存在“5 亿次安装”类似值）</p></li>
+<li><p><strong>remarks</strong> ✅:备注</p></li>
+<li><p><strong>seller_link</strong> ✅:开发者网站</p></li>
+<li><p><strong>description</strong> ✅:简介</p></li>
+<li><p><strong>tags</strong>:标签</p></li>
+<li><p><strong>status</strong>:处理状态 <code class="docutils literal notranslate"><span class="pre">0:待确认</span></code> <code class="docutils literal notranslate"><span class="pre">1:确认归属</span></code> <code class="docutils literal notranslate"><span class="pre">2:忽略</span></code> <code class="docutils literal notranslate"><span class="pre">3:关停下架</span></code> <code class="docutils literal notranslate"><span class="pre">4:仿冒资产</span></code></p></li>
+<li><p><strong>relationsh_info</strong>:关联证明</p>
+<ul>
+<li><p><strong>type</strong>:匹配模式</p></li>
+<li><p><strong>scope</strong>:匹配内容</p></li>
+<li><p><strong>createtime</strong>:添加时间</p></li>
+<li><p><strong>keyword</strong>:关键字</p></li>
+</ul>
+</li>
+<li><p><strong>uptime</strong> ✅:云端更新时间</p></li>
+<li><p><strong>createtime</strong> ✅:云端收录时间</p></li>
+<li><p><strong>local_uptime</strong> ✅：本地更新时间</p></li>
+<li><p><strong>local_create_time</strong> ✅：本地创建时间</p></li>
+<li><p><strong>assets_group</strong>：资产组及资产责任人</p>
+<ul>
+<li><p><strong>net</strong>：网络组</p>
+<ul>
+<li><p><strong>id</strong>：网络组id</p></li>
+<li><p><strong>name</strong>：网络组名称</p></li>
+<li><p><strong>resposibler</strong>：责任人用户名</p></li>
+</ul>
+</li>
+<li><p><strong>app</strong>：应用组</p>
+<ul>
+<li><p><strong>id</strong>：网络组id</p></li>
+<li><p><strong>name</strong>：网络组名称</p></li>
+<li><p><strong>resposibler</strong>：责任人用户名</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>✅ 表示该字段可排序</p>
+</div>
+</section>
+<section id="id7">
+<h3>示例值<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;info&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;id&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1235</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;title&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;股掌柜尊享版&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;keywords&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;澎湃新闻&quot;</span>
+<span class="w">            </span><span class="p">],</span>
+<span class="w">            </span><span class="s2">&quot;link&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;http://zhushou.360.cn/detail/index/soft_id/4558567&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;source&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;360手机助手&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;uptime&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2023-07-05 03:38:08&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;createtime&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2023-07-05 03:38:08&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;version&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;5.4.0&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;developer&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;盈亚证券投资咨询有限公司&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;developer_link&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;rating&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;6.0&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;down_count&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1505&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;remarks&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;seller_link&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;description&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;股掌柜尊享版-股票炒股软件是股市网（www.gushi.com）独立研发的一款专业的智能炒股股票软件，为您提供市场上高速行情、数据全面、支持多家券商开户，深受股民欢迎的炒股(股票/金融/投资/理财/证券)软件。还有权威的资讯内容、互动交流，是投资者选择的靠谱的炒股股票软件。是股市理财炒股必备的股票软件！\r\n特色功能:\r\n1、智能投顾服务:人工智能精选个股，为用户提供专属投顾服务，准确提示买卖点，规避未知风险，如超级会员卡、短线宝、涨停先锋等适合短线、波段、长线的决策产品；\r\n2、智能操盘系统:操盘大师和操盘大师尊享版系列决策产品，三步构建炒股盈利体系，高效选好股；\r\n3、众多券商:支持全国众多券商在线股票开户，炒股证券开户方便快捷，炒股佣金低至万2.5。\r\n4、智能盯盘:题材异动、涨停盯盘、大盘赚钱效应、智能预警系统，个股异动提醒；\r\n5、智能投教:盘前深度解析股市走势，从行业核心研究资料精选分析热点板块核心龙头。重点事件解析，提前揭示盘面重大转折；\r\n6、智能机器人:人工智能和大数据与金融信息服务嫁接，7X24小时智能投资咨询；\r\n其他功能:\t\r\n1、基础功能:行情、自选股、新股中心、诊股、投顾、AI晓智、看盘分析、商城、龙虎榜；\r\n2、全球块讯:高速提供国内外资讯情报、股票资讯、环球市场情报、TMT行业观察、科创板动态、上市公司公告快递、A股盘面、证券时报网、21世纪经济报道、澎湃新闻、股票资讯、股市财经新闻头条，紧跟股市走势；\r\n3、极速行情:A股沪深两市盘面直击，全市场行情高速实时刷新；热门股池，全面分析涨停股、砸板股、X强势股、开盘新股；\r\n4、智能诊股:分析上涨潜力、市场热度、主力强度、走势分析、价值评估，全方面综合测评。\r\n签到兑换Level-2立享:十三大功能:十档/千档行情、回/突信号、逐笔委托、逐笔成交、全息队列、主力监控，另有6项专属指标。连续打卡还可获得股掌柜炒股神器。AI算法+权威数据全方位监测主力操作吃动向，炒股变得更简单！来就送！\r\n黑马炒股软件股掌柜，优质的服务舒适的炒股体验深受广大用户的青睐，在同花顺、大智慧、东方财富通，益盟操盘手，雪球，万得股票，金融界，优股炒股和讯股票等中脱颖而出，股民炒股好帮手！\r\n———联系我们———\r\n官方微信客服:zhj818520\r\n官方微信公众号:股掌柜APP\r\n免责声明:*投资有风险，请谨慎投资*&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;tags&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;第三方托管&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;仿冒&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;第三方托管&quot;</span>
+<span class="w">            </span><span class="p">],</span>
+<span class="w">            </span><span class="s2">&quot;status&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;relationsh_info&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;文字模糊匹配&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;scope&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;APP名称,开发者名称,详情&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;uptime&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2023-06-27 14:01:16&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;keyword&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;澎湃新闻&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;createtime&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2023-06-27 13:59:39&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;keyword_id&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">683</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">],</span>
+<span class="w">            </span><span class="s2">&quot;local_create_time&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2024-06-14 14:56:05&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;local_uptime&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2024-07-29 13:13:17&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;assets_group&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="s2">&quot;net&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="p">{</span>
+<span class="w">                        </span><span class="s2">&quot;id&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">7060</span><span class="p">,</span>
+<span class="w">                        </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;广州&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s2">&quot;resposibler&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">],</span>
+<span class="w">                </span><span class="s2">&quot;app&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="p">{</span>
+<span class="w">                        </span><span class="s2">&quot;id&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">7072</span><span class="p">,</span>
+<span class="w">                        </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;pocscan&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s2">&quot;resposibler&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                            </span><span class="s2">&quot;admin&quot;</span>
+<span class="w">                        </span><span class="p">]</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">]</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="s2">&quot;status&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="APP资产监控" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="keywords_list.html" class="btn btn-neutral float-right" title="关键字-列表" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

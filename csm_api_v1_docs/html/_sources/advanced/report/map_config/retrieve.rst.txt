@@ -1,0 +1,93 @@
+模板配置详情
+===========================================
+
+用于获取单个导出报告模板配置信息
+
+Request
+~~~~~~~~
+
+请求地址
++++++++++
+
+.. code-block:: bash
+
+   GET /api/v1/report/map/config/{id}
+
+
+
+请求示例
++++++++++
+
+.. code-block:: bash
+
+   https://localhost:38201/api/v1/report/map/config/169
+   
+   
+Response
+~~~~~~~~
+
+响应参数
+++++++++++++
+
+=============   ===============   ===============
+参数             类型             描述
+=============   ===============   ===============
+status          boolean           是否成功
+info            dict              返回数据
+=============   ===============   ===============
+
+数据字段详解：
+
+- **id** ✅：在数据库中的id
+- **name** ✅：导出任务名称
+- **type** ✅：报告格式 docx/wps/html
+- **task_ids**：关联任务id
+- **group_ids**：关联资产组id
+- **condition**: 导出报告 ``ip: IP资产`` ``task: 扫描任务`` ``assets_group: 资产组`` ``domain: 域名资产`` ``port: 端口服务`` ``poc: PoC漏洞`` ``version: 版本型漏洞`` ``riskcollector: 第三方漏洞`` ``riskport: 高危端口`` ``unconventional: 非常规端口``  ``asset_scope: 已登记资产范围`` ``webfps: 分类资产库``
+- **cycle** ✅：是否周期任务 ``1：是`` ``0：否``
+- **value**：执行周期间隔，单位为天，当cycle为1时生效
+- **cycle_run_time** ✅：周期任务在执行当日的具体执行时间（如：09:00:00）
+- **status** ✅：模板状态 ``0: 禁用`` ``1: 启用``
+- **system_userids** ✅：邮件发送对象用户id
+- **custom_email** ✅：邮件发送对象-系统外用户邮箱，字符串格式，多个邮箱使用 ``\n`` 分隔
+- **file_type**: 文档拆分 ``user: 报告按照系统用户进行拆分（严格按照定义角色权限生成）``, ``user_by_group: 报告按照系统用户进行拆分（不按照定义角色权限生成，而是按照资产登记的结果来生成）``, ``group：按照资产组进行拆分`` ``空值: 不进行拆分``
+- **user_id**: 模板创建用户id
+- **task_start_time** ✅：开始时间
+
+.. note:: ✅ 表示该字段可排序
+
+示例值
++++++++++
+
+.. code-block:: javascript
+
+    {
+        "info": {
+            "id": 169,
+            "name": "TEST_API_REPORT1",
+            "type": "docx",
+            "task_ids": [
+                112
+            ],
+            "group_ids": [
+                7350,
+                7358
+            ],
+            "condition": [
+                "domain"
+            ],
+            "status": 0,
+            "cycle": 0,
+            "cycle_run_time": "09:00:00",
+            "task_start_time": "2024-02-13 14:46:37",
+            "value": "0",
+            "system_userids": [
+                1
+            ],
+            "custom_email": "test1@test.cn\ntest2@test.cn",
+            "user_id": 1,
+            "template": "default",
+            "file_type": "group"
+        },
+        "status": true
+    }

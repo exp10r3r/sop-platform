@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>域名资产 &mdash; CSM API v1 说明文档 3.4.4 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=4c927a77"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="端口服务" href="portserver.html" />
+    <link rel="prev" title="IP资产" href="ip.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            CSM API v1 说明文档
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95.html">请求方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../%E6%90%9C%E7%B4%A2%E4%B8%8E%E6%8E%92%E5%BA%8F.html">搜索与排序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A5%E5%8F%A3%E8%BE%93%E5%87%BA%E5%AD%97%E6%AE%B5.html">自定义接口输出字段</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../%E5%88%86%E9%A1%B5.html">分页</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">基础API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">资产数据</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ip.html">IP资产</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">域名资产</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#request">Request</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#response">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="portserver.html">端口服务</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webfps.html">分类资产库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="url/index.html">URL/API资产</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ssl_cert.html">SSL证书</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ip_relation.html">内外网关联</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts_raw.html">适配器IP数据</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../risk/index.html">安全风险</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../risk_info/index.html">安全情报</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../templates/index.html">模板</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fake/index.html">仿冒监测</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">其他数据</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">高级API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../%E9%99%84%E4%BB%B6.html">附件</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">CSM API v1 说明文档</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">基础API</a></li>
+          <li class="breadcrumb-item"><a href="index.html">资产数据</a></li>
+      <li class="breadcrumb-item active">域名资产</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/basic/asset/domain.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>域名资产<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<p>用于获取域名资产数据</p>
+<section id="request">
+<h2>Request<a class="headerlink" href="#request" title="Link to this heading"></a></h2>
+<section id="id2">
+<h3>请求地址<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>GET<span class="w"> </span>/api/v1/domain
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3>搜索参数<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>字段</p></th>
+<th class="head"><p>字段名称</p></th>
+<th class="head"><p>查询方式</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id</p></td>
+<td><p>id</p></td>
+<td><p>精确</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>name</p></td>
+<td><p>域名</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>ipv4</p></td>
+<td><p>A记录[ipv4]</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>ipv6</p></td>
+<td><p>AAAA记录[ipv6]</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>cname</p></td>
+<td><p>CNAME记录[别名]</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>analysis</p></td>
+<td><p>解析状态</p></td>
+<td><p>精确</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>register</p></td>
+<td><p>登记状态</p></td>
+<td><p>精确</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line">change_state</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">资产异动</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">精确多选</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">可选值：</div>
+<div class="line">0：不变</div>
+<div class="line">1：新增</div>
+<div class="line">2：变化</div>
+<div class="line">3：减少</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>cdn</p></td>
+<td><p>是否CDN</p></td>
+<td><p>精确</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line">secstate</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">安全属性</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">精确</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">可选值</div>
+<div class="line">0：存在风险</div>
+<div class="line">1：安全</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>domain</p></td>
+<td><p>主域名</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>assets_group_id</p></td>
+<td><p>资产组id</p></td>
+<td><p>精确多选</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>assets_group_user_id</p></td>
+<td><p>资产组责任人id</p></td>
+<td><p>精确多选</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>remarks</p></td>
+<td><p>备注</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>address</p></td>
+<td><p>机房地址</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>isp</p></td>
+<td><p>运营商</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>computer_room</p></td>
+<td><p>机房</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>cabinet</p></td>
+<td><p>机柜</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>equipment_number</p></td>
+<td><p>设备编号</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>bandwidth</p></td>
+<td><p>宽带</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>uptime</p></td>
+<td><p>更新时间</p></td>
+<td><p>范围</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>taskids</p></td>
+<td><p>任务id</p></td>
+<td><p>精确多选</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>port</p></td>
+<td><p>端口</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line">custom_fields</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">自定义字段搜索</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">这是一个特殊的搜索，用法为：</div>
+<div class="line">custom_fields__{自定义字段名称}=值</div>
+<div class="line">例如：</div>
+<div class="line">custom_fields__文本字段=测试文本</div>
+<div class="line">根据自定义字段的类型，传值有不同的要求</div>
+<div class="line">1.单行文本框、多行文本框，值为字符串</div>
+<div class="line">例如：</div>
+<div class="line">custom_fields__文本框1=文本</div>
+<div class="line">2.下拉单选、下拉多选框，值为半角逗号分隔的字符串</div>
+<div class="line">例如：</div>
+<div class="line">custom_fields__多选=a,b,c</div>
+<div class="line">3.数值类型，值为半角逗号分隔的两个数字，表示搜索范围</div>
+<div class="line">例如：</div>
+<div class="line">custom_fields__数值1=10,31</div>
+<div class="line">4.日期类型，值为半角逗号分隔的两个日期字符串，表示搜索范围</div>
+<div class="line">根据时间精度有两种搜索，例如：</div>
+<div class="line">custom_fields__时间长=2025-05-21 14:58:07,2025-05-29 14:58:09</div>
+<div class="line">custom_fields__时间短=2025-05-01,2025-05-30</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id4">
+<h3>其他参数<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>参数</p></th>
+<th class="head"><p>参数名称</p></th>
+<th class="head"><p>可选值</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">attach</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">附加项</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">count</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">可选，传count时，进行统计数量, 并在接口中返回</div>
+<div class="line">例如:</div>
+<div class="line">?attach=count</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id5">
+<h3>请求示例<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>https://localhost:38201/api/v1/domain?attach<span class="o">=</span>count<span class="p">&amp;</span><span class="nv">id</span><span class="o">=</span><span class="m">1</span><span class="p">&amp;</span><span class="nv">ip</span><span class="o">=</span><span class="m">1</span>.1.1.1<span class="p">&amp;</span><span class="nv">ordering</span><span class="o">=</span>-id
+</pre></div>
+</div>
+</section>
+</section>
+<section id="response">
+<h2>Response<a class="headerlink" href="#response" title="Link to this heading"></a></h2>
+<section id="id6">
+<h3>响应参数<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>参数</p></th>
+<th class="head"><p>类型</p></th>
+<th class="head"><p>描述</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>status</p></td>
+<td><p>boolean</p></td>
+<td><p>是否成功</p></td>
+</tr>
+<tr class="row-odd"><td><p>info</p></td>
+<td><p>array</p></td>
+<td><p>返回数据</p></td>
+</tr>
+<tr class="row-even"><td><p>count</p></td>
+<td><p>integer</p></td>
+<td><p>总数（当请求参数attach=count存在时）</p></td>
+</tr>
+</tbody>
+</table>
+<p>数据字段详解：</p>
+<ul class="simple">
+<li><p><strong>id</strong> ✅：在数据库中的id</p></li>
+<li><p><strong>name</strong>：域名</p></li>
+<li><p><strong>ipv4</strong>：A记录[ipv4]</p></li>
+<li><p><strong>ipv6</strong>：AAAA记录[ipv6]</p></li>
+<li><p><strong>cname</strong>：CNAME记录[别名]</p></li>
+<li><p><strong>analysis</strong>：解析状态 <code class="docutils literal notranslate"><span class="pre">1:可解析</span></code> <code class="docutils literal notranslate"><span class="pre">0：不可解析</span></code></p></li>
+<li><p><strong>cdn</strong>：是否CDN  <code class="docutils literal notranslate"><span class="pre">1:是</span></code> <code class="docutils literal notranslate"><span class="pre">0：否</span></code></p></li>
+<li><p><strong>register</strong>：登记状态 <code class="docutils literal notranslate"><span class="pre">0：未登记</span></code> <code class="docutils literal notranslate"><span class="pre">1：已登记</span></code></p></li>
+<li><p><strong>secstate</strong>：安全属性</p></li>
+<li><p><strong>domain</strong>：主域名</p></li>
+<li><p><strong>createtime</strong> ✅：创建时间</p></li>
+<li><p><strong>change_state</strong> ✅：资产变动状态 <code class="docutils literal notranslate"><span class="pre">0：不变</span></code> <code class="docutils literal notranslate"><span class="pre">1：新增</span></code> <code class="docutils literal notranslate"><span class="pre">2：变化</span></code> <code class="docutils literal notranslate"><span class="pre">3：减少</span></code></p></li>
+<li><p><strong>port</strong>：端口</p></li>
+<li><p><strong>uptime</strong>：更新时间</p></li>
+<li><p><strong>assets_group</strong>：资产组及资产责任人</p>
+<ul>
+<li><p><strong>net</strong>：网络组</p>
+<ul>
+<li><p><strong>id</strong>：网络组id</p></li>
+<li><p><strong>name</strong>：网络组名称</p></li>
+<li><p><strong>resposibler</strong>：责任人用户名</p></li>
+</ul>
+</li>
+<li><p><strong>app</strong>：应用组</p>
+<ul>
+<li><p><strong>id</strong>：网络组id</p></li>
+<li><p><strong>name</strong>：网络组名称</p></li>
+<li><p><strong>resposibler</strong>：责任人用户名</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>taskids</strong> ✅：任务id</p></li>
+<li><p><strong>domain_info</strong>：域名注册与备案信息</p>
+<ul>
+<li><p><strong>brother_info</strong>：主办单位关联域名</p>
+<ul>
+<li><p><strong>domain</strong>：关联域名</p></li>
+<li><p><strong>icp</strong>：备案号</p></li>
+<li><p><strong>verifytime</strong>：认证时间</p></li>
+</ul>
+</li>
+<li><p><strong>beian_info</strong>：备案信息</p>
+<ul>
+<li><p><strong>domain</strong>：域名</p></li>
+<li><p><strong>icp_companytype</strong>：主办单位性质</p></li>
+<li><p><strong>icp_verifytime</strong>：审核通过日期</p></li>
+<li><p><strong>icp_companyname</strong>：主办单位名称</p></li>
+<li><p><strong>icp_license</strong>：ICP备案号</p></li>
+<li><p><strong>netsec_verifytime</strong>：审核通过日期</p></li>
+<li><p><strong>netsec_companyname</strong>：主办单位名称</p></li>
+<li><p><strong>netsec_companytype</strong>：主办单位性质</p></li>
+<li><p><strong>netsec_address</strong>：备案地址</p></li>
+<li><p><strong>netsec_license</strong>：许可证号</p></li>
+</ul>
+</li>
+<li><p><strong>whois_info</strong>：所有者信息</p>
+<ul>
+<li><p><strong>domain</strong>：域名</p></li>
+<li><p><strong>dnsserver</strong>：DNS服务器</p></li>
+<li><p><strong>domainstatus</strong>：域名状态</p></li>
+<li><p><strong>contactperson</strong>：联系人</p></li>
+<li><p><strong>phone</strong>：所有者联系电话</p></li>
+<li><p><strong>registrar</strong>：注册商</p></li>
+<li><p><strong>expirationdate</strong>：到期时间</p></li>
+<li><p><strong>creationdate</strong>：注册时间</p></li>
+<li><p><strong>email</strong>：所有者联系邮箱</p></li>
+</ul>
+</li>
+<li><p><strong>icp</strong>：ICP备案号</p></li>
+<li><p><strong>br_domains</strong>：关联域名</p></li>
+<li><p><strong>company_name</strong>：主办单位名称</p></li>
+</ul>
+</li>
+<li><p><strong>address</strong> ✅：机房地址</p></li>
+<li><p><strong>isp</strong> ✅：运营商</p></li>
+<li><p><strong>computer_room</strong> ✅：机房</p></li>
+<li><p><strong>cabinet</strong> ✅：机柜</p></li>
+<li><p><strong>equipment_number</strong> ✅：设备编号</p></li>
+<li><p><strong>bandwidth</strong> ✅：宽带</p></li>
+<li><p><strong>remarks</strong> ✅：备注</p></li>
+<li><p><strong>custom_fields</strong> ✅：自定义字段数据键值对</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>✅ 表示该字段可排序</p>
+</div>
+</section>
+<section id="id7">
+<h3>示例值<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;info&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;id&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">850</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;333y-argus.sf-express.com&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;ipv4&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;ipv6&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;cname&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;analysis&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;register&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;change_state&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;port&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="s2">&quot;content&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="p">{</span>
+<span class="w">                        </span><span class="s2">&quot;标题&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;301 Moved Permanently&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s2">&quot;端口&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;80&quot;</span>
+<span class="w">                    </span><span class="p">},</span>
+<span class="w">                    </span><span class="p">{</span>
+<span class="w">                        </span><span class="s2">&quot;标题&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;登录&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s2">&quot;端口&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;443&quot;</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">],</span>
+<span class="w">                </span><span class="s2">&quot;port&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;80,443&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="s2">&quot;cdn&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;secstate&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;domain&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;example.com&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;assets_group&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="s2">&quot;net&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">                </span><span class="s2">&quot;app&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="s2">&quot;uptime&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2022-11-30 16:09:44&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;createtime&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2022-11-30 16:09:44&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;taskids&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;domain_info&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="s2">&quot;brother_info&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="p">{</span>
+<span class="w">                        </span><span class="s2">&quot;domain&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;xxxxxxxx.cn&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s2">&quot;icp&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;京ICP备05070602号&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s2">&quot;verifytime&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2019-10-10 11:12:20&quot;</span>
+<span class="w">                    </span><span class="p">},</span>
+<span class="w">                    </span><span class="p">{</span>
+<span class="w">                        </span><span class="s2">&quot;domain&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;cyberpolice.cn&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s2">&quot;icp&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;京ICP备05070602号&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s2">&quot;verifytime&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2019-10-10 11:12:20&quot;</span>
+<span class="w">                    </span><span class="p">},</span>
+<span class="w">                    </span><span class="p">{</span>
+<span class="w">                        </span><span class="s2">&quot;domain&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;mps.gov.cn&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s2">&quot;icp&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;京ICP备05070602号&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s2">&quot;verifytime&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2019-10-10 11:12:20&quot;</span>
+<span class="w">                    </span><span class="p">},</span>
+<span class="w">                    </span><span class="p">{</span>
+<span class="w">                        </span><span class="s2">&quot;domain&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;zwfw.mps.gov.cn&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s2">&quot;icp&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;京ICP备05070602号&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s2">&quot;verifytime&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2021-06-22 12:23:27&quot;</span>
+<span class="w">                    </span><span class="p">},</span>
+<span class="w">                    </span><span class="p">{</span>
+<span class="w">                        </span><span class="s2">&quot;domain&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;12389.gov.cn&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s2">&quot;icp&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;京ICP备05070602号&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s2">&quot;verifytime&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2019-10-10 11:12:20&quot;</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">],</span>
+<span class="w">                </span><span class="s2">&quot;beian_info&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="s2">&quot;domain&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;mps.gov.cn&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;icp_companytype&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;政府机关&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;icp_verifytime&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2019-10-10 11:12:20&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;netsec_verifytime&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2017-04-14&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;netsec_address&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;北京市东城驻区大队&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;icp_license&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;京ICP备05070602号&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;netsec_companytype&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;政府机构&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;netsec_license&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;11010102000001&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="s2">&quot;whois_info&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="s2">&quot;domain&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;mps.gov.cn&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;dnsserver&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;vip1.sfndns.cn,vip2.sfndns.cn&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;domainstatus&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;serverDeleteProhibited,serverUpdateProhibited,serverTransferProhibited&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;contactperson&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;该域名已采取WHOIS隐私保护服务&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;phone&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;registrar&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;北京中科三方网络技术有限公司&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;expirationdate&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2029-12-16 00:00:00&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;creationdate&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1999-12-16 00:00:00&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;email&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="s2">&quot;icp&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;京ICP备05070602号&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;br_domains&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="s2">&quot;beian.gov.cn&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;cyberpolice.cn&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;mps.gov.cn&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;zwfw.mps.gov.cn&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;12389.gov.cn&quot;</span>
+<span class="w">                </span><span class="p">],</span>
+<span class="w">                </span><span class="s2">&quot;company_name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;中华人民共和国公安部&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="s2">&quot;address&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;isp&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;computer_room&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;cabinet&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;equipment_number&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;bandwidth&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;remarks&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;custom_fields&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="s2">&quot;刷刷刷&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;qq&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;凄凄切切_凄凄切切&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;数值1&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">11</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;数值2&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">8</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;多选&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="s2">&quot;b&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;d&quot;</span>
+<span class="w">                </span><span class="p">],</span>
+<span class="w">                </span><span class="s2">&quot;时间短&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2025-05-08&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;时间长&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2025-05-22 00:00:00&quot;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="s2">&quot;status&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ip.html" class="btn btn-neutral float-left" title="IP资产" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="portserver.html" class="btn btn-neutral float-right" title="端口服务" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

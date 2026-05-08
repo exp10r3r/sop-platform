@@ -1,0 +1,86 @@
+关键字-删除
+================
+
+用于删除企业邮箱监控关键字
+
+Request
+~~~~~~~~
+
+请求地址
++++++++++
+
+.. code-block:: bash
+
+   DELETE /api/v1/mails/keywords/{id}
+
+
+
+请求参数
++++++++++++++++++++++
+
++-----------+-----------------------+----------+-----------------------------------+------+
+| 字段      | 字段名称              | 是否必填 | 说明                              | 示例 |
++===========+=======================+==========+===================================+======+
+|| del_data || 是否删除关联历史数据 || 否      || 可选值为true或false；默认为false ||     |
++-----------+-----------------------+----------+-----------------------------------+------+
+
+请求示例
+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+   
+.. code-block:: python
+
+    import requests
+    import json
+
+    url = "http://127.0.0.1:8000/api/v1/mails/keywords/233"
+
+    payload = json.dumps({
+        "del_data": False
+    })
+    headers = {
+        'Accept': 'application/json',
+        'Content-type': 'application/json',
+        'ACCESSKEY': 'ijE80piSATBYT8qVQcInSygUomWl6FiQFZ9LwhdZBv0eJ6QQFHQcHw',
+        'SECRETKEY': 'P4KNH51u6KyewjCfX1JZ3uZ7bCV4tTME6JcbBvmrUQTZ7YxOltUjCIiNUrp24ijq8'
+    }
+
+    response = requests.request("DELETE", url, headers=headers, data=payload)
+
+    print(response.text)
+
+Response
+~~~~~~~~
+
+响应参数
+++++++++++++
+
+=============   ===============   ===============
+参数             类型             描述
+=============   ===============   ===============
+status          boolean           是否成功
+info            string/dict       返回信息
+=============   ===============   ===============
+
+
+示例值
++++++++++
+
+.. code-block:: javascript
+
+    {
+        "info": "操作成功",
+        "status": true
+    }
+
+
+失败示例
++++++++++
+
+.. code-block:: javascript
+
+    {
+        "info": {
+            "detail": "未找到。"
+        },
+        "status": false
+    }

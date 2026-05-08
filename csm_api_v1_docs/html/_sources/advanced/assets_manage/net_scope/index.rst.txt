@@ -1,0 +1,13 @@
+========================
+网络组范围登记
+========================
+
+.. toctree::
+   :maxdepth: 2
+   :caption: 目录:
+
+   list
+   create
+   edit
+   delete
+   

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>请求方法 &mdash; CSM API v1 说明文档 3.4.4 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=4c927a77"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="搜索与排序" href="%E6%90%9C%E7%B4%A2%E4%B8%8E%E6%8E%92%E5%BA%8F.html" />
+    <link rel="prev" title="CSM API v1 说明文档" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            CSM API v1 说明文档
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">请求方法</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">基本请求方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">身份认证</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#headers">1.请求头headers中认证</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#uri">2.URI中认证</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%90%9C%E7%B4%A2%E4%B8%8E%E6%8E%92%E5%BA%8F.html">搜索与排序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A5%E5%8F%A3%E8%BE%93%E5%87%BA%E5%AD%97%E6%AE%B5.html">自定义接口输出字段</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%88%86%E9%A1%B5.html">分页</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic/index.html">基础API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced/index.html">高级API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E4%BB%B6.html">附件</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">CSM API v1 说明文档</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">请求方法</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/请求方法.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>请求方法<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<section id="id2">
+<h2>基本请求方法<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<div class="line-block">
+<div class="line">所有api都按照restful请求⽅式，返回结果都是json数据格式。</div>
+</div>
+<ul class="simple">
+<li><p>调用每个接口Header必须设置</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Accept:<span class="w"> </span>application/json
+Content-type:<span class="w"> </span>application/json
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h2>身份认证<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<div class="line-block">
+<div class="line">系统通过AccessKey与SecretKey方式进行认证</div>
+<div class="line">秘钥请在 <code class="docutils literal notranslate"><span class="pre">系统设置-API配置</span></code> 中获取</div>
+<div class="line">秘钥传递方式有两种</div>
+</div>
+<section id="headers">
+<h3>1.请求头headers中认证<a class="headerlink" href="#headers" title="Link to this heading"></a></h3>
+<p>构建请求头</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ACCESSKEY:<span class="w"> </span>wybyCK05CTXOsL2/N1EvJrR9PhpT4ddUtYg4Yhg<span class="o">==</span>
+SECRETKEY:<span class="w"> </span>2gsRL2XhQNAl7Og2Ve95PpF+CphLX9jNPBGnXm2l2+S7nIYW9Kw<span class="o">=</span>
+</pre></div>
+</div>
+<p>python代码示例</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">urllib3</span>
+
+<span class="n">urllib3</span><span class="o">.</span><span class="n">disable_warnings</span><span class="p">(</span><span class="n">urllib3</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">InsecureRequestWarning</span><span class="p">)</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://localhost:38201/api/v1/ip&quot;</span>
+
+<span class="n">payload</span><span class="o">=</span><span class="p">{}</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Accept&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Content-type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ACCESSKEY&#39;</span><span class="p">:</span> <span class="s1">&#39;ijE80piSATBYT8qVQcInSygUomWl6FiQFZ9LwhdZBv0eJ6QQFHQcHw&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;SECRETKEY&#39;</span><span class="p">:</span> <span class="s1">&#39;P4KNH51u6KyewjCfX1JZ3uZ7bCV4tTME6JcbBvmrUQTZ7YxOltUjCIiNUrp24ijq8&#39;</span>
+<span class="p">}</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="uri">
+<h3>2.URI中认证<a class="headerlink" href="#uri" title="Link to this heading"></a></h3>
+<p>使用ak、sk参数加入uri中
+<code class="docutils literal notranslate"><span class="pre">http://${server}/api/v1/ip?ak=${AccessKey}sk=${SecretKey}</span></code></p>
+<p>例如:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>http://localhost:38201/api/v1/thirdvuln/xray?ak<span class="o">=</span>ijE80piSA6QQFHQcHw<span class="p">&amp;</span><span class="nv">sk</span><span class="o">=</span>P4KNH51u6KyewjOjIiNUrp
+</pre></div>
+</div>
+<p>python代码示例</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">urllib3</span>
+
+<span class="n">urllib3</span><span class="o">.</span><span class="n">disable_warnings</span><span class="p">(</span><span class="n">urllib3</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">InsecureRequestWarning</span><span class="p">)</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://localhost:38201/api/v1/ip&quot;</span>
+
+<span class="n">payload</span><span class="o">=</span><span class="p">{}</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;ak&quot;</span><span class="p">:</span> <span class="s2">&quot;ijE80piSATBYT8qVQcInSygUomWl6FiQFZ9LwhdZBv0eJ6QQFHQcHw&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sk&quot;</span><span class="p">:</span> <span class="s2">&quot;P4KNH51u6KyewjCfX1JZ3uZ7bCV4tTME6JcbBvmrUQTZ7YxOltUjCIiNUrp24ijq8&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Accept&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Content-type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="CSM API v1 说明文档" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="%E6%90%9C%E7%B4%A2%E4%B8%8E%E6%8E%92%E5%BA%8F.html" class="btn btn-neutral float-right" title="搜索与排序" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

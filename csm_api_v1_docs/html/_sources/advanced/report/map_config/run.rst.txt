@@ -1,0 +1,100 @@
+立即生成
+==============================================================
+
+用于立即按照模板导出报告，导出将于后台执行，结果在「导出报告-导出记录」中查询
+
+Request
+~~~~~~~~
+
+请求地址
++++++++++
+
+.. code-block:: bash
+
+   POST /api/v1/report/map/config/run/{id}
+
+
+
+请求参数
++++++++++++++++++++++
+
+无
+
+请求示例
++++++++++
+   
+.. code-block:: python
+
+    import requests
+
+    url = "http://127.0.0.1:38202/api/v1/report/map/config/run/771"
+
+    payload={}
+    headers = {}
+
+    response = requests.request("POST", url, headers=headers, data=payload)
+
+    print(response.text)
+
+
+
+Response
+~~~~~~~~
+
+响应参数
+++++++++++++
+
+=============   ===============   ===============
+参数             类型             描述
+=============   ===============   ===============
+status          boolean           是否成功
+info            dict              返回数据
+=============   ===============   ===============
+
+
+示例值
++++++++++
+
+.. code-block:: javascript
+
+    {
+        "info": {
+            "id": 882,
+            "createtime": "2023-03-21 17:01:37",
+            "name": "TEST_API_REPORT1",
+            "status": 1,
+            "cycle": 0,
+            "task_name": "texstttt",
+            "group_name": "测试,广州",
+            "type": "docx",
+            "task_ids": [
+                112
+            ],
+            "group_ids": [
+                7358,
+                7350
+            ],
+            "md5": null,
+            "uuid": "fcc3f58a-c7c6-11ed-a053-acde48001122",
+            "user_id": 1,
+            "template": "default",
+            "generate_type": "template"
+        },
+        "status": true
+    }   
+    
+- **id**：导出记录的id
+
+
+  
+失败示例
++++++++++
+
+.. code-block:: javascript
+
+    {
+        "info": {
+            "detail": "Not found."
+        },
+        "status": false
+    }

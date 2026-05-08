@@ -1,0 +1,12 @@
+========================
+疑似APP
+========================
+
+.. toctree::
+   :maxdepth: 2
+   :caption: 目录:
+
+   list
+   create
+   delete
+   status

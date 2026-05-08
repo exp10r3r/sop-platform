@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>URL/API-添加 &mdash; CSM API v1 说明文档 3.4.4 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=4c927a77"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="SSL证书" href="../ssl_cert.html" />
+    <link rel="prev" title="URL/API列表" href="url.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            CSM API v1 说明文档
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95.html">请求方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../%E6%90%9C%E7%B4%A2%E4%B8%8E%E6%8E%92%E5%BA%8F.html">搜索与排序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A5%E5%8F%A3%E8%BE%93%E5%87%BA%E5%AD%97%E6%AE%B5.html">自定义接口输出字段</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../%E5%88%86%E9%A1%B5.html">分页</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">基础API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">资产数据</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../ip.html">IP资产</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../domain.html">域名资产</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../portserver.html">端口服务</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../webfps.html">分类资产库</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">URL/API资产</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="webapp.html">站点列表</a></li>
+<li class="toctree-l4"><a class="reference internal" href="url.html">URL/API列表</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">URL/API-添加</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../ssl_cert.html">SSL证书</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ip_relation.html">内外网关联</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hosts_raw.html">适配器IP数据</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../risk/index.html">安全风险</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../risk_info/index.html">安全情报</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../templates/index.html">模板</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fake/index.html">仿冒监测</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../other/index.html">其他数据</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">高级API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../%E9%99%84%E4%BB%B6.html">附件</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">CSM API v1 说明文档</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">基础API</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">资产数据</a></li>
+          <li class="breadcrumb-item"><a href="index.html">URL/API资产</a></li>
+      <li class="breadcrumb-item active">URL/API-添加</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/basic/asset/url/url_add.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="url-api">
+<h1>URL/API-添加<a class="headerlink" href="#url-api" title="Link to this heading"></a></h1>
+<p>用于添加URL/API资产的URL/API列表数据</p>
+<section id="request">
+<h2>Request<a class="headerlink" href="#request" title="Link to this heading"></a></h2>
+<section id="id1">
+<h3>请求地址<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>POST<span class="w"> </span>/api/v1/url
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h3>请求参数<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>字段</p></th>
+<th class="head"><p>字段名称</p></th>
+<th class="head"><p>是否必填</p></th>
+<th class="head"><p>说明</p></th>
+<th class="head"><p>示例</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>title</p></td>
+<td><p>标题</p></td>
+<td><p>否</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>url</p></td>
+<td><p>url地址</p></td>
+<td><p>是</p></td>
+<td><p>url地址必须是合法的URL格式；</p>
+<p>后台会自动提取：协议、ip、端口、路径等</p>
+</td>
+<td><p><a class="reference external" href="https://www.xxx.cn:8080/api/test">https://www.xxx.cn:8080/api/test</a></p></td>
+</tr>
+<tr class="row-even"><td><p>method</p></td>
+<td><p>请求方法</p></td>
+<td><p>是</p></td>
+<td></td>
+<td><p>GET</p></td>
+</tr>
+<tr class="row-odd"><td><p>response_code</p></td>
+<td><p>状态码</p></td>
+<td><p>否</p></td>
+<td><p>状态码范围应为：100-599</p></td>
+<td><p>200</p></td>
+</tr>
+<tr class="row-even"><td><p>request_raw</p></td>
+<td><p>请求报文</p></td>
+<td><p>否</p></td>
+<td><p>请求报文，后台会自动提取body请求体</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>response_raw</p></td>
+<td><p>返回报文</p></td>
+<td><p>否</p></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id3">
+<h3>请求示例<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://127.0.0.1:8000/api/v1/url&quot;</span>
+
+<span class="n">payload</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span>
+    <span class="s2">&quot;method&quot;</span><span class="p">:</span> <span class="s2">&quot;POST&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://www.xxx.cn:8080/api/test&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;request_raw&quot;</span><span class="p">:</span> <span class="s2">&quot;POST /api/test HTTP/1.1Accept: application/json, text/plain, */*</span><span class="se">\r\n</span><span class="s2">Accept-Encoding: gzip, deflate, br, zstd</span><span class="se">\r\n</span><span class="s2">Accept-Language: zh-CN,zh-TW;q=0.9,zh;q=0.8</span><span class="se">\r\n</span><span class="s2">Cache-Control: no-cache</span><span class="se">\r\n</span><span class="s2">Connection: keep-alive</span><span class="se">\r\n</span><span class="s2">Content-Length: 55</span><span class="se">\r\n</span><span class="s2">Content-Type: application/json;charset=UTF-8</span><span class="se">\r\n</span><span class="s2">Host: www.xxx.cn:8080</span><span class="se">\r\n\r\n</span><span class="s2">id=11323&amp;user=008&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;response_code&quot;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+    <span class="s2">&quot;response_raw&quot;</span><span class="p">:</span><span class="s2">&quot;HTTP/1.1 200 OK</span><span class="se">\r\n</span><span class="s2">X-Powered-By: Express</span><span class="se">\r\n</span><span class="s2">date: Wed, 19 Mar 2025 11:01:20 GMT</span><span class="se">\r\n</span><span class="s2">content-type: application/json</span><span class="se">\r\n</span><span class="s2">allow: GET</span><span class="se">\r\n</span><span class="s2">x-frame-options: DENY</span><span class="se">\r\n</span><span class="s2">content-length: 45</span><span class="se">\r\n</span><span class="s2">connection: keep-alive&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;测试api&quot;</span>
+<span class="p">})</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Accept&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Content-type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ACCESSKEY&#39;</span><span class="p">:</span> <span class="s1">&#39;ijE80piSATBYT8qVQcInSygUomWl6FiQFZ9LwhdZBv0eJ6QQFHQcHw&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;SECRETKEY&#39;</span><span class="p">:</span> <span class="s1">&#39;P4KNH51u6KyewjCfX1JZ3uZ7bCV4tTME6JcbBvmrUQTZ7YxOltUjCIiNUrp24ijq8&#39;</span>
+<span class="p">}</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="response">
+<h2>Response<a class="headerlink" href="#response" title="Link to this heading"></a></h2>
+<section id="id4">
+<h3>响应参数<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>参数</p></th>
+<th class="head"><p>类型</p></th>
+<th class="head"><p>描述</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>status</p></td>
+<td><p>boolean</p></td>
+<td><p>是否成功</p></td>
+</tr>
+<tr class="row-odd"><td><p>info</p></td>
+<td><p>dict</p></td>
+<td><p>返回数据</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id5">
+<h3>示例值<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;info&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;id&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">18058</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;create_time&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2025-03-19 19:54:25&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;uptime&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2025-03-19 19:54:25&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;source&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;人工添加&quot;</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="s2">&quot;host&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;www.xxx.cn&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;port&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">8080</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;method&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;POST&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;url&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;https://www.xxx.cn:8080/api/test&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;path&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;/api/&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;parameter&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;response_code&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">200</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;title&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;测试api&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;assets_group&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;net&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">            </span><span class="s2">&quot;app&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="s2">&quot;request_raw&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;POST /assets/groups/net/7481 HTTP/1.1Accept: application/json, text/plain, */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: zh-CN,zh-TW;q=0.9,zh;q=0.8\r\nCache-Control: no-cache\r\nConnection: keep-alive\r\nContent-Length: 55\r\nContent-Type: application/json;charset=UTF-8\r\nHost: localhost:3000\r\nOrigin: http://localhost:3000\r\nPragma: no-cache\r\nReferer: http://localhost:3000/\r\n\r\nid=11323&amp;user=008&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;response_raw&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;HTTP/1.1 200 OK\r\nX-Powered-By: Express\r\ndate: Wed, 19 Mar 2025 11:01:20 GMT\r\ncontent-type: application/json\r\nallow: GET\r\nx-frame-options: DENY\r\ncontent-length: 45\r\nconnection: keep-alive&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;taskids&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="s2">&quot;status&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h3>失败示例<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;info&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;「https://www.xxx.cn:8080/api/test」添加失败，已存在相同url&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="s2">&quot;status&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="url.html" class="btn btn-neutral float-left" title="URL/API列表" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../ssl_cert.html" class="btn btn-neutral float-right" title="SSL证书" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

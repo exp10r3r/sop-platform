@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>高级API &mdash; CSM API v1 说明文档 3.4.4 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=4c927a77"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="任务管理" href="task/index.html" />
+    <link rel="prev" title="资产组树形结构" href="../basic/other/assets_group_tree.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CSM API v1 说明文档
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95.html">请求方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../%E6%90%9C%E7%B4%A2%E4%B8%8E%E6%8E%92%E5%BA%8F.html">搜索与排序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A5%E5%8F%A3%E8%BE%93%E5%87%BA%E5%AD%97%E6%AE%B5.html">自定义接口输出字段</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../%E5%88%86%E9%A1%B5.html">分页</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basic/index.html">基础API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">高级API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="task/index.html">任务管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="port_rescan/index.html">端口复扫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rescan/index.html">漏洞复扫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thirdvuln/index.html">第三方漏洞接入</a></li>
+<li class="toctree-l2"><a class="reference internal" href="handler/index.html">风险处置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system/index.html">系统管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assets_manage/index.html">资产管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="report/index.html">导出中心</a></li>
+<li class="toctree-l2"><a class="reference internal" href="other/index.html">其他</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../%E9%99%84%E4%BB%B6.html">附件</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CSM API v1 说明文档</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">高级API</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/advanced/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api">
+<h1>高级API<a class="headerlink" href="#api" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="task/index.html">任务管理</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="task/list.html">任务列表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="task/verify_history.html">复扫子任务列表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="task/config_list.html">任务配置详情列表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="task/create.html">创建任务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="task/edit.html">编辑任务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="task/delete.html">删除任务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="task/act.html">扫描任务控制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="task/third_config.html">扫描器配置字段详情</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="port_rescan/index.html">端口复扫</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="port_rescan/portserver.html">端口服务复扫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="port_rescan/bulk_portserver.html">端口服务批量复扫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="port_rescan/riskport.html">高危端口复扫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="port_rescan/bulk_riskport.html">高危端口批量复扫</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rescan/index.html">漏洞复扫</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rescan/poc.html">PoC漏洞复扫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rescan/bulk_poc.html">PoC漏洞批量复扫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rescan/version.html">版本型漏洞复扫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rescan/bulk_version.html">版本型漏洞批量复扫</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="thirdvuln/index.html">第三方漏洞接入</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="thirdvuln/xray.html">XRAY社区版 webhook支持</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="handler/index.html">风险处置</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="handler/poc.html">PoC漏洞批量流转与处置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="handler/version.html">版本型漏洞批量流转与处置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="handler/thirdvuln.html">第三方漏洞批量流转与处置</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="system/index.html">系统管理</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="system/zones.html">扫描区域列表</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="assets_manage/index.html">资产管理</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="assets_manage/net/index.html">网络组管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assets_manage/app/index.html">应用组管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assets_manage/net_scope/index.html">网络组范围登记</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assets_manage/app_scope/index.html">应用组范围登记</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="report/index.html">导出中心</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="report/data_config/index.html">导出数据-模板配置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="report/data_record/index.html">导出数据-导出记录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="report/map_config/index.html">导出报告-模板配置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="report/map_record/index.html">导出报告-导出记录</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="other/index.html">其他</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="other/hids_import.html">导入HIDS API资产数据</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../basic/other/assets_group_tree.html" class="btn btn-neutral float-left" title="资产组树形结构" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="task/index.html" class="btn btn-neutral float-right" title="任务管理" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SSL证书 &mdash; CSM API v1 说明文档 3.4.4 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=4c927a77"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="内外网关联" href="ip_relation.html" />
+    <link rel="prev" title="URL/API-添加" href="url/url_add.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            CSM API v1 说明文档
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95.html">请求方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../%E6%90%9C%E7%B4%A2%E4%B8%8E%E6%8E%92%E5%BA%8F.html">搜索与排序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A5%E5%8F%A3%E8%BE%93%E5%87%BA%E5%AD%97%E6%AE%B5.html">自定义接口输出字段</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../%E5%88%86%E9%A1%B5.html">分页</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">基础API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">资产数据</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ip.html">IP资产</a></li>
+<li class="toctree-l3"><a class="reference internal" href="domain.html">域名资产</a></li>
+<li class="toctree-l3"><a class="reference internal" href="portserver.html">端口服务</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webfps.html">分类资产库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="url/index.html">URL/API资产</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">SSL证书</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#request">Request</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#response">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ip_relation.html">内外网关联</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts_raw.html">适配器IP数据</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../risk/index.html">安全风险</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../risk_info/index.html">安全情报</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../templates/index.html">模板</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fake/index.html">仿冒监测</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">其他数据</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">高级API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../%E9%99%84%E4%BB%B6.html">附件</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">CSM API v1 说明文档</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">基础API</a></li>
+          <li class="breadcrumb-item"><a href="index.html">资产数据</a></li>
+      <li class="breadcrumb-item active">SSL证书</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/basic/asset/ssl_cert.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ssl">
+<h1>SSL证书<a class="headerlink" href="#ssl" title="Link to this heading"></a></h1>
+<p>用于获取SSL证书资产数据</p>
+<section id="request">
+<h2>Request<a class="headerlink" href="#request" title="Link to this heading"></a></h2>
+<section id="id1">
+<h3>请求地址<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>GET<span class="w"> </span>/api/v1/ssl_cert
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h3>搜索参数<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>字段</p></th>
+<th class="head"><p>字段名称</p></th>
+<th class="head"><p>查询方式</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id</p></td>
+<td><p>id</p></td>
+<td><p>精确</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>cn</p></td>
+<td><p>使用者</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>o</p></td>
+<td><p>使用组织</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>issuer_cn</p></td>
+<td><p>颁发机构</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>issuer_o</p></td>
+<td><p>颁发组织</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>ips</p></td>
+<td><p>关联IP</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>domains</p></td>
+<td><p>关联域名</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>encryption</p></td>
+<td><p>加密算法</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>version</p></td>
+<td><p>版本</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>valid_time</p></td>
+<td><p>有效期</p></td>
+<td><p>范围</p></td>
+<td><p>例如：2020-7-20/2020-8-20</p></td>
+</tr>
+<tr class="row-even"><td><p>create_time</p></td>
+<td><p>创建时间</p></td>
+<td><p>范围</p></td>
+<td><p>例如：2020-7-20/2020-8-20</p></td>
+</tr>
+<tr class="row-odd"><td><p>up_time</p></td>
+<td><p>更新时间</p></td>
+<td><p>范围</p></td>
+<td><p>例如：2020-7-20/2020-8-20</p></td>
+</tr>
+<tr class="row-even"><td><p>serial_number</p></td>
+<td><p>序列号</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>days_left_to_expire</p></td>
+<td><p>有效期小于多少天</p></td>
+<td><p>精确</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">expired</div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">是否已过期</div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">单选</div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">0：否</div>
+<div class="line">1：是</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id3">
+<h3>其他参数<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>参数</p></th>
+<th class="head"><p>参数名称</p></th>
+<th class="head"><p>可选值</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">attach</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">附加项</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">count</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">可选，传count时，进行统计数量, 并在接口中返回</div>
+<div class="line">例如:</div>
+<div class="line">?attach=count</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id4">
+<h3>请求示例<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>https://localhost:38201/api/v1/ssl_cert?attach<span class="o">=</span>count<span class="p">&amp;</span><span class="nv">cn</span><span class="o">=</span>tapd<span class="p">&amp;</span><span class="nv">ordering</span><span class="o">=</span>-id
+</pre></div>
+</div>
+</section>
+</section>
+<section id="response">
+<h2>Response<a class="headerlink" href="#response" title="Link to this heading"></a></h2>
+<section id="id5">
+<h3>响应参数<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>参数</p></th>
+<th class="head"><p>类型</p></th>
+<th class="head"><p>描述</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>status</p></td>
+<td><p>boolean</p></td>
+<td><p>是否成功</p></td>
+</tr>
+<tr class="row-odd"><td><p>info</p></td>
+<td><p>array</p></td>
+<td><p>返回数据</p></td>
+</tr>
+<tr class="row-even"><td><p>count</p></td>
+<td><p>integer</p></td>
+<td><p>总数（当请求参数attach=count存在时）</p></td>
+</tr>
+</tbody>
+</table>
+<p>数据字段详解：</p>
+<ul class="simple">
+<li><p><strong>id</strong> ✅：在数据库中的id</p></li>
+<li><p><strong>cn</strong> ✅：使用者</p></li>
+<li><p><strong>o</strong> ✅：使用组织</p></li>
+<li><p><strong>issuer_cn</strong> ✅：颁发机构</p></li>
+<li><p><strong>issuer_o</strong> ✅：颁发组织</p></li>
+<li><p><strong>ips</strong>：关联ip</p></li>
+<li><p><strong>domains</strong>：关联域名</p></li>
+<li><p><strong>encryption</strong> ✅：加密算法</p></li>
+<li><p><strong>version</strong> ✅：版本</p></li>
+<li><p><strong>valid_time</strong> ✅：有效期</p></li>
+<li><p><strong>create_time</strong> ✅：创建时间</p></li>
+<li><p><strong>up_time</strong> ✅：更新时间</p></li>
+<li><p><strong>serial_number</strong> ✅：序列号</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>✅ 表示该字段可排序</p>
+</div>
+</section>
+<section id="id6">
+<h3>示例值<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;info&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;id&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;cn&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;tapd.cn&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;o&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Shenzhen Tencent Computer Systems Company Limited&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;issuer_cn&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;DigiCert Secure Site CN CA G3&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;issuer_o&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;DigiCert Inc&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;ips&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;14.18.16.158&quot;</span>
+<span class="w">            </span><span class="p">],</span>
+<span class="w">            </span><span class="s2">&quot;domains&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;xx.org&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;example.com&quot;</span>
+<span class="w">            </span><span class="p">],</span>
+<span class="w">            </span><span class="s2">&quot;encryption&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;SM1&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;version&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;valid_time&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2023-07-10 14:16:22&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;create_time&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2023-07-12 00:16:26&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;up_time&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2023-07-11 14:16:28&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;serial_number&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;0C:F0:85:1B:76:ED:76:B2:C8:B3:22:74:AE:30:65:3D&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;id&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;cn&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;tapd2.cn&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;o&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Shenzhen Tencent Computer Systems Company Limited&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;issuer_cn&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;DigiCert Secure Site CN CA G3&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;issuer_o&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;DigiCert Inc&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;ips&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;123.3.3.3&quot;</span>
+<span class="w">            </span><span class="p">],</span>
+<span class="w">            </span><span class="s2">&quot;domains&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;ceshi.cdn.shuziguangdong.com&quot;</span>
+<span class="w">            </span><span class="p">],</span>
+<span class="w">            </span><span class="s2">&quot;encryption&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;SM1&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;version&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;valid_time&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2023-07-10 14:16:22&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;create_time&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2023-06-11 14:16:26&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;up_time&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2023-07-11 14:16:28&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;serial_number&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;0C:F0:85:1B:76:ED:76:B2:C8:B3:22:74:AE:30:65:3D&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="s2">&quot;count&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;status&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="url/url_add.html" class="btn btn-neutral float-left" title="URL/API-添加" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ip_relation.html" class="btn btn-neutral float-right" title="内外网关联" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

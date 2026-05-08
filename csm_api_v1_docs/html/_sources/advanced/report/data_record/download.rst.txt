@@ -1,0 +1,43 @@
+下载导出文件
+===========================================
+
+用于下载导出报告的文件
+
+Request
+~~~~~~~~
+
+请求地址
++++++++++
+
+.. code-block:: bash
+
+   GET /api/v1/report/data/{id}
+
+
+请求示例
++++++++++
+
+.. code-block:: bash
+
+   https://localhost:38201/api/v1/report/data/711
+   
+   
+Response
+~~~~~~~~
+
+响应头
+++++++++++++
+
+.. code-block:: bash
+
+    Response Headers    
+    Date: Tue, 21 Mar 2023 07:21:03 GMT
+    Server: WSGIServer/0.2 CPython/3.8.3
+    Content-Type: application/octet-stream
+    Content-Disposition: attachment; filename="tast-api-report-data-2023-03-21.xlsx"; filename*=utf-8''tast-api-report-data-2023-03-21.xlsx
+    Allow: GET, DELETE
+    X-Frame-Options: DENY
+    Vary: Origin, Cookie
+    X-Content-Type-Options: nosniff
+    Set-Cookie: sessionid=550q0nyl2gijkeqxhu2kibep5wgdxrin; expires=Tue, 28 Mar 2023 06:00:03 GMT; HttpOnly; Max-Age=599940; Path=/; SameSite=Lax
+    Connection: close

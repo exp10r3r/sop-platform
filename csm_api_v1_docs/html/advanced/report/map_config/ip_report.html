@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>立即导出按IP拆分的word报告 &mdash; CSM API v1 说明文档 3.4.4 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=4c927a77"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="导出报告-导出记录" href="../map_record/index.html" />
+    <link rel="prev" title="修改模板状态" href="status.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            CSM API v1 说明文档
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95.html">请求方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../%E6%90%9C%E7%B4%A2%E4%B8%8E%E6%8E%92%E5%BA%8F.html">搜索与排序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A5%E5%8F%A3%E8%BE%93%E5%87%BA%E5%AD%97%E6%AE%B5.html">自定义接口输出字段</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../%E5%88%86%E9%A1%B5.html">分页</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../basic/index.html">基础API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">高级API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../task/index.html">任务管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../port_rescan/index.html">端口复扫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rescan/index.html">漏洞复扫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../thirdvuln/index.html">第三方漏洞接入</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../handler/index.html">风险处置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../system/index.html">系统管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../assets_manage/index.html">资产管理</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">导出中心</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../data_config/index.html">导出数据-模板配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_record/index.html">导出数据-导出记录</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">导出报告-模板配置</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="list.html">模板列表</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create.html">创建模板</a></li>
+<li class="toctree-l4"><a class="reference internal" href="retrieve.html">模板配置详情</a></li>
+<li class="toctree-l4"><a class="reference internal" href="edit.html">编辑模板</a></li>
+<li class="toctree-l4"><a class="reference internal" href="delete.html">删除模板</a></li>
+<li class="toctree-l4"><a class="reference internal" href="run.html">立即生成</a></li>
+<li class="toctree-l4"><a class="reference internal" href="status.html">修改模板状态</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">立即导出按IP拆分的word报告</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../map_record/index.html">导出报告-导出记录</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../other/index.html">其他</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../%E9%99%84%E4%BB%B6.html">附件</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">CSM API v1 说明文档</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">高级API</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">导出中心</a></li>
+          <li class="breadcrumb-item"><a href="index.html">导出报告-模板配置</a></li>
+      <li class="breadcrumb-item active">立即导出按IP拆分的word报告</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/advanced/report/map_config/ip_report.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ipword">
+<h1>立即导出按IP拆分的word报告<a class="headerlink" href="#ipword" title="Link to this heading"></a></h1>
+<p>用于创建新的导出报告模板</p>
+<section id="request">
+<h2>Request<a class="headerlink" href="#request" title="Link to this heading"></a></h2>
+<section id="id1">
+<h3>请求地址<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>POST<span class="w"> </span>/api/v1/report/map/config/ip_report
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h3>请求参数<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>字段</p></th>
+<th class="head"><p>字段名称</p></th>
+<th class="head"><p>是否必填</p></th>
+<th class="head"><p>说明</p></th>
+<th class="head"><p>示例</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>name</p></td>
+<td><p>导出报告名称</p></td>
+<td><p>是</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>task_ids</p></td>
+<td><p>关联任务ID</p></td>
+<td><p>否</p></td>
+<td><p>数组格式</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>group_ids</p></td>
+<td><p>关联资产组ID</p></td>
+<td><p>否</p></td>
+<td><p>数组格式</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line">condition</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">报告中希望额外包含的数据</div>
+<div class="line">默认已包含了IP资产</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">否</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">数组格式</div>
+<div class="line"><br /></div>
+<div class="line">poc: PoC漏洞</div>
+<div class="line">version: 版本型漏洞</div>
+<div class="line">riskcollector: 第三方漏洞</div>
+<div class="line">riskport: 高危端口</div>
+<div class="line">unconventional: 非常规端口</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>system_userids</p></td>
+<td><p>邮件发送对象用户id</p></td>
+<td><p>否</p></td>
+<td><p>数组格式</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>custom_email</p></td>
+<td><p>邮件发送对象-系统外用户邮箱</p></td>
+<td><p>否</p></td>
+<td><p>字符串格式，多个邮箱使用 <code class="docutils literal notranslate"><span class="pre">\n</span></code> 分隔</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">ip_scope</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">IP范围筛选</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">否</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">支持格式:</div>
+<div class="line">192.168.1.1-192.168.1.100</div>
+<div class="line">192.168.1.0/24</div>
+<div class="line">192.168.1.1</div>
+<div class="line">字符串格式，多个值可使用 <code class="docutils literal notranslate"><span class="pre">\n</span></code> 换行符号分隔</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id3">
+<h3>请求示例<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://127.0.0.1:38202/api/v1/report/map/config/ip_report&quot;</span>
+
+<span class="n">payload</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;test&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;task_ids&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s2">&quot;group_ids&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s2">&quot;condition&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;poc&quot;</span><span class="p">,</span> <span class="s2">&quot;version&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;system_userids&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s2">&quot;custom_email&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ip_scope&quot;</span><span class="p">:</span> <span class="s2">&quot;14.18.16.0/24</span><span class="se">\n</span><span class="s2">192.168.1.1-192.168.1.100</span><span class="se">\n</span><span class="s2">192.168.1.0/24&quot;</span>
+<span class="p">})</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="response">
+<h2>Response<a class="headerlink" href="#response" title="Link to this heading"></a></h2>
+<section id="id4">
+<h3>响应参数<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>参数</p></th>
+<th class="head"><p>类型</p></th>
+<th class="head"><p>描述</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>status</p></td>
+<td><p>boolean</p></td>
+<td><p>是否成功</p></td>
+</tr>
+<tr class="row-odd"><td><p>info</p></td>
+<td><p>dict</p></td>
+<td><p>返回数据</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id5">
+<h3>示例值<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;info&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;id&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1468</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;createtime&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2025-09-12 15:22:36&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;test&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;status&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;cycle&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;task_name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;group_name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;docx&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;task_ids&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">        </span><span class="s2">&quot;group_ids&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">        </span><span class="s2">&quot;md5&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;uuid&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;41abfa92-8fa9-11f0-a996-a27c2e9f9c34&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;user_id&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;template&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;default&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;generate_type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;template&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="s2">&quot;status&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h3>失败示例<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;info&quot;</span><span class="o">:</span><span class="p">{</span><span class="s2">&quot;ip_scope&quot;</span><span class="o">:</span><span class="s2">&quot;IP范围格式错误: 11114.18.16.0/24&quot;</span><span class="p">},</span><span class="s2">&quot;status&quot;</span><span class="o">:</span><span class="kc">false</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="status.html" class="btn btn-neutral float-left" title="修改模板状态" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../map_record/index.html" class="btn btn-neutral float-right" title="导出报告-导出记录" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

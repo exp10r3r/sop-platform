@@ -1,0 +1,127 @@
+URL/API-添加
+================
+
+用于添加URL/API资产的URL/API列表数据
+
+Request
+~~~~~~~~
+
+请求地址
++++++++++
+
+.. code-block:: bash
+
+   POST /api/v1/url
+
+
+
+请求参数
++++++++++++++++++++++
+
++---------------+----------+----------+----------------------------------------+----------------------------------+
+| 字段          | 字段名称 | 是否必填 | 说明                                   | 示例                             |
++===============+==========+==========+========================================+==================================+
+| title         | 标题     | 否       |                                        |                                  |
++---------------+----------+----------+----------------------------------------+----------------------------------+
+| url           | url地址  | 是       | url地址必须是合法的URL格式；           | https://www.xxx.cn:8080/api/test |
+|               |          |          |                                        |                                  |
+|               |          |          | 后台会自动提取：协议、ip、端口、路径等 |                                  |
++---------------+----------+----------+----------------------------------------+----------------------------------+
+| method        | 请求方法 | 是       |                                        | GET                              |
++---------------+----------+----------+----------------------------------------+----------------------------------+
+| response_code | 状态码   | 否       | 状态码范围应为：100-599                | 200                              |
++---------------+----------+----------+----------------------------------------+----------------------------------+
+| request_raw   | 请求报文 | 否       | 请求报文，后台会自动提取body请求体     |                                  |
++---------------+----------+----------+----------------------------------------+----------------------------------+
+| response_raw  | 返回报文 | 否       |                                        |                                  |
++---------------+----------+----------+----------------------------------------+----------------------------------+
+
+请求示例
+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+   
+.. code-block:: python
+
+    import requests
+    import json
+
+    url = "http://127.0.0.1:8000/api/v1/url"
+
+    payload = json.dumps({
+        "method": "POST",
+        "url": "https://www.xxx.cn:8080/api/test",
+        "request_raw": "POST /api/test HTTP/1.1Accept: application/json, text/plain, */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: zh-CN,zh-TW;q=0.9,zh;q=0.8\r\nCache-Control: no-cache\r\nConnection: keep-alive\r\nContent-Length: 55\r\nContent-Type: application/json;charset=UTF-8\r\nHost: www.xxx.cn:8080\r\n\r\nid=11323&user=008",
+        "response_code": 200,
+        "response_raw":"HTTP/1.1 200 OK\r\nX-Powered-By: Express\r\ndate: Wed, 19 Mar 2025 11:01:20 GMT\r\ncontent-type: application/json\r\nallow: GET\r\nx-frame-options: DENY\r\ncontent-length: 45\r\nconnection: keep-alive",
+        "title": "测试api"
+    })
+    headers = {
+        'Accept': 'application/json',
+        'Content-type': 'application/json',
+        'ACCESSKEY': 'ijE80piSATBYT8qVQcInSygUomWl6FiQFZ9LwhdZBv0eJ6QQFHQcHw',
+        'SECRETKEY': 'P4KNH51u6KyewjCfX1JZ3uZ7bCV4tTME6JcbBvmrUQTZ7YxOltUjCIiNUrp24ijq8'
+    }
+
+    response = requests.request("POST", url, headers=headers, data=payload)
+
+    print(response.text)
+
+
+Response
+~~~~~~~~
+
+响应参数
+++++++++++++
+
+=============   ===============   ===============
+参数             类型             描述
+=============   ===============   ===============
+status          boolean           是否成功
+info            dict              返回数据
+=============   ===============   ===============
+
+
+示例值
++++++++++
+
+.. code-block:: javascript
+
+    {
+        "info": {
+            "id": 18058,
+            "create_time": "2025-03-19 19:54:25",
+            "uptime": "2025-03-19 19:54:25",
+            "source": [
+                "人工添加"
+            ],
+            "host": "www.xxx.cn",
+            "port": 8080,
+            "method": "POST",
+            "url": "https://www.xxx.cn:8080/api/test",
+            "path": "/api/",
+            "parameter": null,
+            "response_code": 200,
+            "title": "测试api",
+            "assets_group": {
+                "net": [],
+                "app": []
+            },
+            "request_raw": "POST /assets/groups/net/7481 HTTP/1.1Accept: application/json, text/plain, */*\r\nAccept-Encoding: gzip, deflate, br, zstd\r\nAccept-Language: zh-CN,zh-TW;q=0.9,zh;q=0.8\r\nCache-Control: no-cache\r\nConnection: keep-alive\r\nContent-Length: 55\r\nContent-Type: application/json;charset=UTF-8\r\nHost: localhost:3000\r\nOrigin: http://localhost:3000\r\nPragma: no-cache\r\nReferer: http://localhost:3000/\r\n\r\nid=11323&user=008",
+            "response_raw": "HTTP/1.1 200 OK\r\nX-Powered-By: Express\r\ndate: Wed, 19 Mar 2025 11:01:20 GMT\r\ncontent-type: application/json\r\nallow: GET\r\nx-frame-options: DENY\r\ncontent-length: 45\r\nconnection: keep-alive",
+            "taskids": null
+        },
+        "status": true
+    }
+
+
+
+失败示例
++++++++++
+
+.. code-block:: javascript
+
+    {
+        "info": [
+            "「https://www.xxx.cn:8080/api/test」添加失败，已存在相同url"
+        ],
+        "status": false
+    }

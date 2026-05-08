@@ -1,0 +1,96 @@
+关键字-新增
+================
+
+用于新增企业邮箱监控关键字
+
+Request
+~~~~~~~~
+
+请求地址
++++++++++
+
+.. code-block:: bash
+
+   POST /api/v1/mails/keywords
+
+
+
+请求参数
++++++++++++++++++++++
+
++---------+----------+----------+------+------+
+| 字段    | 字段名称 | 是否必填 | 说明 | 示例 |
++=========+==========+==========+======+======+
+| keyword | 域名     | 是       |      |      |
++---------+----------+----------+------+------+
+| remarks | 备注     | 否       |      |      |
++---------+----------+----------+------+------+
+
+请求示例
+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+   
+.. code-block:: python
+
+    import requests
+    import json
+
+    url = "http://127.0.0.1:8000/api/v1/mails/keywords"
+
+    payload = json.dumps({
+        "keyword": "example.com",
+        "remarks": "这是备注"
+    })
+    headers = {
+        'Accept': 'application/json',
+        'Content-type': 'application/json',
+        'ACCESSKEY': 'ijE80piSATBYT8qVQcInSygUomWl6FiQFZ9LwhdZBv0eJ6QQFHQcHw',
+        'SECRETKEY': 'P4KNH51u6KyewjCfX1JZ3uZ7bCV4tTME6JcbBvmrUQTZ7YxOltUjCIiNUrp24ijq8'
+    }
+
+    response = requests.request("POST", url, headers=headers, data=payload)
+
+    print(response.text)
+
+Response
+~~~~~~~~
+
+响应参数
+++++++++++++
+
+=============   ===============   ===============
+参数             类型             描述
+=============   ===============   ===============
+status          boolean           是否成功
+info            dict              返回数据
+=============   ===============   ===============
+
+
+示例值
++++++++++
+
+.. code-block:: javascript
+
+    {
+        "info": "操作成功",
+        "status": true
+    }
+
+
+失败示例
++++++++++
+
+.. code-block:: javascript
+
+    {
+        "info": {
+            "error": "域名已存在：example.com "
+        },
+        "status": false
+    }
+
+    {
+        "info": {
+            "detail": "未找到。"
+        },
+        "status": false
+    }

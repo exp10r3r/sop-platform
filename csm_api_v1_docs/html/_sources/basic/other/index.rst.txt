@@ -1,0 +1,13 @@
+========================
+其他数据
+========================
+
+.. toctree::
+   :maxdepth: 2
+   :caption: 目录:
+
+   plugin
+   user
+   org_tree
+   system_status
+   assets_group_tree

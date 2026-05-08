@@ -1,0 +1,95 @@
+模板配置详情
+===========================================
+
+用于获取单个导出数据模板配置信息
+
+Request
+~~~~~~~~
+
+请求地址
++++++++++
+
+.. code-block:: bash
+
+   GET /api/v1/report/data/config/{id}
+
+
+
+请求示例
++++++++++
+
+.. code-block:: bash
+
+   https://localhost:38201/api/v1/report/data/config/775
+   
+   
+Response
+~~~~~~~~
+
+响应参数
+++++++++++++
+
+=============   ===============   ===============
+参数             类型             描述
+=============   ===============   ===============
+status          boolean           是否成功
+info            dict              返回数据
+=============   ===============   ===============
+
+数据字段详解：
+
+- **id** ✅：在数据库中的id
+- **name** ✅：导出任务名称
+- **type** ✅：Excel版本 ``xlsx：xlsx格式`` ``xls：xls格式``
+- **task_ids**：关联任务id
+- **group_ids**：关联资产组id
+- **condition**: 导出的数据表名 ``ip: IP资产`` ``task: 扫描任务`` ``assets_group: 资产组`` ``domain: 域名资产`` ``port: 端口服务`` ``poc: PoC漏洞`` ``version: 版本型漏洞`` ``riskcollector: 第三方漏洞`` ``riskport: 高危端口`` ``unconventional: 非常规端口`` ``riskport_rule: 高危端口-监控规则`` ``conventional_rule: 常规端口-监控规则`` ``riskport_white: 高危端口-白名单规则`` ``webfps: 分类资产库`` ``pan: 网盘监控`` ``wechat: 公众号小程序`` ``doc: 文档监控`` ``git: 开源社区监控`` ``darkweb: 暗网监控`` ``wechat-keyword: 暗网监控-监控关键字`` ``doc-keyword: 文档监控-监控关键字`` ``pan-keyword: 网盘监控-监控关键字`` ``git-keyword: 开源社区监控-监控关键字`` ``darkweb-keyword: 暗网监控-监控关键字`` ``net_scope: 网络组范围登记`` ``app_scope: 应用组范围登记`` ``application: APP资产监控`` ``application-keyword: APP资产监控-关键字`` ``url: URL列表`` ``shadow: 影子资产``
+- **cycle** ✅：是否周期任务 ``1：是`` ``0：否``
+- **value**：执行周期间隔，单位为天，当cycle为1时生效
+- **cycle_run_time** ✅：周期任务在执行当日的具体执行时间（如：09:00:00）
+- **status** ✅：任务状态 ``1: 正在导出`` ``2: 导出完成`` ``3: 导出失败``
+- **system_userids** ✅：邮件发送对象用户id
+- **custom_email** ✅：邮件发送对象-系统外用户邮箱，字符串格式，多个邮箱使用 ``\n`` 分隔
+- **file_type**: 文档拆分 ``user: 报告按照系统用户进行拆分（严格按照定义角色权限生成）``, ``user_by_group: 报告按照系统用户进行拆分（不按照定义角色权限生成，而是按照资产登记的结果来生成）``, ``group：按照资产组进行拆分`` ``空值: 不进行拆分``
+- **user_id**: 模板创建用户id
+- **fields**: 指定的自定义字段
+- **task_start_time** ✅：开始时间
+- **createtime** ✅：创建时间
+
+.. note:: ✅ 表示该字段可排序
+
+示例值
++++++++++
+
+.. code-block:: javascript
+
+    {
+        "info": {
+            "id": 775,
+            "name": "tast-api-report-data0",
+            "type": "xlsx",
+            "task_ids": [
+                112
+            ],
+            "group_ids": [
+                7391
+            ],
+            "condition": [
+                "task"
+            ],
+            "cycle": 1,
+            "value": "7",
+            "cycle_run_time": "09:00:00",
+            "status": 0,
+            "system_userids": [
+                1
+            ],
+            "custom_email": "test11@test123456.com\ntest112@test123456.com",
+            "file_type": "",
+            "user_id": 1,
+            "fields": {},
+            "task_start_time": "2024-03-21 09:11:43",
+            "createtime": "2023-03-21 11:23:39"
+        },
+        "status": true
+    }

@@ -1,0 +1,43 @@
+下载导出文件
+===========================================
+
+用于下载导出报告的文件
+
+Request
+~~~~~~~~
+
+请求地址
++++++++++
+
+.. code-block:: bash
+
+   GET /api/v1/report/map/{id}
+
+
+请求示例
++++++++++
+
+.. code-block:: bash
+
+   https://localhost:38201/api/v1/report/map/711
+   
+   
+Response
+~~~~~~~~
+
+响应头
+++++++++++++
+
+.. code-block:: bash
+
+   esponse Headers
+   Date: Tue, 21 Mar 2023 09:04:04 GMT
+   Server: WSGIServer/0.2 CPython/3.8.3
+   Content-Type: application/octet-stream
+   Content-Disposition: attachment; filename="TEST_API_REPORT1-2023-03-21.zip"; filename*=utf-8''TEST_API_REPORT1-2023-03-21.zip
+   Allow: GET, DELETE
+   X-Frame-Options: DENY
+   Vary: Origin, Cookie
+   X-Content-Type-Options: nosniff
+   Set-Cookie: sessionid=550q0nyl2gijkeqxhu2kibep5wgdxrin; expires=Tue, 28 Mar 2023 07:43:04 GMT; HttpOnly; Max-Age=599940; Path=/; SameSite=Lax
+   Connection: close

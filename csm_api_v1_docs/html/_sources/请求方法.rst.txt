@@ -1,0 +1,95 @@
+请求方法
+=========
+
+基本请求方法
+------------
+| 所有api都按照restful请求⽅式，返回结果都是json数据格式。
+
+
+* 调用每个接口Header必须设置 
+  
+.. code-block:: bash
+
+   Accept: application/json
+   Content-type: application/json
+
+身份认证
+---------- 
+| 系统通过AccessKey与SecretKey方式进行认证
+| 秘钥请在 ``系统设置-API配置`` 中获取
+| 秘钥传递方式有两种
+
+1.请求头headers中认证
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+构建请求头 
+
+.. code-block:: bash
+
+    ACCESSKEY: wybyCK05CTXOsL2/N1EvJrR9PhpT4ddUtYg4Yhg==
+    SECRETKEY: 2gsRL2XhQNAl7Og2Ve95PpF+CphLX9jNPBGnXm2l2+S7nIYW9Kw=
+
+python代码示例
+
+.. code-block:: python
+
+    import requests
+    import urllib3
+
+    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+    url = "https://localhost:38201/api/v1/ip"
+
+    payload={}
+    headers = {
+        'Accept': 'application/json',
+        'Content-type': 'application/json',
+        'ACCESSKEY': 'ijE80piSATBYT8qVQcInSygUomWl6FiQFZ9LwhdZBv0eJ6QQFHQcHw',
+        'SECRETKEY': 'P4KNH51u6KyewjCfX1JZ3uZ7bCV4tTME6JcbBvmrUQTZ7YxOltUjCIiNUrp24ijq8'
+    }
+
+    response = requests.request("GET", url, headers=headers, data=payload, verify=False) 
+
+    print(response.text)
+
+
+
+
+2.URI中认证
+^^^^^^^^^^^^^^^^^^^^^^^^
+使用ak、sk参数加入uri中
+``http://${server}/api/v1/ip?ak=${AccessKey}sk=${SecretKey}``
+
+例如: 
+
+.. code-block:: bash
+
+    http://localhost:38201/api/v1/thirdvuln/xray?ak=ijE80piSA6QQFHQcHw&sk=P4KNH51u6KyewjOjIiNUrp
+
+
+python代码示例
+
+.. code-block:: python
+
+    import requests
+    import urllib3
+
+    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+    url = "https://localhost:38201/api/v1/ip"
+
+    payload={}
+    params = {
+        "ak": "ijE80piSATBYT8qVQcInSygUomWl6FiQFZ9LwhdZBv0eJ6QQFHQcHw",
+        "sk": "P4KNH51u6KyewjCfX1JZ3uZ7bCV4tTME6JcbBvmrUQTZ7YxOltUjCIiNUrp24ijq8",
+    }
+    headers = {
+        'Accept': 'application/json',
+        'Content-type': 'application/json',
+    }
+
+    response = requests.request("GET", url, headers=headers, params=params, data=payload, verify=False) 
+
+    print(response.text)
+
+

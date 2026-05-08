@@ -1,0 +1,85 @@
+PoC漏洞-批量删除
+================================
+
+用于批量删除漏洞数据
+
+Request
+~~~~~~~~
+
+请求地址
++++++++++
+
+.. code-block:: bash
+
+   DELETE /api/v1/poc
+
+
+参数
++++++++++++++++++++++
+
++------+-----------+--------+----------+
+| 参数 | 参数名称  | 可选值 | 说明     |
++======+===========+========+==========+
+| id   | poc漏洞id |        | 数组格式 |
++------+-----------+--------+----------+
+
+
+请求示例
++++++++++
+   
+.. code-block:: python
+
+    import requests
+    import json
+
+    url = "http://127.0.0.1:9001/api/v1/poc"
+
+    payload = json.dumps({"id": [29732,29731,29730]})
+    headers = {
+        'Accept': 'application/json',
+        'Content-type': 'application/json',
+        'ACCESSKEY': 'ijE80piSATBYT8qVQcInSygUomWl6FiQFZ9LwhdZBv0eJ6QQFHQcHw',
+        'SECRETKEY': 'P4KNH51u6KyewjCfX1JZ3uZ7bCV4tTME6JcbBvmrUQTZ7YxOltUjCIiNUrp24ijq8'
+    }
+
+    response = requests.request("DELETE", url, headers=headers, data=payload)
+
+    print(response.text)
+
+Response
+~~~~~~~~
+
+响应参数
+++++++++++++
+
+=============   ===============   ===============
+参数             类型             描述
+=============   ===============   ===============
+status          boolean           是否成功
+info            array             返回数据
+=============   ===============   ===============
+
+
+
+示例值
++++++++++
+
+.. code-block:: javascript
+
+    {
+        "info": "删除成功，删除1条数据",
+        "status": true
+    }
+
+
+失败示例
++++++++++
+
+.. code-block:: javascript
+
+    {
+        "info": {
+            "id": "未找到任何匹配项."
+        },
+        "status": false
+    }

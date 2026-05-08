@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>基础API &mdash; CSM API v1 说明文档 3.4.4 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=4c927a77"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="资产数据" href="asset/index.html" />
+    <link rel="prev" title="分页" href="../%E5%88%86%E9%A1%B5.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CSM API v1 说明文档
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95.html">请求方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../%E6%90%9C%E7%B4%A2%E4%B8%8E%E6%8E%92%E5%BA%8F.html">搜索与排序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A5%E5%8F%A3%E8%BE%93%E5%87%BA%E5%AD%97%E6%AE%B5.html">自定义接口输出字段</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../%E5%88%86%E9%A1%B5.html">分页</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">基础API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="asset/index.html">资产数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="risk/index.html">安全风险</a></li>
+<li class="toctree-l2"><a class="reference internal" href="risk_info/index.html">安全情报</a></li>
+<li class="toctree-l2"><a class="reference internal" href="templates/index.html">模板</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fake/index.html">仿冒监测</a></li>
+<li class="toctree-l2"><a class="reference internal" href="other/index.html">其他数据</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">高级API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../%E9%99%84%E4%BB%B6.html">附件</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CSM API v1 说明文档</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">基础API</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/basic/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api">
+<h1>基础API<a class="headerlink" href="#api" title="Link to this heading"></a></h1>
+<p>通常用于获取各类列表数据</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="asset/index.html">资产数据</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="asset/ip.html">IP资产</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asset/domain.html">域名资产</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asset/portserver.html">端口服务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asset/webfps.html">分类资产库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asset/url/index.html">URL/API资产</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asset/ssl_cert.html">SSL证书</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asset/ip_relation.html">内外网关联</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asset/hosts_raw.html">适配器IP数据</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="risk/index.html">安全风险</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="risk/poc.html">PoC漏洞</a></li>
+<li class="toctree-l2"><a class="reference internal" href="risk/delete_poc.html">PoC漏洞-批量删除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="risk/version.html">版本型漏洞</a></li>
+<li class="toctree-l2"><a class="reference internal" href="risk/delete_version.html">版本型漏洞-批量删除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="risk/thirdvuln.html">第三方漏洞</a></li>
+<li class="toctree-l2"><a class="reference internal" href="risk/delete_thirdvuln.html">第三方漏洞-批量删除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="risk/port.html">高危端口</a></li>
+<li class="toctree-l2"><a class="reference internal" href="risk/%E9%9D%9E%E5%B8%B8%E8%A7%84%E7%AB%AF%E5%8F%A3.html">非常规端口</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="risk_info/index.html">安全情报</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="risk_info/vulinfo.html">漏洞情报</a></li>
+<li class="toctree-l2"><a class="reference internal" href="risk_info/app/index.html">公众号小程序监控</a></li>
+<li class="toctree-l2"><a class="reference internal" href="risk_info/darkweb/index.html">暗网监控</a></li>
+<li class="toctree-l2"><a class="reference internal" href="risk_info/application/index.html">APP资产监控</a></li>
+<li class="toctree-l2"><a class="reference internal" href="risk_info/doc/index.html">文档监控</a></li>
+<li class="toctree-l2"><a class="reference internal" href="risk_info/pan/index.html">网盘监控</a></li>
+<li class="toctree-l2"><a class="reference internal" href="risk_info/git/index.html">开源社区监控</a></li>
+<li class="toctree-l2"><a class="reference internal" href="risk_info/shadow/index.html">影子资产监控</a></li>
+<li class="toctree-l2"><a class="reference internal" href="risk_info/im/index.html">IM监控</a></li>
+<li class="toctree-l2"><a class="reference internal" href="risk_info/mails/index.html">企业邮箱监控</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="templates/index.html">模板</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="templates/port/index.html">端口模板</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="fake/index.html">仿冒监测</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fake/web/index.html">疑似网站</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fake/app/index.html">疑似APP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fake/official/index.html">疑似社交媒体</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="other/index.html">其他数据</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="other/plugin.html">插件列表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="other/user.html">用户列表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="other/org_tree.html">组织架构树形结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="other/system_status.html">系统运行信息</a></li>
+<li class="toctree-l2"><a class="reference internal" href="other/assets_group_tree.html">资产组树形结构</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../%E5%88%86%E9%A1%B5.html" class="btn btn-neutral float-left" title="分页" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="asset/index.html" class="btn btn-neutral float-right" title="资产数据" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

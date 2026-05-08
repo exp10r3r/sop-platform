@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>疑似网站列表 &mdash; CSM API v1 说明文档 3.4.4 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=4c927a77"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="录入疑似网站" href="create.html" />
+    <link rel="prev" title="疑似网站" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            CSM API v1 说明文档
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95.html">请求方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../%E6%90%9C%E7%B4%A2%E4%B8%8E%E6%8E%92%E5%BA%8F.html">搜索与排序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A5%E5%8F%A3%E8%BE%93%E5%87%BA%E5%AD%97%E6%AE%B5.html">自定义接口输出字段</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../%E5%88%86%E9%A1%B5.html">分页</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">基础API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../asset/index.html">资产数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../risk/index.html">安全风险</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../risk_info/index.html">安全情报</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../templates/index.html">模板</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">仿冒监测</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">疑似网站</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">疑似网站列表</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create.html">录入疑似网站</a></li>
+<li class="toctree-l4"><a class="reference internal" href="delete.html">删除疑似网站</a></li>
+<li class="toctree-l4"><a class="reference internal" href="status.html">处置疑似网站</a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_check.html">疑似网站历史检测记录</a></li>
+<li class="toctree-l4"><a class="reference internal" href="web_check_screenshot.html">疑似网站历史检测记录截图</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../app/index.html">疑似APP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../official/index.html">疑似社交媒体</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../other/index.html">其他数据</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">高级API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../%E9%99%84%E4%BB%B6.html">附件</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">CSM API v1 说明文档</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">基础API</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">仿冒监测</a></li>
+          <li class="breadcrumb-item"><a href="index.html">疑似网站</a></li>
+      <li class="breadcrumb-item active">疑似网站列表</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/basic/fake/web/list.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>疑似网站列表<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<p>用于获取疑似网站数据列表</p>
+<section id="request">
+<h2>Request<a class="headerlink" href="#request" title="Link to this heading"></a></h2>
+<section id="id2">
+<h3>请求地址<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>GET<span class="w"> </span>/api/v1/fake/web
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3>搜索参数<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>字段</p></th>
+<th class="head"><p>字段名称</p></th>
+<th class="head"><p>查询方式</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id</p></td>
+<td><p>ID</p></td>
+<td><p>精确</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>discover_time</p></td>
+<td><p>发现时间</p></td>
+<td><p>范围</p></td>
+<td><p>例如：2020-7-20/2020-8-20</p></td>
+</tr>
+<tr class="row-even"><td><p>domain</p></td>
+<td><p>钓鱼网站域名</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>url</p></td>
+<td><p>钓鱼网站URL</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>ip</p></td>
+<td><p>钓鱼网站IP</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>befaked_domain</p></td>
+<td><p>被仿冒的网站域名</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>institution_short</p></td>
+<td><p>被仿冒的机构名称</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>institution_code</p></td>
+<td><p>被仿冒的机构代码</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>target_industry</p></td>
+<td><p>被仿冒的行业代码</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>provider</p></td>
+<td><p>服务商</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>country</p></td>
+<td><p>归属国家编码</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>province</p></td>
+<td><p>归属省份编码</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>city</p></td>
+<td><p>归属城市编码</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>fake_ip_info</p></td>
+<td><p>钓鱼网站备案信息</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>source</p></td>
+<td><p>情报来源</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line">status</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">处置状态</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">精确</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">可选值:</div>
+<div class="line">2：正在处理</div>
+<div class="line">3：已确认</div>
+<div class="line">4：忽略</div>
+<div class="line">5：已处理</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>handle_time</p></td>
+<td><p>处置时间</p></td>
+<td><p>范围</p></td>
+<td><p>例如：2020-7-20/2020-8-20</p></td>
+</tr>
+<tr class="row-odd"><td><p>check_time</p></td>
+<td><p>检测时间</p></td>
+<td><p>范围</p></td>
+<td><p>例如：2020-7-20/2020-8-20</p></td>
+</tr>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">life_status</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">存活状态</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">精准</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">可选值:</div>
+<div class="line">1：存活</div>
+<div class="line">2：失效</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id4">
+<h3>其他参数<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>参数</p></th>
+<th class="head"><p>参数名称</p></th>
+<th class="head"><p>可选值</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">attach</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">附加项</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">count</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">可选，传count时，进行统计数量, 并在接口中返回</div>
+<div class="line">例如:</div>
+<div class="line">?attach=count</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id5">
+<h3>请求示例<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>https://localhost:38201/api/v1/fake/web?attach<span class="o">=</span>count<span class="p">&amp;</span><span class="nv">id</span><span class="o">=</span><span class="m">319</span><span class="p">&amp;</span><span class="nv">ip</span><span class="o">=</span><span class="m">123</span>.12.14.34<span class="p">&amp;</span><span class="nv">ordering</span><span class="o">=</span>-id
+</pre></div>
+</div>
+</section>
+</section>
+<section id="response">
+<h2>Response<a class="headerlink" href="#response" title="Link to this heading"></a></h2>
+<section id="id6">
+<h3>响应参数<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>参数</p></th>
+<th class="head"><p>类型</p></th>
+<th class="head"><p>描述</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>status</p></td>
+<td><p>boolean</p></td>
+<td><p>是否成功</p></td>
+</tr>
+<tr class="row-odd"><td><p>info</p></td>
+<td><p>array</p></td>
+<td><p>返回数据</p></td>
+</tr>
+<tr class="row-even"><td><p>count</p></td>
+<td><p>integer</p></td>
+<td><p>总数（当请求参数attach=count存在时）</p></td>
+</tr>
+</tbody>
+</table>
+<p>数据字段详解：</p>
+<ul class="simple">
+<li><p><strong>id</strong> ✅：在数据库中的id</p></li>
+<li><p><strong>discover_time</strong> ✅：发现时间</p></li>
+<li><p><strong>domain</strong> ✅：钓鱼网站域名</p></li>
+<li><p><strong>url</strong> ✅：钓鱼网站URL</p></li>
+<li><p><strong>ip</strong> ✅：钓鱼网站IP</p></li>
+<li><p><strong>befaked_domain</strong> ✅：被仿冒的网站域名</p></li>
+<li><p><strong>institution_short</strong> ✅：被仿冒的机构名称</p></li>
+<li><p><strong>institution_code</strong> ✅：被仿冒的机构代码</p></li>
+<li><p><strong>target_industry</strong> ✅：被仿冒的行业代码</p></li>
+<li><p><strong>provider</strong> ✅：服务商</p></li>
+<li><p><strong>country</strong> ✅：归属国家编码</p></li>
+<li><p><strong>province</strong> ✅：归属省份编码</p></li>
+<li><p><strong>city</strong> ✅：归属城市编码</p></li>
+<li><p><strong>fake_ip_info</strong> ✅：钓鱼网站备案信息</p></li>
+<li><p><strong>source</strong> ✅：情报来源</p></li>
+<li><p><strong>screenshot</strong> ：网站截图</p></li>
+<li><p><strong>status</strong> ：处置状态</p></li>
+<li><p><strong>handle_time</strong> ：处置时间</p></li>
+<li><p><strong>check_time</strong> ✅：检测时间</p></li>
+<li><p><strong>life_status</strong> ✅：存活状态</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>✅ 表示该字段可排序</p>
+</div>
+</section>
+<section id="id7">
+<h3>示例值<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="s2">&quot;info&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">          </span><span class="s2">&quot;id&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">319</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;discover_time&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2020-12-12 22:30:01&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;domain&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;aa.ban1111k.com&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;url&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;http://www.aa.bank.com&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;ip&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;123.12.14.34&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;befaked_domain&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;bank.com&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;institution_short&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;xx银行&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;institution_code&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;X0009H23201234&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;target_industry&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;YH(银行)&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;provider&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;XX服务商&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;country&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;CHN&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;province&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;110000&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;city&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;110101&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;fake_ip_info&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;京ICP证123456号&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;source&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;手工导入&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;screenshot&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;status&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;handle_time&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2024-10-18 10:04:07&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;check_time&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2025-05-30 10:56:56&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;life_status&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="s2">&quot;status&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;count&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="疑似网站" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="create.html" class="btn btn-neutral float-right" title="录入疑似网站" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

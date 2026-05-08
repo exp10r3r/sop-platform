@@ -1,0 +1,107 @@
+关键字-新增
+================
+
+用于新增文档监控关键字
+
+Request
+~~~~~~~~
+
+请求地址
++++++++++
+
+.. code-block:: bash
+
+   POST /api/v1/doc/keywords
+
+
+
+请求参数
++++++++++++++++++++++
+
++---------+----------+----------+------+------+
+| 字段    | 字段名称 | 是否必填 | 说明 | 示例 |
++=========+==========+==========+======+======+
+| keyword | 关键字   | 是       |      |      |
++---------+----------+----------+------+------+
+| remarks | 备注     | 否       |      |      |
++---------+----------+----------+------+------+
+
+请求示例
+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+   
+.. code-block:: python
+
+    import requests
+    import json
+
+    url = "http://127.0.0.1:8000/api/v1/doc/keywords"
+
+    payload = json.dumps({
+        "keyword": "xx安全",
+        "remarks": "这是备注"
+    })
+    headers = {
+        'Accept': 'application/json',
+        'Content-type': 'application/json',
+        'ACCESSKEY': 'ijE80piSATBYT8qVQcInSygUomWl6FiQFZ9LwhdZBv0eJ6QQFHQcHw',
+        'SECRETKEY': 'P4KNH51u6KyewjCfX1JZ3uZ7bCV4tTME6JcbBvmrUQTZ7YxOltUjCIiNUrp24ijq8'
+    }
+
+    response = requests.request("POST", url, headers=headers, data=payload)
+
+    print(response.text)
+
+Response
+~~~~~~~~
+
+响应参数
+++++++++++++
+
+=============   ===============   ===============
+参数             类型             描述
+=============   ===============   ===============
+status          boolean           是否成功
+info            dict              返回数据
+=============   ===============   ===============
+
+
+示例值
++++++++++
+
+.. code-block:: javascript
+
+    {
+        "info": {
+            "id": 171,
+            "keyword": "xx安全",
+            "create_time": "2024-06-18 09:28:23",
+            "remarks": "这是备注",
+            "user_id": 1,
+            "username": "admin"
+        },
+        "status": true
+    }
+
+
+失败示例
++++++++++
+
+.. code-block:: javascript
+
+    {
+        "info": {
+            "non_field_errors": [
+                "关键字已存在"
+            ]
+        },
+        "status": false
+    }
+
+    {
+        "info": {
+            "keyword": [
+                "该字段是必填项。"
+            ]
+        },
+        "status": false
+    }

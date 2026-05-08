@@ -1,0 +1,113 @@
+扫描任务控制
+================
+
+用于控制扫描任务启停、重新扫描等
+
+Request
+~~~~~~~~
+
+请求地址
++++++++++
+
+.. code-block:: bash
+
+   POST /api/v1/task_manage/act/{id}
+
+
+
+请求参数
++++++++++++++++++++++
+
++--------+-----------+----------+-----------------------------+------+
+| 字段   | 字段名称  | 是否必填 | 说明                        | 示例 |
++========+===========+==========+=============================+======+
+|| type  || 操作类型 || 是      || doit：任务启停             ||     |
+||       ||          ||         || priority：设置优先         ||     |
+||       ||          ||         || reset_scan：重新扫描       ||     |
+||       ||          ||         || del_data：删除任务关联数据 ||     |
+||       ||          ||         ||                            ||     |
++--------+-----------+----------+-----------------------------+------+
+|| value || 操作值   || 是      || doit：                     ||     |
+||       ||          ||         || 0暂停 1启动                ||     |
+||       ||          ||         ||                            ||     |
+||       ||          ||         || priority：                 ||     |
+||       ||          ||         || 0非优先 1优先              ||     |
+||       ||          ||         ||                            ||     |
+||       ||          ||         || reset_scan：               ||     |
+||       ||          ||         || 基础模式：                 ||     |
+||       ||          ||         || 0：端口服务                ||     |
+||       ||          ||         || 2：OS识别                  ||     |
+||       ||          ||         || 4：插件扫描                ||     |
+||       ||          ||         || 主域模式：                 ||     |
+||       ||          ||         || 0：子域名收集              ||     |
+||       ||          ||         || 12：端口探测               ||     |
+||       ||          ||         || 14：站点指纹识别           ||     |
+||       ||          ||         || 2：OS识别                  ||     |
+||       ||          ||         || 4：插件扫描                ||     |
+||       ||          ||         ||                            ||     |
+||       ||          ||         || del_data：                 ||     |
+||       ||          ||         || 1删除                      ||     |
++--------+-----------+----------+-----------------------------+------+
+
+
+请求示例
++++++++++
+   
+.. code-block:: python
+
+    import requests
+    import json
+
+    url = "http://127.0.0.1:8000/api/v1/task_manage/act/4490"
+
+    payload = json.dumps({
+        "type": "del_data",
+        "value": 1
+    })
+    headers = {
+        'Accept': 'application/json',
+        'Content-type': 'application/json',
+        'ACCESSKEY': 'ijE80piSATBYT8qVQcInSygUomWl6FiQFZ9LwhdZBv0eJ6QQFHQcHw',
+        'SECRETKEY': 'P4KNH51u6KyewjCfX1JZ3uZ7bCV4tTME6JcbBvmrUQTZ7YxOltUjCIiNUrp24ijq8'
+    }
+
+    response = requests.request("POST", url, headers=headers, data=payload)
+
+    print(response.text)
+
+Response
+~~~~~~~~
+
+响应参数
+++++++++++++
+
+=============   ===============   ===============
+参数             类型             描述
+=============   ===============   ===============
+status          boolean           是否成功
+info            dict/string       返回信息
+=============   ===============   ===============
+
+
+示例值
++++++++++
+
+.. code-block:: javascript
+
+    {
+        "info": "操作成功",
+        "status": true
+    }
+
+
+失败示例
++++++++++
+
+.. code-block:: javascript
+
+    {
+        "info": {
+            "detail": "Not found."
+        },
+        "status": false
+    }

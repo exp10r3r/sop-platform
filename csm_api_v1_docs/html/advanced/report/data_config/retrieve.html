@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>模板配置详情 &mdash; CSM API v1 说明文档 3.4.4 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=4c927a77"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="编辑模板" href="edit.html" />
+    <link rel="prev" title="创建模板" href="create.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            CSM API v1 说明文档
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95.html">请求方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../%E6%90%9C%E7%B4%A2%E4%B8%8E%E6%8E%92%E5%BA%8F.html">搜索与排序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A5%E5%8F%A3%E8%BE%93%E5%87%BA%E5%AD%97%E6%AE%B5.html">自定义接口输出字段</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../%E5%88%86%E9%A1%B5.html">分页</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../basic/index.html">基础API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">高级API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../task/index.html">任务管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../port_rescan/index.html">端口复扫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rescan/index.html">漏洞复扫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../thirdvuln/index.html">第三方漏洞接入</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../handler/index.html">风险处置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../system/index.html">系统管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../assets_manage/index.html">资产管理</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">导出中心</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">导出数据-模板配置</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="list.html">模板列表</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create.html">创建模板</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">模板配置详情</a></li>
+<li class="toctree-l4"><a class="reference internal" href="edit.html">编辑模板</a></li>
+<li class="toctree-l4"><a class="reference internal" href="delete.html">删除模板</a></li>
+<li class="toctree-l4"><a class="reference internal" href="run.html">立即生成</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fields.html">自定义导出字段详情</a></li>
+<li class="toctree-l4"><a class="reference internal" href="status.html">修改模板状态</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../data_record/index.html">导出数据-导出记录</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../map_config/index.html">导出报告-模板配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../map_record/index.html">导出报告-导出记录</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../other/index.html">其他</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../%E9%99%84%E4%BB%B6.html">附件</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">CSM API v1 说明文档</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">高级API</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">导出中心</a></li>
+          <li class="breadcrumb-item"><a href="index.html">导出数据-模板配置</a></li>
+      <li class="breadcrumb-item active">模板配置详情</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/advanced/report/data_config/retrieve.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>模板配置详情<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<p>用于获取单个导出数据模板配置信息</p>
+<section id="request">
+<h2>Request<a class="headerlink" href="#request" title="Link to this heading"></a></h2>
+<section id="id2">
+<h3>请求地址<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>GET<span class="w"> </span>/api/v1/report/data/config/<span class="o">{</span>id<span class="o">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3>请求示例<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>https://localhost:38201/api/v1/report/data/config/775
+</pre></div>
+</div>
+</section>
+</section>
+<section id="response">
+<h2>Response<a class="headerlink" href="#response" title="Link to this heading"></a></h2>
+<section id="id4">
+<h3>响应参数<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>参数</p></th>
+<th class="head"><p>类型</p></th>
+<th class="head"><p>描述</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>status</p></td>
+<td><p>boolean</p></td>
+<td><p>是否成功</p></td>
+</tr>
+<tr class="row-odd"><td><p>info</p></td>
+<td><p>dict</p></td>
+<td><p>返回数据</p></td>
+</tr>
+</tbody>
+</table>
+<p>数据字段详解：</p>
+<ul class="simple">
+<li><p><strong>id</strong> ✅：在数据库中的id</p></li>
+<li><p><strong>name</strong> ✅：导出任务名称</p></li>
+<li><p><strong>type</strong> ✅：Excel版本 <code class="docutils literal notranslate"><span class="pre">xlsx：xlsx格式</span></code> <code class="docutils literal notranslate"><span class="pre">xls：xls格式</span></code></p></li>
+<li><p><strong>task_ids</strong>：关联任务id</p></li>
+<li><p><strong>group_ids</strong>：关联资产组id</p></li>
+<li><p><strong>condition</strong>: 导出的数据表名 <code class="docutils literal notranslate"><span class="pre">ip:</span> <span class="pre">IP资产</span></code> <code class="docutils literal notranslate"><span class="pre">task:</span> <span class="pre">扫描任务</span></code> <code class="docutils literal notranslate"><span class="pre">assets_group:</span> <span class="pre">资产组</span></code> <code class="docutils literal notranslate"><span class="pre">domain:</span> <span class="pre">域名资产</span></code> <code class="docutils literal notranslate"><span class="pre">port:</span> <span class="pre">端口服务</span></code> <code class="docutils literal notranslate"><span class="pre">poc:</span> <span class="pre">PoC漏洞</span></code> <code class="docutils literal notranslate"><span class="pre">version:</span> <span class="pre">版本型漏洞</span></code> <code class="docutils literal notranslate"><span class="pre">riskcollector:</span> <span class="pre">第三方漏洞</span></code> <code class="docutils literal notranslate"><span class="pre">riskport:</span> <span class="pre">高危端口</span></code> <code class="docutils literal notranslate"><span class="pre">unconventional:</span> <span class="pre">非常规端口</span></code> <code class="docutils literal notranslate"><span class="pre">riskport_rule:</span> <span class="pre">高危端口-监控规则</span></code> <code class="docutils literal notranslate"><span class="pre">conventional_rule:</span> <span class="pre">常规端口-监控规则</span></code> <code class="docutils literal notranslate"><span class="pre">riskport_white:</span> <span class="pre">高危端口-白名单规则</span></code> <code class="docutils literal notranslate"><span class="pre">webfps:</span> <span class="pre">分类资产库</span></code> <code class="docutils literal notranslate"><span class="pre">pan:</span> <span class="pre">网盘监控</span></code> <code class="docutils literal notranslate"><span class="pre">wechat:</span> <span class="pre">公众号小程序</span></code> <code class="docutils literal notranslate"><span class="pre">doc:</span> <span class="pre">文档监控</span></code> <code class="docutils literal notranslate"><span class="pre">git:</span> <span class="pre">开源社区监控</span></code> <code class="docutils literal notranslate"><span class="pre">darkweb:</span> <span class="pre">暗网监控</span></code> <code class="docutils literal notranslate"><span class="pre">wechat-keyword:</span> <span class="pre">暗网监控-监控关键字</span></code> <code class="docutils literal notranslate"><span class="pre">doc-keyword:</span> <span class="pre">文档监控-监控关键字</span></code> <code class="docutils literal notranslate"><span class="pre">pan-keyword:</span> <span class="pre">网盘监控-监控关键字</span></code> <code class="docutils literal notranslate"><span class="pre">git-keyword:</span> <span class="pre">开源社区监控-监控关键字</span></code> <code class="docutils literal notranslate"><span class="pre">darkweb-keyword:</span> <span class="pre">暗网监控-监控关键字</span></code> <code class="docutils literal notranslate"><span class="pre">net_scope:</span> <span class="pre">网络组范围登记</span></code> <code class="docutils literal notranslate"><span class="pre">app_scope:</span> <span class="pre">应用组范围登记</span></code> <code class="docutils literal notranslate"><span class="pre">application:</span> <span class="pre">APP资产监控</span></code> <code class="docutils literal notranslate"><span class="pre">application-keyword:</span> <span class="pre">APP资产监控-关键字</span></code> <code class="docutils literal notranslate"><span class="pre">url:</span> <span class="pre">URL列表</span></code> <code class="docutils literal notranslate"><span class="pre">shadow:</span> <span class="pre">影子资产</span></code></p></li>
+<li><p><strong>cycle</strong> ✅：是否周期任务 <code class="docutils literal notranslate"><span class="pre">1：是</span></code> <code class="docutils literal notranslate"><span class="pre">0：否</span></code></p></li>
+<li><p><strong>value</strong>：执行周期间隔，单位为天，当cycle为1时生效</p></li>
+<li><p><strong>cycle_run_time</strong> ✅：周期任务在执行当日的具体执行时间（如：09:00:00）</p></li>
+<li><p><strong>status</strong> ✅：任务状态 <code class="docutils literal notranslate"><span class="pre">1:</span> <span class="pre">正在导出</span></code> <code class="docutils literal notranslate"><span class="pre">2:</span> <span class="pre">导出完成</span></code> <code class="docutils literal notranslate"><span class="pre">3:</span> <span class="pre">导出失败</span></code></p></li>
+<li><p><strong>system_userids</strong> ✅：邮件发送对象用户id</p></li>
+<li><p><strong>custom_email</strong> ✅：邮件发送对象-系统外用户邮箱，字符串格式，多个邮箱使用 <code class="docutils literal notranslate"><span class="pre">\n</span></code> 分隔</p></li>
+<li><p><strong>file_type</strong>: 文档拆分 <code class="docutils literal notranslate"><span class="pre">user:</span> <span class="pre">报告按照系统用户进行拆分（严格按照定义角色权限生成）</span></code>, <code class="docutils literal notranslate"><span class="pre">user_by_group:</span> <span class="pre">报告按照系统用户进行拆分（不按照定义角色权限生成，而是按照资产登记的结果来生成）</span></code>, <code class="docutils literal notranslate"><span class="pre">group：按照资产组进行拆分</span></code> <code class="docutils literal notranslate"><span class="pre">空值:</span> <span class="pre">不进行拆分</span></code></p></li>
+<li><p><strong>user_id</strong>: 模板创建用户id</p></li>
+<li><p><strong>fields</strong>: 指定的自定义字段</p></li>
+<li><p><strong>task_start_time</strong> ✅：开始时间</p></li>
+<li><p><strong>createtime</strong> ✅：创建时间</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>✅ 表示该字段可排序</p>
+</div>
+</section>
+<section id="id5">
+<h3>示例值<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;info&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;id&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">775</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;tast-api-report-data0&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;xlsx&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;task_ids&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="mf">112</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="s2">&quot;group_ids&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="mf">7391</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="s2">&quot;condition&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;task&quot;</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="s2">&quot;cycle&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;value&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;7&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;cycle_run_time&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;09:00:00&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;status&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;system_userids&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="mf">1</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="s2">&quot;custom_email&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;test11@test123456.com\ntest112@test123456.com&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;file_type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;user_id&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;fields&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">        </span><span class="s2">&quot;task_start_time&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2024-03-21 09:11:43&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;createtime&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2023-03-21 11:23:39&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="s2">&quot;status&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="create.html" class="btn btn-neutral float-left" title="创建模板" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="edit.html" class="btn btn-neutral float-right" title="编辑模板" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

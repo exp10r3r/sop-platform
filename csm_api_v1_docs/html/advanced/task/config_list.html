@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>任务配置详情列表 &mdash; CSM API v1 说明文档 3.4.4 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=4c927a77"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="创建任务" href="create.html" />
+    <link rel="prev" title="复扫子任务列表" href="verify_history.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            CSM API v1 说明文档
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95.html">请求方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../%E6%90%9C%E7%B4%A2%E4%B8%8E%E6%8E%92%E5%BA%8F.html">搜索与排序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A5%E5%8F%A3%E8%BE%93%E5%87%BA%E5%AD%97%E6%AE%B5.html">自定义接口输出字段</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../%E5%88%86%E9%A1%B5.html">分页</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../basic/index.html">基础API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">高级API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">任务管理</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="list.html">任务列表</a></li>
+<li class="toctree-l3"><a class="reference internal" href="verify_history.html">复扫子任务列表</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">任务配置详情列表</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#request">Request</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#response">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="create.html">创建任务</a></li>
+<li class="toctree-l3"><a class="reference internal" href="edit.html">编辑任务</a></li>
+<li class="toctree-l3"><a class="reference internal" href="delete.html">删除任务</a></li>
+<li class="toctree-l3"><a class="reference internal" href="act.html">扫描任务控制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="third_config.html">扫描器配置字段详情</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../port_rescan/index.html">端口复扫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rescan/index.html">漏洞复扫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../thirdvuln/index.html">第三方漏洞接入</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../handler/index.html">风险处置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../system/index.html">系统管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../assets_manage/index.html">资产管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../report/index.html">导出中心</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/index.html">其他</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../%E9%99%84%E4%BB%B6.html">附件</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">CSM API v1 说明文档</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">高级API</a></li>
+          <li class="breadcrumb-item"><a href="index.html">任务管理</a></li>
+      <li class="breadcrumb-item active">任务配置详情列表</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/advanced/task/config_list.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>任务配置详情列表<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<p>用于获取任务配置详情列表</p>
+<section id="request">
+<h2>Request<a class="headerlink" href="#request" title="Link to this heading"></a></h2>
+<section id="id2">
+<h3>请求地址<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>GET<span class="w"> </span>/api/v1/task_manage
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3>搜索参数<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>字段</p></th>
+<th class="head"><p>字段名称</p></th>
+<th class="head"><p>查询方式</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id</p></td>
+<td><p>任务id</p></td>
+<td><p>精确</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>name</p></td>
+<td><p>任务名称</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>scan_type</p></td>
+<td><p>扫描方式</p></td>
+<td><p>精确</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>cycle</p></td>
+<td><p>扫描频率</p></td>
+<td><p>精确</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>task_type</p></td>
+<td><p>任务类型</p></td>
+<td><p>精确</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>value_type</p></td>
+<td><p>目标范围</p></td>
+<td><p>精确</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>portdeep</p></td>
+<td><p>端口发现方式</p></td>
+<td><p>精确</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>zone_name</p></td>
+<td><p>性能区域标识</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>if_confirm</p></td>
+<td><p>是否审核通过</p></td>
+<td><p>精确</p></td>
+<td><p>1:是 0:否</p></td>
+</tr>
+<tr class="row-odd"><td><p>confirm_msg</p></td>
+<td><p>审核信息</p></td>
+<td><p>模糊</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>start_time</p></td>
+<td><p>开始时间</p></td>
+<td><p>范围</p></td>
+<td><p>例如：2020-7-20/2020-8-20</p></td>
+</tr>
+<tr class="row-odd"><td><p>end_time</p></td>
+<td><p>结束时间</p></td>
+<td><p>范围</p></td>
+<td><p>例如：2020-7-20/2020-8-20</p></td>
+</tr>
+<tr class="row-even"><td><p>create_time</p></td>
+<td><p>创建时间</p></td>
+<td><p>范围</p></td>
+<td><p>例如：2020-7-20/2020-8-20</p></td>
+</tr>
+<tr class="row-odd"><td><p>status</p></td>
+<td><p>任务状态</p></td>
+<td><p>精确多选</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>user_id</p></td>
+<td><p>用户ID</p></td>
+<td><p>精确</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id4">
+<h3>其他参数<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>参数</p></th>
+<th class="head"><p>参数名称</p></th>
+<th class="head"><p>可选值</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">attach</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">附加项</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">count</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">可选，传count时，进行统计数量, 并在接口中返回</div>
+<div class="line">例如:</div>
+<div class="line">?attach=count</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id5">
+<h3>请求示例<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>https://localhost:38201/api/v1/task_manage?attach<span class="o">=</span>count<span class="p">&amp;</span><span class="nv">id</span><span class="o">=</span><span class="m">1</span><span class="p">&amp;</span><span class="nv">name</span><span class="o">=</span>test<span class="p">&amp;</span><span class="nv">ordering</span><span class="o">=</span>-id
+</pre></div>
+</div>
+</section>
+</section>
+<section id="response">
+<h2>Response<a class="headerlink" href="#response" title="Link to this heading"></a></h2>
+<section id="id6">
+<h3>响应参数<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>参数</p></th>
+<th class="head"><p>类型</p></th>
+<th class="head"><p>描述</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>status</p></td>
+<td><p>boolean</p></td>
+<td><p>是否成功</p></td>
+</tr>
+<tr class="row-odd"><td><p>info</p></td>
+<td><p>array</p></td>
+<td><p>返回数据</p></td>
+</tr>
+<tr class="row-even"><td><p>count</p></td>
+<td><p>integer</p></td>
+<td><p>总数（当请求参数attach=count存在时）</p></td>
+</tr>
+</tbody>
+</table>
+<p>数据字段详解：</p>
+<ul class="simple">
+<li><p><strong>id</strong> ✅：在数据库中的id</p></li>
+<li><p><strong>name</strong> ✅：任务名称</p></li>
+<li><p><strong>scan_type</strong> ✅：扫描方式 <code class="docutils literal notranslate"><span class="pre">base：基础模式</span></code> <code class="docutils literal notranslate"><span class="pre">domain：主域模式</span></code> <code class="docutils literal notranslate"><span class="pre">pocscan：PoC插件巡检</span></code> <code class="docutils literal notranslate"><span class="pre">thirdscan：第三方扫描</span></code></p></li>
+<li><p><strong>task_type</strong> ✅：任务类型 <code class="docutils literal notranslate"><span class="pre">senior：高级自定义</span></code> <code class="docutils literal notranslate"><span class="pre">assets：资产盘点</span></code> <code class="docutils literal notranslate"><span class="pre">version：版本型漏洞扫描</span></code> <code class="docutils literal notranslate"><span class="pre">poc：PoC扫描</span></code> <code class="docutils literal notranslate"><span class="pre">pocscan：PoC漏洞巡检`</span></code></p></li>
+<li><p><strong>value_type</strong> ✅：目标范围 <code class="docutils literal notranslate"><span class="pre">customize：自定义</span></code> <code class="docutils literal notranslate"><span class="pre">exist_ip：资产库所有IP和域名</span></code> <code class="docutils literal notranslate"><span class="pre">business：资产组</span></code></p></li>
+<li><p><strong>value</strong>：目标值</p></li>
+<li><p><strong>cycle</strong> ✅：扫描频率设置 <code class="docutils literal notranslate"><span class="pre">0:单次执行</span></code> <code class="docutils literal notranslate"><span class="pre">1:周期执行</span></code> <code class="docutils literal notranslate"><span class="pre">2:计划执行</span></code></p></li>
+<li><p><strong>cycle_interval_type</strong> ✅：扫描频率类型 cycle值为1时: <code class="docutils literal notranslate"><span class="pre">day：天</span></code> <code class="docutils literal notranslate"><span class="pre">hour：小时</span></code> cycle值为2时: <code class="docutils literal notranslate"><span class="pre">day:每天</span></code> <code class="docutils literal notranslate"><span class="pre">week:每周</span></code> <code class="docutils literal notranslate"><span class="pre">month:每月</span></code></p></li>
+<li><p><strong>cycle_interval</strong> ✅：扫描频率</p></li>
+<li><p><strong>cycle_scantime</strong> ✅：「禁止扫描时间」模板id</p></li>
+<li><p><strong>portdeep</strong> ✅：端口发现方式 <code class="docutils literal notranslate"><span class="pre">1：急速模式</span></code> <code class="docutils literal notranslate"><span class="pre">2：标准模式</span></code></p></li>
+<li><p><strong>port_type</strong> ✅：端口类型 <code class="docutils literal notranslate"><span class="pre">all：全端口</span></code>  <code class="docutils literal notranslate"><span class="pre">template：端口模板</span></code>  <code class="docutils literal notranslate"><span class="pre">general：常规端口</span></code> <code class="docutils literal notranslate"><span class="pre">customize：自定义端口</span></code> <code class="docutils literal notranslate"><span class="pre">self-adaption：自适应端口</span></code></p></li>
+<li><p><strong>portargv</strong> ✅：端口值</p></li>
+<li><p><strong>status</strong> ✅：任务状态 <strong>基础模式</strong>: <code class="docutils literal notranslate"><span class="pre">0:</span> <span class="pre">未开始</span></code> <code class="docutils literal notranslate"><span class="pre">-1:</span> <span class="pre">暂停</span></code> <code class="docutils literal notranslate"><span class="pre">1:</span> <span class="pre">端口服务探测</span></code> <code class="docutils literal notranslate"><span class="pre">3:</span> <span class="pre">os识别</span></code> <code class="docutils literal notranslate"><span class="pre">5:</span> <span class="pre">插件扫描</span></code> <code class="docutils literal notranslate"><span class="pre">6:</span> <span class="pre">完成</span></code> <code class="docutils literal notranslate"><span class="pre">7:</span> <span class="pre">任务终止</span></code>  <strong>主域模式</strong>: <code class="docutils literal notranslate"><span class="pre">0:</span> <span class="pre">未开始</span></code> <code class="docutils literal notranslate"><span class="pre">-1:</span> <span class="pre">暂停</span></code> <code class="docutils literal notranslate"><span class="pre">10:</span> <span class="pre">子域名收集</span></code> <code class="docutils literal notranslate"><span class="pre">11:</span> <span class="pre">端口探测</span></code> <code class="docutils literal notranslate"><span class="pre">12:</span> <span class="pre">数据分析</span></code> <code class="docutils literal notranslate"><span class="pre">13:</span> <span class="pre">初步端口探测</span></code> <code class="docutils literal notranslate"><span class="pre">15:</span> <span class="pre">站点指纹识别</span></code> <code class="docutils literal notranslate"><span class="pre">3:</span> <span class="pre">os识别</span></code> <code class="docutils literal notranslate"><span class="pre">5:</span> <span class="pre">os识别完成</span></code> <code class="docutils literal notranslate"><span class="pre">6:</span> <span class="pre">完成</span></code> <code class="docutils literal notranslate"><span class="pre">7:</span> <span class="pre">任务终止</span></code></p></li>
+<li><p><strong>zone_name</strong> ✅：扫描区域标识</p></li>
+<li><p><strong>start_time</strong> ✅：开始时间（实际执行）</p></li>
+<li><p><strong>end_time</strong> ✅：结束时间</p></li>
+<li><p><strong>create_time</strong> ✅：创建时间</p></li>
+<li><p><strong>task_start_time</strong> ✅：开始扫描时间（用户设置值）</p></li>
+<li><p><strong>scanids</strong> ✅：「扫描插件模板」id</p></li>
+<li><p><strong>cpescan</strong> ✅：是否进行版本型扫描 <code class="docutils literal notranslate"><span class="pre">1：是</span></code> <code class="docutils literal notranslate"><span class="pre">0：否</span></code></p></li>
+<li><p><strong>osscan_mode</strong> ✅：是否进行操作系统识别 <code class="docutils literal notranslate"><span class="pre">1：是</span></code> <code class="docutils literal notranslate"><span class="pre">0：否</span></code></p></li>
+<li><p><strong>doit</strong> ✅：启动状态  <code class="docutils literal notranslate"><span class="pre">1：启动中</span></code> <code class="docutils literal notranslate"><span class="pre">0：暂停中</span></code></p></li>
+<li><p><strong>user_id</strong>: 用户id</p></li>
+<li><p><strong>plugin_type</strong> ：插件模板值类型   <code class="docutils literal notranslate"><span class="pre">type：按插件类型指定PoC插件</span></code> <code class="docutils literal notranslate"><span class="pre">level：按漏洞等级指定PoC插件</span></code></p></li>
+<li><p><strong>plugin_type</strong> ：插件模板值</p></li>
+<li><p><strong>plugin_type</strong> ：额外指定插件id</p></li>
+<li><p><strong>if_confirm</strong> ✅：是否审核通过 <code class="docutils literal notranslate"><span class="pre">1：是</span></code> <code class="docutils literal notranslate"><span class="pre">0：否</span></code></p></li>
+<li><p><strong>confirm_msg</strong> ：审核信息</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>✅ 表示该字段可排序</p>
+</div>
+</section>
+<section id="id7">
+<h3>示例值<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;info&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;id&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">4483</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;172.11.11.158&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;scan_type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;base&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;task_type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;senior&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;value_type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;customize&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;cycle&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;portdeep&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;zone_name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;148s&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;start_time&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2022-02-11T09:11:47.919040&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;end_time&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;create_time&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2022-01-26T15:51:51.847860&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;value&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;172.11.11.158&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;status&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">5</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;port_type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;all&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;portargv&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;all&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;scanids&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2319&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;cycle_interval&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">7</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;cycle_interval_type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;day&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;cycle_scantime&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2303&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;cpescan&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;osscan_mode&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;task_start_time&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2022-01-16T15:51:51&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;doit&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;user_id&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;plugin_type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;type&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;plugin_value&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;目录遍历&quot;</span>
+<span class="w">            </span><span class="p">],</span>
+<span class="w">            </span><span class="s2">&quot;plugin_id&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="mf">1</span><span class="p">,</span>
+<span class="w">                </span><span class="mf">2</span><span class="p">,</span>
+<span class="w">                </span><span class="mf">3</span><span class="p">,</span>
+<span class="w">                </span><span class="mf">4</span><span class="p">,</span>
+<span class="w">                </span><span class="mf">5</span>
+<span class="w">            </span><span class="p">],</span>
+<span class="w">            </span><span class="s2">&quot;ifconfirm&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;confirm_msg&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;自动审核通过&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="s2">&quot;status&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="verify_history.html" class="btn btn-neutral float-left" title="复扫子任务列表" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="create.html" class="btn btn-neutral float-right" title="创建任务" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

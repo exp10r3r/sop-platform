@@ -1,0 +1,87 @@
+修改模板状态
+==============================================================
+
+用于启用或者禁用模板
+
+Request
+~~~~~~~~
+
+请求地址
++++++++++
+
+.. code-block:: bash
+
+   PUT /api/v1/report/data/config/status/{id}
+
+
+
+请求参数
++++++++++++++++++++++
+
++--------+----------+----------+---------------+------+
+| 字段   | 字段名称 | 是否必填 | 说明          | 示例 |
++========+==========+==========+===============+======+
+| status | 模板状态 | 是       | 0:禁用 1:启用 |      |
++--------+----------+----------+---------------+------+
+
+请求示例
++++++++++
+   
+.. code-block:: python
+
+    import requests
+    import json
+
+    url = "http://127.0.0.1:38202/api/v1/report/data/config/status/169"
+
+    payload = json.dumps({
+    "status": 0
+    })
+    headers = {
+    'Content-Type': 'application/json',
+    'Cookie': 'sessionid=550q0nyl2gijkeqxhu2kibep5wgdxrin'
+    }
+
+    response = requests.request("PUT", url, headers=headers, data=payload)
+
+    print(response.text)
+
+
+
+
+Response
+~~~~~~~~
+
+响应参数
+++++++++++++
+
+=============   ===============   ===============
+参数             类型             描述
+=============   ===============   ===============
+status          boolean           是否成功
+info            dict              返回数据
+=============   ===============   ===============
+
+
+示例值
++++++++++
+
+.. code-block:: javascript
+
+    {
+        "info": "更改状态成功",
+        "status": true
+    }
+
+  
+失败示例
++++++++++
+
+.. code-block:: javascript
+
+    {
+        "info": {
+            "detail": "Not found."
+        },
+        "status": false
+    }

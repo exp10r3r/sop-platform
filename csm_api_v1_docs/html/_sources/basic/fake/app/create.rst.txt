@@ -1,0 +1,223 @@
+录入疑似APP
+================
+
+用于录入疑似APP数据
+
+Request
+~~~~~~~~
+
+请求地址
++++++++++
+
+.. code-block:: bash
+
+   POST /api/v1/fake/app
+
+请求参数
++++++++++++++++++++++
+
++-------------------+-------------------+-----------+------+---------------------+
+| 字段              | 字段名称          | 是否必填  | 说明 | 示例                |
++===================+===================+===========+======+=====================+
+| discover_time     | 发现时间          | 否        |      | 2024-10-18 10:03:34 |
++-------------------+-------------------+-----------+------+---------------------+
+| name              | 仿冒APP应用名     | 是        |      |                     |
++-------------------+-------------------+-----------+------+---------------------+
+| download_url      | 仿冒APP下载地址   | 是        |      |                     |
++-------------------+-------------------+-----------+------+---------------------+
+| befaked_md5       | 被仿冒APP MD5     | 否        |      |                     |
++-------------------+-------------------+-----------+------+---------------------+
+| links             | 后台链接          | 否        |      |                     |
++-------------------+-------------------+-----------+------+---------------------+
+| befaked_name      | 被仿冒APP应用名   | 是        |      |                     |
++-------------------+-------------------+-----------+------+---------------------+
+| befaked_package   | 被仿冒APP应用包名 | 否        |      |                     |
++-------------------+-------------------+-----------+------+---------------------+
+| befaked_version   | 被仿冒APP版本号   | 否        |      |                     |
++-------------------+-------------------+-----------+------+---------------------+
+| institution_short | 被仿冒的机构名称  | 是        |      |                     |
++-------------------+-------------------+-----------+------+---------------------+
+| institution_code  | 被仿冒的机构代码  | 否        |      |                     |
++-------------------+-------------------+-----------+------+---------------------+
+| target_industry   | 被仿冒的行业代码  | 否        |      |                     |
++-------------------+-------------------+-----------+------+---------------------+
+| provider          | 服务商            | 否        |      |                     |
++-------------------+-------------------+-----------+------+---------------------+
+| company           | 仿冒APP公司名     | 否        |      |                     |
++-------------------+-------------------+-----------+------+---------------------+
+| country           | 公司归属国家编码  | 否        |      |                     |
++-------------------+-------------------+-----------+------+---------------------+
+| province          | 公司归属省份编码  | 否        |      |                     |
++-------------------+-------------------+-----------+------+---------------------+
+| city              | 公司归属城市编码  | 否        |      |                     |
++-------------------+-------------------+-----------+------+---------------------+
+| register_addr     | 公司注册地址      | 否        |      |                     |
++-------------------+-------------------+-----------+------+---------------------+
+| emails            | 邮箱地址          | 否        |      |                     |
++-------------------+-------------------+-----------+------+---------------------+
+| work_addr         | 公司办公地址      | 否        |      |                     |
++-------------------+-------------------+-----------+------+---------------------+
+
+请求示例
++++++++++
+   
+.. code-block:: python
+
+    import requests
+    import json
+
+    url = "http://127.0.0.1:38202/api/v1/fake/app"
+
+    payload = json.dumps({
+        "discover_time": "2020-08-12 22:30:01",
+        "name": "xxx-app",
+        "download_url": "https://www.test.com/yingyong/jrlc/21265.html",
+        "befaked_md5": "b8a54a1b9628ea97a92ec7bdfdb687e2",
+        "links": [
+            {
+                "url": "api.XXX.com",
+                "ip": "X.X.X.X",
+                "method": "SOCKET",
+                "country": "CHN",
+                "province": "440000",
+                "city": "440100",
+                "suspectedDegrees": "64.01",
+                "linkTimes": "21",
+                "companyName": "companyName",
+                "websiteName": "websiteName",
+                "topDomain": "topDomain"
+            },
+            {
+                "url": "api.XXX.com",
+                "ip": "X.X.X.X",
+                "method": "SOCKET",
+                "country": "CHN",
+                "province": "440000",
+                "city": "440100",
+                "suspectedDegrees": "64.01",
+                "linkTimes": "21",
+                "companyName": "companyName",
+                "websiteName": "websiteName",
+                "topDomain": "topDomain"
+            }
+        ],
+        "befaked_name": "xx基金",
+        "befaked_package": "com.xx.video.activity",
+        "befaked_version": "9.8",
+        "institution_short": "xx银行",
+        "institution_code": "X0009H23201234",
+        "target_industry": "YH(银行)",
+        "provider": "XX服务商",
+        "company": "xx公司",
+        "country": "CHN",
+        "province": "110000",
+        "city": "110101",
+        "register_addr": "北京市xx区xx村xx大街",
+        "work_addr": "北京市xx区xx村xx大街",
+        "emails": [
+            "example@qq.com",
+            "example@163.com"
+        ]
+    })
+    headers = {
+        'ACCESSKEY': 'B6xsfMw2SztH3YTv5bWLHynfciajICMgNWomlFOhn14xcssRQQk0Q',
+        'SECRETKEY': 'FhfAkrtBNnjRHQdnF0H0JiDeHykb0tQb0JlLSFu9v92Tp31i3M22EaIMSVIKqi8lk',
+        'Content-Type': 'application/json',
+        'Cookie': 'sessionid=4dw4q32m1i9b98mmb7ymuynm0ol8jjfs'
+    }
+
+    response = requests.request("POST", url, headers=headers, data=payload)
+
+    print(response.text)
+
+Response
+~~~~~~~~
+
+响应参数
+++++++++++++
+
+=============   ===============   ===============
+参数             类型             描述
+=============   ===============   ===============
+status          boolean           是否成功
+info            dict              返回数据
+=============   ===============   ===============
+
+
+示例值
++++++++++
+
+.. code-block:: javascript
+
+    {
+        "info": {
+            "id": 311,
+            "discover_time": "2020-08-12 22:30:01",
+            "name": "xxx-app",
+            "download_url": "https://www.test.com/yingyong/jrlc/21265.html",
+            "befaked_md5": "b8a54a1b9628ea97a92ec7bdfdb687e2",
+            "links": [
+                {
+                    "url": "api.XXX.com",
+                    "ip": "X.X.X.X",
+                    "method": "SOCKET",
+                    "country": "CHN",
+                    "province": "440000",
+                    "city": "440100",
+                    "suspectedDegrees": "64.01",
+                    "linkTimes": "21",
+                    "companyName": "companyName",
+                    "websiteName": "websiteName",
+                    "topDomain": "topDomain"
+                },
+                {
+                    "url": "api.XXX.com",
+                    "ip": "X.X.X.X",
+                    "method": "SOCKET",
+                    "country": "CHN",
+                    "province": "440000",
+                    "city": "440100",
+                    "suspectedDegrees": "64.01",
+                    "linkTimes": "21",
+                    "companyName": "companyName",
+                    "websiteName": "websiteName",
+                    "topDomain": "topDomain"
+                }
+            ],
+            "befaked_name": "xx基金",
+            "befaked_package": "com.xx.video.activity",
+            "befaked_version": "9.8",
+            "institution_short": "xx银行",
+            "institution_code": "X0009H23201234",
+            "target_industry": "YH(银行)",
+            "provider": "XX服务商",
+            "company": "xx公司",
+            "country": "CHN",
+            "province": "110000",
+            "city": "110101",
+            "register_addr": "北京市xx区xx村xx大街",
+            "work_addr": "北京市xx区xx村xx大街",
+            "emails": [
+                "example@qq.com",
+                "example@163.com"
+            ],
+            "source": "API录入",
+            "status": null,
+            "handle_time": null
+        },
+        "status": true
+    }
+
+
+
+失败示例
++++++++++
+
+.. code-block:: javascript
+
+  {
+    "info": [
+        "name不能为空"
+    ],
+    "status": false
+  }

@@ -1,0 +1,113 @@
+资产组树形结构
+===========================
+
+用于获取资产组架构树形结构
+
+Request
+~~~~~~~~
+
+请求地址
++++++++++
+
+.. code-block:: bash
+
+   POST /api/v1/assets_group_tree
+
+
+请求示例
++++++++++
+   
+.. code-block:: python
+
+    import requests
+
+    url = "http://127.0.0.1:8000/api/v1/assets_group_tree"
+
+    payload = json.dumps({
+        "net_group_ids": [
+            49383
+        ],
+        "app_group_ids": []
+    })
+    headers = {
+        'Accept': 'application/json',
+        'Content-type': 'application/json',
+        'ACCESSKEY': 'ijE80piSATBYT8qVQcInSygUomWl6FiQFZ9LwhdZBv0eJ6QQFHQcxxHw',
+        'SECRETKEY': 'P4KNH51u6KyewjCfX1JZ3uZ7bCV4tTME6JcbBvmrUQTZ7YxOltUjCIixxxNUrp24ijq8'
+    }
+
+    response = requests.request("POST", url, headers=headers, data=payload)
+
+    print(response.text)
+
+   
+Response
+~~~~~~~~
+
+响应参数
+++++++++++++
+
+=============   ===============   ===============
+参数             类型             描述
+=============   ===============   ===============
+status          boolean           是否成功
+info            array             返回数据
+=============   ===============   ===============
+
+数据字段详解:
+
+- **id**: 在数据库中的id（部门id或用户id）
+- **text**: 组名
+- **user**: 责任人
+
+  - **id**: 在数据库中的id
+  - **username**: 用户名
+  - **nickname**: 昵称
+  - **phone**: 手机号
+  - **email**: 邮箱
+- **children**: 子节点
+
+
+示例值
++++++++++
+
+.. code-block:: javascript
+
+    {
+        "info": {
+            "net": [
+                {
+                    "id": 49380,
+                    "text": "b",
+                    "type": 0,
+                    "user": [],
+                    "children": [
+                        {
+                            "id": 49382,
+                            "text": "b2",
+                            "type": 0,
+                            "user": [
+                                {
+                                    "id": 1,
+                                    "username": "admin",
+                                    "nickname": "",
+                                    "phone": "15889983794",
+                                    "email": ""
+                                }
+                            ],
+                            "children": [
+                                {
+                                    "id": 49383,
+                                    "text": "b3",
+                                    "type": 1,
+                                    "user": []
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "app": []
+        },
+        "status": true
+    }

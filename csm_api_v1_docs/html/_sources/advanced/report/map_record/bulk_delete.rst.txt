@@ -1,0 +1,90 @@
+删除导出记录
+================
+
+用于批量删除导出记录
+
+Request
+~~~~~~~~
+
+请求地址
++++++++++
+
+.. code-block:: bash
+
+   DELETE /api/v1/report/map
+
+
++------+--------------+----------+----------+------+
+| 字段 | 字段名称     | 是否必填 | 说明     | 示例 |
++======+==============+==========+==========+======+
+| id   | 导出记录的id | 是       | 数组格式 |      |
++------+--------------+----------+----------+------+
+
+
+请求参数
++++++++++++++++++++++
+
+无
+
+
+请求示例
++++++++++
+   
+.. code-block:: python
+
+    import requests
+    import json
+
+    url = "http://127.0.0.1:38202/api/v1/report/map"
+
+    payload = json.dumps({
+    "id": [
+        1469
+    ]
+    })
+    headers = {
+    'Content-Type': 'application/json',
+    'Cookie': 'sessionid=550q0nyl2gijkeqxhu2kibep5wgdxrin'
+    }
+
+    response = requests.request("DELETE", url, headers=headers, data=payload)
+
+    print(response.text)
+
+
+Response
+~~~~~~~~
+
+响应参数
+++++++++++++
+
+=============   ===============   ===============
+参数             类型             描述
+=============   ===============   ===============
+status          boolean           是否成功
+info            string/dict       返回结果信息
+=============   ===============   ===============
+
+
+示例值
++++++++++
+
+.. code-block:: javascript
+
+    {
+        "info": "删除成功，删除1条数据",
+        "status": true
+    }
+
+
+失败示例
++++++++++
+
+.. code-block:: javascript
+
+    {
+        "info": {
+            "id": "id不能为空数组"
+        },
+        "status": false
+    }

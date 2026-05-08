@@ -1,0 +1,529 @@
+自定义导出字段详情
+=============================================================
+
+当用户需要自定义某个报表的输出字段时，可以查询此接口
+
+
+Request
+~~~~~~~~
+
+请求地址
++++++++++
+
+.. code-block:: bash
+
+   GET /api/v1/report/data/config/fields
+
+
+请求示例
++++++++++
+
+.. code-block:: bash
+
+   https://localhost:38201/api/v1/report/data/config/fields
+   
+   
+Response
+~~~~~~~~
+
+响应参数
+++++++++++++
+
+=============   ===============   ===============
+参数             类型             描述
+=============   ===============   ===============
+status          boolean           是否成功
+info            dict              返回数据
+=============   ===============   ===============
+
+数据字段详解：
+
+info是一个dict对象
+info的键是导出的报表标识（对应的模板配置中condition内容，如task代表扫描任务、ip代表IP资产）
+info的值 也是一个dict对象，键代表字段名称，值代表导出的Excel报表中数据列的中文列名
+
+.. note:: ✅ 表示该字段可排序
+
+示例值
++++++++++
+
+.. code-block:: javascript
+
+    {
+        "info": {
+            "task": {
+                "id": "ID",
+                "name": "任务名称",
+                "scan_type": "扫描模式",
+                "value": "资产信息",
+                "portdeep": "端口发现方式",
+                "port": "端口范围",
+                "scanids": "扫描插件",
+                "zone_name": "扫描区域",
+                "run_progress": "总体进度",
+                "cycle": "周期任务",
+                "cycle_interval": "扫描频率",
+                "cycle_scantime": "扫描时间模板",
+                "create_time": "创建时间",
+                "start_time": "开始时间",
+                "end_time": "结束时间",
+                "ifconfirm": "审核状态",
+                "confirm_msg": "审核信息",
+                "priority": "优先执行"
+            },
+            "assets_group": {
+                "id": "ID",
+                "name": "名称",
+                "type": "类型",
+                "remarks": "备注"
+            },
+            "groups": {
+                "id": "ID",
+                "ip": "IP",
+                "assets_group": "资产组-负责人",
+                "address": "地理位置",
+                "isp": "运营商",
+                "computer_room": "机房",
+                "cabinet": "机柜",
+                "equipment_number": "设备编号",
+                "bandwidth": "宽带",
+                "remarks": "备注"
+            },
+            "ip": {
+                "id": "ID",
+                "createtime": "创建时间",
+                "uptime": "更新时间",
+                "assets_group": "资产组-负责人",
+                "taskids": "关联任务名称",
+                "asource": "资产来源",
+                "ip": "IP",
+                "port": "端口",
+                "service": "服务",
+                "hostname": "主机名",
+                "strmac": "mac地址",
+                "os": "OS",
+                "tag": "资产属性",
+                "address": "地理位置",
+                "isp": "运营商",
+                "computer_room": "机房",
+                "cabinet": "机柜",
+                "equipment_number": "设备编号",
+                "bandwidth": "带宽",
+                "associate_domain": "关联域名",
+                "change_state": "变动状态",
+                "remarks": "备注"
+            },
+            "domain": {
+                "id": "ID",
+                "createtime": "创建时间",
+                "uptime": "更新时间",
+                "ip": "域名",
+                "taskids": "关联任务名称",
+                "assets_group": "资产组-负责人",
+                "asource": "来源",
+                "domain": "所属主域",
+                "ipv4": "A记录[IPv4]",
+                "ipv6": "AAAA记录[IPv6]",
+                "cname": "CNAME记录[别名]",
+                "cdn": "CDN加速",
+                "change_state": "变动状态",
+                "secstate": "安全属性",
+                "analysis": "解析状态",
+                "remarks": "备注"
+            },
+            "port": {
+                "id": "ID",
+                "createtime": "创建时间",
+                "uptime": "更新时间",
+                "assets_group": "资产组-负责人",
+                "intranet": "内网IP及端口",
+                "asource": "资产来源",
+                "associate_domain": "关联域名",
+                "asset_type": "端口资产属性",
+                "ip": "IP/域名",
+                "port": "端口",
+                "service": "服务",
+                "product": "应用",
+                "version": "版本",
+                "url": "URL",
+                "is_webapp": "Web站点",
+                "status_code": "状态码",
+                "title": "标题",
+                "webfp": "WEB指纹",
+                "is_login": "登录入口",
+                "captcha": "页面验证码",
+                "https": "HTTPS",
+                "ssl": "HTTPS证书信息",
+                "isp": "运营商",
+                "addr": "地理位置",
+                "change_state": "变动情况",
+                "remarks": "备注"
+            },
+            "poc": {
+                "id": "ID",
+                "createtime": "初次发现时间",
+                "uptime": "更新时间",
+                "assets_group": "资产组-负责人",
+                "taskids": "关联任务名称",
+                "associate_domain": "关联域名",
+                "intranet": "内网IP及端口",
+                "vul_title": "漏洞名称",
+                "risklevel": "漏洞等级",
+                "vul_type": "漏洞类型",
+                "cve": "CVE",
+                "cnnvd": "CNNVD",
+                "bugtraq": "BUGTRAQ",
+                "vul_description": "漏洞描述",
+                "url": "漏洞地址",
+                "ip": "IP地址",
+                "port": "端口",
+                "vulinfo": "验证信息",
+                "vul_solution": "解决方案",
+                "refs": "参考链接",
+                "change_state": "漏洞状态",
+                "status": "处理状态",
+                "handler": "处理人",
+                "remarks": "备注",
+                "direct_users_email": "直接负责人邮箱",
+                "direct_users_phone": "直接负责人手机号"
+            },
+            "version": {
+                "id": "ID",
+                "createtime": "初次发现时间",
+                "uptime": "更新时间",
+                "assets_group": "资产组-负责人",
+                "intranet": "内网IP及端口",
+                "associate_domain": "关联域名",
+                "taskids": "关联任务名称",
+                "vul_title": "漏洞名称",
+                "risklevel": "漏洞等级",
+                "vul_type": "漏洞类型",
+                "cpe": "CPE",
+                "cve": "CVE",
+                "cnnvd": "CNNVD",
+                "bugtraq": "BUGTRAQ",
+                "vul_description": "漏洞描述",
+                "url": "漏洞地址",
+                "ip": "IP地址",
+                "port": "端口",
+                "vulinfo": "验证信息",
+                "vul_solution": "解决方案",
+                "refs": "参考链接",
+                "change_state": "漏洞状态",
+                "status": "处理状态",
+                "handler": "处理人",
+                "remarks": "备注",
+                "exp_info": "EXP",
+                "direct_users_email": "直接负责人邮箱",
+                "direct_users_phone": "直接负责人手机号"
+            },
+            "riskport": {
+                "id": "ID",
+                "createtime": "创建时间",
+                "uptime": "更新时间",
+                "assets_group": "资产组-负责人",
+                "intranet": "内网IP及端口",
+                "associate_domain": "关联域名",
+                "taskids": "关联任务名称",
+                "ip": "IP",
+                "port": "端口",
+                "service": "服务",
+                "product": "应用",
+                "version": "版本",
+                "content": "返回内容",
+                "change_state": "变动情况",
+                "remarks": "备注",
+                "status": "处置状态",
+                "handler": "处理人"
+            },
+            "riskport_rule": {
+                "id": "ID",
+                "name": "名称",
+                "port": "端口",
+                "assets_group": "资产组",
+                "remarks": "备注"
+            },
+            "conventional_rule": {
+                "id": "ID",
+                "name": "名称",
+                "port": "端口",
+                "assets_group": "资产组",
+                "remarks": "备注"
+            },
+            "riskport_white": {
+                "id": "ID",
+                "ip": "IP",
+                "port": "端口",
+                "service": "服务",
+                "remarks": "备注",
+                "uptime": "更新时间"
+            },
+            "unconventional": {
+                "id": "ID",
+                "createtime": "创建时间",
+                "uptime": "更新时间",
+                "assets_group": "资产组-负责人",
+                "intranet": "内网IP及端口",
+                "associate_domain": "关联域名",
+                "taskids": "关联任务名称",
+                "ip": "IP",
+                "port": "端口",
+                "service": "服务",
+                "product": "应用",
+                "version": "版本",
+                "content": "返回内容",
+                "change_state": "变动情况",
+                "remarks": "备注",
+                "status": "处置状态",
+                "handler": "处理人"
+            },
+            "riskcollector": {
+                "id": "ID",
+                "first_time": "初次发现时间",
+                "last_time": "最近发现时间",
+                "create_time": "初次采集时间",
+                "up_time": "更新时间",
+                "collector_type": "漏洞来源",
+                "assets_group": "资产组-负责人",
+                "intranet": "内网IP及端口",
+                "associate_domain": "关联域名",
+                "title": "漏洞名称",
+                "risklevel": "漏洞等级",
+                "type": "漏洞类型",
+                "cve": "CVE",
+                "cnnvd": "CNNVD",
+                "cpe": "CPE",
+                "poc": "有无PoC",
+                "exp": "有无EXP",
+                "rce": "是否RCE",
+                "description": "漏洞描述",
+                "url": "漏洞地址",
+                "proto": "协议",
+                "ip_id": "IP",
+                "port": "端口",
+                "vulinfo": "验证信息",
+                "solution": "解决方案",
+                "status": "漏洞状态",
+                "handle_status": "处理状态",
+                "handler": "处理人",
+                "seealso": "参考链接",
+                "direct_users_email": "直接负责人邮箱",
+                "direct_users_phone": "直接负责人手机号",
+                "remarks": "备注"
+            },
+            "webfps": {
+                "id": "ID",
+                "uptime": "更新时间",
+                "target": "资产",
+                "cat": "指纹分类",
+                "type": "资产分类",
+                "app_name": "指纹名称",
+                "app_version": "附加信息",
+                "assets_group": "资产组-负责人",
+                "remarks": "备注"
+            },
+            "pan": {
+                "id": "ID",
+                "file_type": "文件类型",
+                "name": "文件名",
+                "url": "文件地址",
+                "share_time": "分享时间",
+                "password": "分享密码",
+                "path": "目录",
+                "createtime": "收录时间",
+                "share_name": "分享用户",
+                "file_size": "文件大小",
+                "pan_check": "链接状态",
+                "type": "泄露类型",
+                "status": "处理状态",
+                "remarks": "备注"
+            },
+            "wechat": {
+                "id": "ID",
+                "type": "类型",
+                "username": "所属微信号",
+                "nickname": "名称",
+                "aliasname": "别名",
+                "register_body": "账号主体",
+                "signature": "简介",
+                "appid": "AppID",
+                "apis": "api接口",
+                "register_time": "注册时间",
+                "update_time": "监控更新时间",
+                "tags": "标签",
+                "is_offline": "服务状态",
+                "change_state": "变动情况",
+                "status": "处理状态",
+                "menu": "菜单"
+            },
+            "doc": {
+                "id": "ID",
+                "title": "标题",
+                "url": "URL地址",
+                "summary": "摘要",
+                "type_name": "文件类型",
+                "search_contributor": "分享用户",
+                "size": "文件大小",
+                "page": "文件页数",
+                "asource": "来源",
+                "share_time": "分享时间",
+                "createtime": "发现时间",
+                "update_time": "更新时间",
+                "tags": "标签",
+                "status": "审核状态"
+            },
+            "git": {
+                "id": "ID",
+                "create_time": "发现时间",
+                "keywords": "命中关键字",
+                "source": "来源",
+                "project": "项目",
+                "project_url": "项目地址",
+                "lang": "开发语言",
+                "file_url": "URL",
+                "code": "命中代码块",
+                "status": "处理状态",
+                "emails": "用户邮箱"
+            },
+            "darkweb": {
+                "id": "ID",
+                "publish_time": "信息发布时间",
+                "capture_time": "信息采集时间",
+                "keyword": "命中关键字",
+                "url": "链接",
+                "title": "信息标题",
+                "content": "信息内容",
+                "status": "处理状态",
+                "top": "是否置顶"
+            },
+            "wechat-keyword": {
+                "id": "ID",
+                "keyword": "关键字",
+                "create_time": "创建时间",
+                "username": "用户名",
+                "remarks": "备注",
+                "monitor_time": "监控时间"
+            },
+            "doc-keyword": {
+                "id": "ID",
+                "keyword": "关键字",
+                "create_time": "创建时间",
+                "username": "用户名",
+                "remarks": "备注",
+                "monitor_time": "监控时间"
+            },
+            "pan-keyword": {
+                "id": "ID",
+                "keyword": "关键字",
+                "create_time": "创建时间",
+                "username": "用户名",
+                "remarks": "备注",
+                "monitor_time": "监控时间"
+            },
+            "git-keyword": {
+                "id": "ID",
+                "keywords": "关键字",
+                "create_time": "创建时间",
+                "username": "用户名",
+                "remarks": "备注",
+                "end_time": "监控时间"
+            },
+            "darkweb-keyword": {
+                "id": "ID",
+                "keyword": "关键字",
+                "create_time": "创建时间",
+                "update_time": "更新时间",
+                "username": "用户名",
+                "remarks": "备注",
+                "monitor_time": "监控时间"
+            },
+            "net_scope": {
+                "id": "ID",
+                "scope_type": "范围类型",
+                "value": "资产范围",
+                "assets_group": "关联网络组",
+                "priority": "优先级",
+                "isp": "运营商",
+                "bandwidth": "宽带",
+                "address": "机房地址",
+                "computer_room": "机房",
+                "cabinet": "机柜",
+                "equipment_number": "设备编号",
+                "remarks": "备注"
+            },
+            "app_scope": {
+                "id": "ID",
+                "scope_type": "范围类型",
+                "value": "资产范围",
+                "ports": "端口范围",
+                "assets_group": "关联应用组",
+                "priority": "优先级",
+                "level": "资产等级",
+                "system_source": "系统来源",
+                "supplier": "供应商",
+                "contract": "安全合同约束",
+                "remarks": "备注"
+            },
+            "application": {
+                "id": "ID",
+                "source": "来源",
+                "spsystem": "平台",
+                "title": "APP名称",
+                "version": "版本",
+                "developer": "开发者",
+                "developer_link": "开发者网站",
+                "rating": "评分",
+                "status": "处理状态",
+                "createtime": "创建时间",
+                "uptime": "更新时间",
+                "description": "简介/详情",
+                "relationsh_info": "关联证明",
+                "remarks": "备注"
+            },
+            "application-keyword": {
+                "id": "ID",
+                "keyword": "关键词",
+                "type": "匹配模式",
+                "scope": "匹配内容",
+                "remarks": "备注",
+                "create_time": "添加时间",
+                "uptime": "更新时间"
+            },
+            "url": {
+                "id": "ID",
+                "create_time": "创建时间",
+                "uptime": "更新时间",
+                "source": "来源",
+                "host": "Host",
+                "port": "Port",
+                "method": "Method",
+                "url": "URL",
+                "path": "Path",
+                "parameter": "请求body",
+                "response_code": "Status",
+                "title": "Title",
+                "assets_group": "资产组-负责人",
+                "request_raw": "请求报文",
+                "response_raw": "返回报文"
+            },
+            "shadow": {
+                "id": "ID",
+                "createtime": "创建时间",
+                "uptime": "更新时间",
+                "icp": "ICP备案号",
+                "icp_owner": "ICP备案主体",
+                "isp": "运营商",
+                "addr": "地理位置",
+                "host": "HOST",
+                "port": "端口",
+                "url": "站点URL",
+                "title": "标题",
+                "status_code": "状态码",
+                "sslinfo": "SSL证书",
+                "site_icp": "站点ICP备案",
+                "relationsh_info": "关联证明",
+                "remarks": "备注"
+            }
+        },
+        "status": true
+    }

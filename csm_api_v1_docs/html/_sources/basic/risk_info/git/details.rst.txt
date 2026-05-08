@@ -1,0 +1,102 @@
+详情列表
+==========================
+
+用于获取开源社区监控数据的代码块列表
+对应的Web页面中快速排查按钮所看到的内容
+
+Request
+~~~~~~~~
+
+请求地址
++++++++++
+
+.. code-block:: bash
+
+   GET /api/v1/git/{id}
+
+.. note:: id是结果列表(/api/v1/git)中的id
+
+
+搜索参数
++++++++++++++++++++++
+
++-------------+----------+----------+-----------------------------+
+| 字段        | 字段名称 | 查询方式 | 说明                        |
++=============+==========+==========+=============================+
+| id          | ID       | 精确     |                             |
++-------------+----------+----------+-----------------------------+
+| status      | 处置状态 | 精确多选 |                             |
++-------------+----------+----------+-----------------------------+
+| create_time | 创建时间 | 时间范围 | 例如：2020-04-19/2020-09-19 |
++-------------+----------+----------+-----------------------------+
+
+
+
+其他参数
++++++++++++++++++++++
+
++---------+----------+--------+------------------------------------------------+
+| 参数    | 参数名称 | 可选值 | 说明                                           |
++=========+==========+========+================================================+
+|| attach || 附加项  || count || 可选，传count时，进行统计数量, 并在接口中返回 |
+||        ||         ||       || 例如:                                         |
+||        ||         ||       || ?attach=count                                 |
++---------+----------+--------+------------------------------------------------+
+
+请求示例
++++++++++
+
+.. code-block:: bash
+
+   https://localhost:38201/api/v1/git/123?attach=count&id=1&status=1,2,3&ordering=-id
+   
+   
+Response
+~~~~~~~~
+
+响应参数
+++++++++++++
+
+=============   ===============   ===============
+参数             类型             描述
+=============   ===============   ===============
+status          boolean           是否成功
+info            array             返回数据
+count           integer           总数（当请求参数attach=count存在时）
+=============   ===============   ===============
+
+数据字段详解：
+
+- **id** ✅：在数据库中的id
+- **file_url** ✅：文件url
+- **code** ✅：代码块
+- **create_time** ✅：发现时间
+- **processing_time** ✅：处置时间
+- **status** ✅：状态 ``1 待确认 `` ``2 正在处理`` ``3 已确认`` ``4 忽略 `` ``5 已处理`` 
+- **remarks** ✅：备注
+- **type** ✅：分类 ``1 业务代码`` ``2 敏感文档`` ``3 敏感配置`` ``4 人员信息`` 
+- **keywords**：命中关键字
+
+.. note:: ✅ 表示该字段可排序
+
+示例值
++++++++++
+
+.. code-block:: javascript
+
+    {
+        "info": [
+            {
+                "id": 22991,
+                "file_url": "https://github.com/h2gglobe/h2gglobe/blob/0c7d655e1cdc37e8ebcdf648504c4be75819852d/Macros/Frequentist_Scripts/122GeV.sh",
+                "code": "<div class=\"hx_hit-code code-list-item d-flex py-4 code-list-item-public\">\n<img alt=\"@h2gglobe\" class=\"rounded-1 v-align-middle flex-shrink-0 mr-1\" height=\"20\" src=\"https://avatars.githubusercontent.com/u/4577826?s=40&amp;v=4\" width=\"20\"/>\n<div class=\"width-full\">\n<div class=\"flex-shrink-0 text-small text-bold\">\n<a class=\"Link--secondary\" href=\"https://github.com/h2gglobe/h2gglobe\">\n          h2gglobe/h2gglobe\n</a> </div>\n<div class=\"f4 text-normal\">\n<a data-hydro-click=\"{\"event_type\":\"search_result.click\",\"payload\":{\"page_number\":2,\"per_page\":10,\"query\":\"extension:sh  \\\"122\\\"\",\"result_position\":7,\"click_id\":10405763,\"result\":{\"id\":10405763,\"global_relay_id\":\"MDEwOlJlcG9zaXRvcnkxMDQwNTc2Mw==\",\"model_name\":\"Repository\",\"url\":\"https://github.com/h2gglobe/h2gglobe/blob/0c7d655e1cdc37e8ebcdf648504c4be75819852d/Macros/Frequentist_Scripts/122GeV.sh\"},\"originating_url\":\"https://github.com/search?o=desc&amp;p=2&amp;q=extension%3Ash++%22122%22&amp;ref=cmdform&amp;type=Code\",\"user_id\":10123544}}\" data-hydro-click-hmac=\"aabf9f5b5f67f0149561c78eb41059d736d0fca2a4740c603286f23ff824be9d\" href=\"https://github.com/h2gglobe/h2gglobe/blob/0c7d655e1cdc37e8ebcdf648504c4be75819852d/Macros/Frequentist_Scripts/122GeV.sh\" title=\"Macros/Frequentist_Scripts/122GeV.sh\">Macros/Frequentist_Scripts/122GeV.sh</a>\n</div>\n<div class=\"file-box blob-wrapper my-1\">\n<table class=\"highlight\">\n<tr>\n<td class=\"blob-num\">\n<a href=\"https://github.com/h2gglobe/h2gglobe/blob/0c7d655e1cdc37e8ebcdf648504c4be75819852d/Macros/Frequentist_Scripts/122GeV.sh#L27\">27</a>\n</td>\n<td class=\"blob-code blob-code-inner\"><span class=\"pl-c1\">echo</span> <span class=\"pl-s\"><span class=\"pl-pds\">\"</span>## Starting at <span class=\"pl-s\"><span class=\"pl-pds\">$(</span>date<span class=\"pl-pds\">)</span></span><span class=\"pl-pds\">\"</span></span>\n</td>\n</tr>\n<tr>\n<td class=\"blob-num\">\n<a href=\"https://github.com/h2gglobe/h2gglobe/blob/0c7d655e1cdc37e8ebcdf648504c4be75819852d/Macros/Frequentist_Scripts/122GeV.sh#L28\">28</a>\n</td>\n<td class=\"blob-code blob-code-inner\"><span class=\"pl-s\"><span class=\"pl-pds\">((</span> (<span class=\"pl-smi\">$i</span> <span class=\"pl-k\">+</span> <span class=\"pl-c1\">0</span>) <span class=\"pl-k\">%</span> <span class=\"pl-c1\">1</span> <span class=\"pl-k\">==</span> <span class=\"pl-c1\">0</span> <span class=\"pl-pds\">))</span></span> <span class=\"pl-k\">&amp;&amp;</span> ./combine 122GeVmodel.root -M HybridNew -m <span class=\"text-bold hx_keyword-hl rounded-1 d-inline-block\">122</span> --freq --fork 0 -T <span class=\"pl-smi\">$n</span> --clsAcc 0 -v 0 -n 122GeV --saveHybridResult --saveToys -s -1 -i 1 --singlePoint 0.0</td>\n</tr>\n<tr>\n<td class=\"blob-num\">\n<a href=\"https://github.com/h2gglobe/h2gglobe/blob/0c7d655e1cdc37e8ebcdf648504c4be75819852d/Macros/Frequentist_Scripts/122GeV.sh#L29\">29</a>\n</td>\n<td class=\"blob-code blob-code-inner\"><span class=\"pl-s\"><span class=\"pl-pds\">((</span> (<span class=\"pl-smi\">$i</span> <span class=\"pl-k\">+</span> <span class=\"pl-c1\">1</span>) <span class=\"pl-k\">%</span> <span class=\"pl-c1\">1</span> <span class=\"pl-k\">==</span> <span class=\"pl-c1\">0</span> <span class=\"pl-pds\">))</span></span> <span class=\"pl-k\">&amp;&amp;</span> ./combine 122GeVmodel.root -M HybridNew -m <span class=\"text-bold hx_keyword-hl rounded-1 d-inline-block\">122</span> --freq --fork 0 -T <span class=\"pl-smi\">$n</span> --clsAcc 0 -v 0 -n 122GeV --saveHybridResult --saveToys -s -1 -i 1 --singlePoint 0.1</td>\n</tr>\n</table>\n</div>\n<div class=\"d-flex flex-wrap text-small color-text-secondary\">\n<div class=\"mr-3\">\n<span class=\"\">\n<span class=\"repo-language-color\" style=\"background-color: #89e051\"></span>\n<span itemprop=\"programmingLanguage\">Shell</span>\n</span>\n</div>\n<span class=\"match-count mr-3\">\n          Showing the top two matches\n        </span>\n<span class=\"updated-at mr-3\">\n        Last indexed <relative-time class=\"no-wrap\" datetime=\"2021-04-08T20:42:20Z\">Apr 9, 2021</relative-time>\n</span>\n</div>\n</div>\n</div>",
+                "create_time": "2021-06-01 17:59:05",
+                "processing_time": "2021-06-03 17:25:47",
+                "status": 2,
+                "remarks": "v",
+                "type": null,
+                "keywords": "extension:sh  \"122\""
+            }
+        ],
+        "status": true
+    }

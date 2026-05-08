@@ -1,0 +1,26 @@
+分页
+===============
+
+系统提供的列表类接口使用 ``limit``、 ``offset`` 方式进行分页，使用方法为通过uri进行传递
+
+
+* limit
+
+| 表示列表接口返回的数据行数，不指定时默认值为 ``10``
+| 使用方法：
+
+.. code-block:: bash
+
+    /api/v1/ip?limit=100
+
+
+* offset
+
+| 表示列表接口返回的数据的偏移量，不指定时默认值为 ``0``
+| 使用方法：
+
+.. code-block:: bash
+
+    /api/v1/ip?offset=10
+
+.. note:: 列表数据总量count会在接口中给出(当请求参数attach=count存在时)，建议先通过 ``/api/v1/ip?attach=count&limit=1`` 方式获取 count 值

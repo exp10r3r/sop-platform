@@ -1,0 +1,16 @@
+========================
+导出报告-模板配置
+========================
+
+.. toctree::
+   :maxdepth: 2
+   :caption: 目录:
+
+   list
+   create
+   retrieve
+   edit
+   delete
+   run
+   status
+   ip_report
